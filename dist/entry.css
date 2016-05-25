@@ -1090,7 +1090,7 @@ svg .svgBlockGroup text {
   -ms-touch-action: none;
 }
 .entryOverlayBoard {
-  background: rgba(180, 180, 180, 0.4);
+  background: rgba(180, 180, 180, 0.6);
 }
 .boardScrollbar {
   opacity: 0.4;
@@ -2351,8 +2351,8 @@ svg .svgBlockGroup text {
 }
 #globalSvg {
   position: fixed;
-  width: 1px;
-  height: 1px;
+  width: 10px;
+  height: 10px;
   overflow: visible;
   z-index: 1111;
   opacity: 0.8;
@@ -2439,7 +2439,8 @@ svg .svgBlockGroup text {
     top: 100%;
   }
 }
-#entryBlockHelperWorkspace {
+#entryBlockHelperWorkspace,
+#entryPdfWorkspace {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -2613,7 +2614,8 @@ svg .svgBlockGroup text {
     top: 100%;
   }
 }
-#entryBlockHelperWorkspace {
+#entryBlockHelperWorkspace,
+#entryPdfWorkspace {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -5124,6 +5126,12 @@ svg .svgBlockGroup text {
 .propertyTabgoal.selected {
   background-image: url("../images/property/doneproject_on.png");
 }
+.propertyTabpdf {
+  background-image: url("../images/property/pdf_off.png");
+}
+.propertyTabpdf {
+  background-image: url("../images/property/pdf_on.png");
+}
 .propertyContent {
   position: absolute;
   top: 0;
@@ -5902,6 +5910,10 @@ svg .svgBlockGroup text {
   margin-top: 4px;
   cursor: pointer;
   background-image: url("../images/list_remove_button.png");
+}
+#entryPdfWorkspace iframe {
+  width: 100%;
+  height: 100%;
 }
 
 

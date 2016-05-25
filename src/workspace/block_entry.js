@@ -3,6 +3,10 @@ if (typeof Entry !== "object")
 
 if (typeof exports == "object") {
     var Lang = require('../../extern/lang/ko.js').Lang;
+    if (typeof Entry !== "object")
+        var Entry = {};
+    Entry.Bitbrick = {};
+    EntryStatic = {};
 }
 
 Entry.block = {
@@ -76,7 +80,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -133,7 +137,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -201,7 +205,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -271,7 +275,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -320,7 +324,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -373,7 +377,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -431,7 +435,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -475,7 +479,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -513,7 +517,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -577,7 +581,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -624,7 +628,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -668,7 +672,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -706,7 +710,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -735,7 +739,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -782,7 +786,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -821,7 +825,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -855,7 +859,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -917,7 +921,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -989,7 +993,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -1045,7 +1049,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -1082,7 +1086,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -1115,7 +1119,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -1154,7 +1158,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -1204,7 +1208,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -1276,7 +1280,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -1320,7 +1324,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -1364,7 +1368,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -1419,7 +1423,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -1563,7 +1567,8 @@ Entry.block = {
                     [ "5", "A5" ]
                 ],
                 "value": "A0",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_HW
             }
         ],
         "events": {},
@@ -1601,7 +1606,8 @@ Entry.block = {
                     [ "13", "13" ]
                 ],
                 "value": "0",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_HW
             }
         ],
         "events": {},
@@ -1631,7 +1637,8 @@ Entry.block = {
                     [ "11", "11" ]
                 ],
                 "value": "3",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_HW
             }
         ],
         "events": {},
@@ -1721,11 +1728,12 @@ Entry.block = {
                     [Lang.Blocks.ARDUINO_off,"off"]
                 ],
                 "value": "on",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_HW
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -1769,7 +1777,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -1938,7 +1946,7 @@ Entry.block = {
                 "options": [
                     [ "빨간", "8" ],
                     [ "파란", "9" ],
-                    [ "노란", "10" ],
+                    [ "노랑", "10" ],
                     [ "초록", "11" ]
                 ],
                 "value": "8",
@@ -1970,7 +1978,7 @@ Entry.block = {
                     [ "빨간", "2" ],
                     [ "초록", "3" ],
                     [ "파란", "4" ],
-                    [ "흰색", "5" ]
+                    [ "노랑", "5" ]
                 ],
                 "value": "2",
                 "fontSize": 11
@@ -1986,7 +1994,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -2363,7 +2371,10 @@ Entry.block = {
             {
                 "type": "DropdownDynamic",
                 "value": null,
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_HW,
+                menuName: Entry.Bitbrick.sensorList
+
             }
         ],
         "events": {},
@@ -2390,7 +2401,8 @@ Entry.block = {
             {
                 "type": "DropdownDynamic",
                 "value": null,
-                "fontSize": 11
+                "fontSize": 11,
+                menuName: Entry.Bitbrick.touchList
             }
         ],
         "events": {},
@@ -2414,7 +2426,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -2452,7 +2464,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -2507,7 +2519,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -2540,7 +2552,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -2596,7 +2608,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -2636,7 +2648,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -2667,7 +2679,8 @@ Entry.block = {
             {
                 "type": "DropdownDynamic",
                 "value": null,
-                "fontSize": 11
+                "fontSize": 11,
+                menuName: Entry.Bitbrick.dcList
             },
             {
                 "type": "Block",
@@ -2675,7 +2688,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -2715,7 +2728,8 @@ Entry.block = {
             {
                 "type": "DropdownDynamic",
                 "value": null,
-                "fontSize": 11
+                "fontSize": 11,
+                menuName: Entry.Bitbrick.dcList
             },
             {
                 "type": "Dropdown",
@@ -2732,7 +2746,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -2775,7 +2789,8 @@ Entry.block = {
             {
                 "type": "DropdownDynamic",
                 "value": null,
-                "fontSize": 11
+                "fontSize": 11,
+                menuName: Entry.Bitbrick.servoList
             },
             {
                 "type": "Block",
@@ -2783,7 +2798,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -2822,7 +2837,8 @@ Entry.block = {
             {
                 "type": "DropdownDynamic",
                 "value": null,
-                "fontSize": 11
+                "fontSize": 11,
+                menuName: Entry.Bitbrick.sensorList
             },
             {
                 "type": "Block",
@@ -2903,7 +2919,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/brush_03.png",
+                "img": "block_icon/brush_03.png",
                 "size": 12
             }
         ],
@@ -2934,7 +2950,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/brush_03.png",
+                "img": "block_icon/brush_03.png",
                 "size": 12
             }
         ],
@@ -2962,7 +2978,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/brush_03.png",
+                "img": "block_icon/brush_03.png",
                 "size": 12
             }
         ],
@@ -3003,7 +3019,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/brush_03.png",
+                "img": "block_icon/brush_03.png",
                 "size": 12
             }
         ],
@@ -3042,7 +3058,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/brush_03.png",
+                "img": "block_icon/brush_03.png",
                 "size": 12
             }
         ],
@@ -3094,7 +3110,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/brush_03.png",
+                "img": "block_icon/brush_03.png",
                 "size": 12
             }
         ],
@@ -3143,7 +3159,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/brush_03.png",
+                "img": "block_icon/brush_03.png",
                 "size": 12
             }
         ],
@@ -3194,7 +3210,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/brush_03.png",
+                "img": "block_icon/brush_03.png",
                 "size": 12
             }
         ],
@@ -3241,7 +3257,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/brush_03.png",
+                "img": "block_icon/brush_03.png",
                 "size": 12
             }
         ],
@@ -3277,7 +3293,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/brush_03.png",
+                "img": "block_icon/brush_03.png",
                 "size": 12
             }
         ],
@@ -3305,7 +3321,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/brush_03.png",
+                "img": "block_icon/brush_03.png",
                 "size": 12
             }
         ],
@@ -3356,7 +3372,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/brush_03.png",
+                "img": "block_icon/brush_03.png",
                 "size": 12
             }
         ],
@@ -3549,7 +3565,8 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "spritesWithMouse",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_CALC
             },
             {
                 "type": "Text",
@@ -3601,7 +3618,8 @@ Entry.block = {
                     [ "y", "y" ]
                 ],
                 "value": "x",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_CALC
             },
             {
                 "type": "Text",
@@ -3642,7 +3660,8 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "spritesWithSelf",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_CALC
             },
             {
                 "type": "Text",
@@ -3661,7 +3680,8 @@ Entry.block = {
                     [Lang.Blocks.CALC_picture_name, "picture_name"]
                 ],
                 "value": "x",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_CALC
             }
         ],
         "events": {},
@@ -4103,7 +4123,8 @@ Entry.block = {
                     [Lang.Blocks.CALC_calc_operation_abs,"abs"]
                 ],
                 "value": "square",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_CALC
             }
         ],
         "events": {},
@@ -4259,7 +4280,8 @@ Entry.block = {
                     [Lang.Blocks.CALC_get_date_second,"SECOND"]
                 ],
                 "value": "YEAR",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_CALC
             },
             {
                 "type": "Text",
@@ -4308,7 +4330,8 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "sounds",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_CALC
             },
             {
                 "type": "Text",
@@ -4387,7 +4410,8 @@ Entry.block = {
                     [Lang.Blocks.CALC_timer_visible_hide,"HIDE"]
                 ],
                 "value": "SHOW",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_CALC
             },
             {
                 "type": "Text",
@@ -4396,7 +4420,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/calc_01.png",
+                "img": "block_icon/calc_01.png",
                 "size": 12
             }
         ],
@@ -4775,7 +4799,8 @@ Entry.block = {
                     [Lang.Blocks.CALC_change_string_case_sub_2,"toLowerCase"]
                 ],
                 "value": "toUpperCase",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_CALC
             },
             {
                 "type": "Text",
@@ -4989,7 +5014,8 @@ Entry.block = {
                       [Lang.Blocks.CALC_quotient_and_mod_sub_2,"MOD"]
                 ],
                 "value": "QUOTIENT",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_CALC
             }
         ],
         "events": {},
@@ -5047,7 +5073,8 @@ Entry.block = {
                     [Lang.Blocks.CALC_choose_project_timer_action_sub_3,"RESET"]
                 ],
                 "value": "START",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_CALC
             },
             {
                 "type": "Text",
@@ -5056,7 +5083,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/calc_01.png",
+                "img": "block_icon/calc_01.png",
                 "size": 12
             }
         ],
@@ -5129,7 +5156,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/flow_03.png",
+                "img": "block_icon/flow_03.png",
                 "size": 12
             }
         ],
@@ -5185,7 +5212,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/flow_03.png",
+                "img": "block_icon/flow_03.png",
                 "size": 12
             }
         ],
@@ -5237,7 +5264,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/flow_03.png",
+                "img": "block_icon/flow_03.png",
                 "size": 12
             }
         ],
@@ -5264,7 +5291,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/flow_03.png",
+                "img": "block_icon/flow_03.png",
                 "size": 12
             }
         ],
@@ -5292,7 +5319,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/flow_03.png",
+                "img": "block_icon/flow_03.png",
                 "size": 12
             }
         ],
@@ -5335,7 +5362,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/flow_03.png",
+                "img": "block_icon/flow_03.png",
                 "size": 12
             }
         ],
@@ -5389,7 +5416,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/flow_03.png",
+                "img": "block_icon/flow_03.png",
                 "size": 12
             },
             {
@@ -5437,11 +5464,12 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "clone",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_FLOW
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/flow_03.png",
+                "img": "block_icon/flow_03.png",
                 "size": 12
             }
         ],
@@ -5474,7 +5502,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/flow_03.png",
+                "img": "block_icon/flow_03.png",
                 "size": 12
             }
         ],
@@ -5499,7 +5527,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/start_icon_clone.png",
+                "img": "block_icon/start_icon_clone.png",
                 "size": 17,
                 "position": {
                     "x": 0,
@@ -5526,7 +5554,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/flow_03.png",
+                "img": "block_icon/flow_03.png",
                 "size": 12
             }
         ],
@@ -5558,11 +5586,12 @@ Entry.block = {
                     [ Lang.Blocks.FLOW_repeat_while_true_while, "while" ]
                 ],
                 "value": "until",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_FLOW
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/flow_03.png",
+                "img": "block_icon/flow_03.png",
                 "size": 12
             }
         ],
@@ -5611,11 +5640,12 @@ Entry.block = {
                     [ Lang.Blocks.FLOW_stop_object_other_thread, "otherThread" ]
                 ],
                 "value": "all",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_FLOW
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/flow_03.png",
+                "img": "block_icon/flow_03.png",
                 "size": 12
             }
         ],
@@ -5659,7 +5689,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/flow_03.png",
+                "img": "block_icon/flow_03.png",
                 "size": 12
             }
         ],
@@ -5682,7 +5712,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/flow_03.png",
+                "img": "block_icon/flow_03.png",
                 "size": 12
             }
         ],
@@ -5837,7 +5867,7 @@ Entry.block = {
         }
     },
     "function_create": {
-        "skeleton": "basic",
+        "skeleton": "basic_create",
         "color": "#cc7337",
         "event": "funcDef",
         "params": [
@@ -5851,7 +5881,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/function_03.png",
+                "img": "block_icon/function_03.png",
                 "size": 12
             }
         ],
@@ -5867,7 +5897,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/function_03.png",
+                "img": "block_icon/function_03.png",
                 "size": 12
             }
         ],
@@ -5980,7 +6010,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -6075,7 +6105,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -6232,7 +6262,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -6290,7 +6320,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -6357,7 +6387,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -6427,7 +6457,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -6477,7 +6507,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -6531,7 +6561,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -6590,7 +6620,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -6654,7 +6684,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -6712,7 +6742,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -6782,7 +6812,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -6809,7 +6839,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -6859,7 +6889,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -6906,7 +6936,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -6941,7 +6971,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -6988,7 +7018,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -7027,7 +7057,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -7061,7 +7091,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -7123,7 +7153,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -7195,7 +7225,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -7251,7 +7281,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -7288,7 +7318,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -7343,7 +7373,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -7394,7 +7424,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -7452,7 +7482,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -7555,7 +7585,8 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "collision",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_JUDGE
             },
             {
                 "type": "Text",
@@ -8221,7 +8252,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -8244,7 +8275,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -8279,11 +8310,12 @@ Entry.block = {
                     [ Lang.Blocks.speak, "speak" ]
                 ],
                 "value": "speak",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_LOOKS
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -8350,11 +8382,12 @@ Entry.block = {
                     [ Lang.Blocks.speak, "speak" ]
                 ],
                 "value": "speak",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_LOOKS
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -8395,7 +8428,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -8424,7 +8457,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -8457,11 +8490,12 @@ Entry.block = {
                     [ Lang.Blocks.LOOKS_change_shape_prev, "prev" ]
                 ],
                 "value": "next",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_LOOKS
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -8507,7 +8541,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -8569,7 +8603,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -8617,7 +8651,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -8644,7 +8678,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -8682,7 +8716,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -8721,7 +8755,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -8758,7 +8792,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -8791,7 +8825,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -8814,7 +8848,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -8845,7 +8879,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -8880,7 +8914,8 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "pictures",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_LOOKS
             }
         ],
         "events": {},
@@ -8905,7 +8940,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -8947,7 +8982,8 @@ Entry.block = {
                     [ Lang.Blocks.transparency, "transparency" ]
                 ],
                 "value": "color",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_LOOKS
             },
             {
                 "type": "Block",
@@ -8955,7 +8991,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -9004,7 +9040,8 @@ Entry.block = {
                     [ Lang.Blocks.transparency, "transparency" ]
                 ],
                 "value": "color",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_LOOKS
             },
             {
                 "type": "Block",
@@ -9012,7 +9049,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -9069,7 +9106,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -9126,7 +9163,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -9176,11 +9213,12 @@ Entry.block = {
                     [ Lang.Blocks.LOOKS_change_object_index_sub_4, "BACK" ]
                 ],
                 "value": "FRONT",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_LOOKS
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/looks_03.png",
+                "img": "block_icon/looks_03.png",
                 "size": 12
             }
         ],
@@ -9235,7 +9273,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -9276,7 +9314,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -9316,7 +9354,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -9364,7 +9402,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -9433,7 +9471,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -9477,7 +9515,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -9508,7 +9546,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -9547,7 +9585,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -9586,7 +9624,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -9633,7 +9671,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -9673,7 +9711,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -9712,11 +9750,12 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "spritesWithMouse",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_MOVING
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -9768,7 +9807,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -9836,7 +9875,7 @@ Entry.block = {
             { "type": "Angle" },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -9887,7 +9926,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -10073,7 +10112,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -10093,7 +10132,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -10115,11 +10154,12 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "spritesWithMouse",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_MOVING
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -10177,7 +10217,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -10215,7 +10255,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -10254,11 +10294,12 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "spritesWithMouse",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_MOVING
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -10344,7 +10385,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -10378,7 +10419,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -10412,7 +10453,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -10446,7 +10487,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -10484,7 +10525,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -10532,7 +10573,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -10591,7 +10632,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/moving_03.png",
+                "img": "block_icon/moving_03.png",
                 "size": 12
             }
         ],
@@ -10655,8 +10696,7 @@ Entry.block = {
         "events": {},
         "def": {
             "params": [null],
-            "type": "neobot_sensor_value",
-            "id": "k9wp"
+            "type": "neobot_sensor_value"
         },
         "paramsKeyMap": {
             "PORT": 0
@@ -10680,7 +10720,8 @@ Entry.block = {
                 ["뒤로", "32"]
             ],
             "value": "16",
-            "fontSize": 11
+            "fontSize": 11,
+            'arrowColor': EntryStatic.ARROW_COLOR_HW
         }, {
             "type": "Dropdown",
             "options": [
@@ -10702,17 +10743,17 @@ Entry.block = {
                 ["15", "15"]
             ],
             "value": "0",
-            "fontSize": 11
+            "fontSize": 11,
+            'arrowColor': EntryStatic.ARROW_COLOR_HW
         }, {
             "type": "Indicator",
-            "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+            "img": "block_icon/hardware_03.png",
             "size": 12
         }],
         "events": {},
         "def": {
             "params": [null, "15", null],
-            "type": "neobot_left_motor",
-            "id": "wguy"
+            "type": "neobot_left_motor"
         },
         "paramsKeyMap": {
             "DIRECTION": 0,
@@ -10734,7 +10775,7 @@ Entry.block = {
         "template": "왼쪽모터 정지 %1",
         "params": [{
             "type": "Indicator",
-            "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+            "img": "block_icon/hardware_03.png",
             "size": 12
         }],
         "events": {},
@@ -10762,7 +10803,8 @@ Entry.block = {
                 ["뒤로", "32"]
             ],
             "value": "16",
-            "fontSize": 11
+            "fontSize": 11,
+            'arrowColor': EntryStatic.ARROW_COLOR_HW
         }, {
             "type": "Dropdown",
             "options": [
@@ -10784,17 +10826,17 @@ Entry.block = {
                 ["15", "15"]
             ],
             "value": "0",
-            "fontSize": 11
+            "fontSize": 11,
+            'arrowColor': EntryStatic.ARROW_COLOR_HW
         }, {
             "type": "Indicator",
-            "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+            "img": "block_icon/hardware_03.png",
             "size": 12
         }],
         "events": {},
         "def": {
             "params": [null, "15", null],
-            "type": "neobot_right_motor",
-            "id": "g15e"
+            "type": "neobot_right_motor"
         },
         "paramsKeyMap": {
             "DIRECTION": 0,
@@ -10816,7 +10858,7 @@ Entry.block = {
         "template": "오른쪽모터 정지 %1",
         "params": [{
             "type": "Indicator",
-            "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+            "img": "block_icon/hardware_03.png",
             "size": 12
         }],
         "events": {},
@@ -10846,7 +10888,8 @@ Entry.block = {
                     [ "오른쪽", "3" ]
                 ],
                 "value": "1",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_HW
             },
             {
                 "type": "Block",
@@ -10860,7 +10903,8 @@ Entry.block = {
                     [ "빠르게", "3" ]
                 ],
                 "value": "1",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_HW
             },
             {
                 "type": "Dropdown",
@@ -10871,19 +10915,19 @@ Entry.block = {
                     [ "우회전", "4" ]
                 ],
                 "value": "1",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_HW
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
         "events": {},
         "def": {
             "params": ["15", null, null],
-            "type": "neobot_all_motor",
-            "id": "kxpn"
+            "type": "neobot_all_motor"
         },
         "paramsKeyMap": {
             "SPEED": 0,
@@ -10937,7 +10981,8 @@ Entry.block = {
                 ["OUT3", "3"]
             ],
             "value": "1",
-            "fontSize": 11
+            "fontSize": 11,
+            'arrowColor': EntryStatic.ARROW_COLOR_HW
         }, {
             "type": "Dropdown",
             "options": [
@@ -10962,17 +11007,17 @@ Entry.block = {
                 ["180도", "180"]
             ],
             "value": "0",
-            "fontSize": 11
+            "fontSize": 11,
+            'arrowColor': EntryStatic.ARROW_COLOR_HW
         }, {
             "type": "Indicator",
-            "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+            "img": "block_icon/hardware_03.png",
             "size": 12
         }],
         "events": {},
         "def": {
             "params": [null, null, null],
-            "type": "neobot_set_servo",
-            "id": "eokl"
+            "type": "neobot_set_servo"
         },
         "paramsKeyMap": {
             "PORT": 0,
@@ -11005,24 +11050,23 @@ Entry.block = {
                 ["OUT3", "3"]
             ],
             "value": "1",
-            "fontSize": 11
+            "fontSize": 11,
+            'arrowColor': EntryStatic.ARROW_COLOR_HW
         }, {
             "type": "Block",
             "accept": "string"
         }, {
             "type": "Indicator",
-            "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+            "img": "block_icon/hardware_03.png",
             "size": 12
         }],
         "events": {},
         "def": {
             "params": [null, {
                 "type": "number",
-                "params": ["255"],
-                "id": "dg6t"
+                "params": ["255"]
             }, null],
             "type": "neobot_set_output",
-            "id": "au77"
         },
         "paramsKeyMap": {
             "PORT": 0,
@@ -11057,7 +11101,7 @@ Entry.block = {
             "accept": "string"
         }, {
             "type": "Indicator",
-            "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+            "img": "block_icon/hardware_03.png",
             "size": 12
         }],
         "events": {},
@@ -11134,7 +11178,7 @@ Entry.block = {
             "fontSize": 11
         }, {
             "type": "Indicator",
-            "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+            "img": "block_icon/hardware_03.png",
             "size": 12
         }],
         "events": {},
@@ -11533,7 +11577,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -11624,7 +11668,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -11669,7 +11713,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -11722,7 +11766,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -11775,7 +11819,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -11839,7 +11883,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -11923,7 +11967,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -11989,7 +12033,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -12068,7 +12112,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -12146,7 +12190,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -12203,7 +12247,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -12260,7 +12304,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -12435,7 +12479,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -12482,7 +12526,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -12538,7 +12582,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -12618,7 +12662,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -12675,7 +12719,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/start_icon_scene_1_2.png",
+                "img": "block_icon/start_icon_scene_1_2.png",
                 "size": 17,
                 "position": {
                     "x": 0,
@@ -12704,11 +12748,12 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "scenes",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_START
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/start_03.png",
+                "img": "block_icon/start_03.png",
                 "size": 12
             }
         ],
@@ -12744,11 +12789,12 @@ Entry.block = {
                     [ Lang.Blocks.SCENE_start_scene_pre, "pre" ]
                 ],
                 "value": "next",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_START
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/start_03.png",
+                "img": "block_icon/start_03.png",
                 "size": 12
             }
         ],
@@ -12800,7 +12846,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/sound_03.png",
+                "img": "block_icon/sound_03.png",
                 "size": 12
             }
         ],
@@ -12840,7 +12886,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/sound_03.png",
+                "img": "block_icon/sound_03.png",
                 "size": 12
             }
         ],
@@ -12890,7 +12936,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/sound_03.png",
+                "img": "block_icon/sound_03.png",
                 "size": 12
             }
         ],
@@ -12945,7 +12991,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/sound_03.png",
+                "img": "block_icon/sound_03.png",
                 "size": 12
             }
         ],
@@ -13005,7 +13051,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/sound_03.png",
+                "img": "block_icon/sound_03.png",
                 "size": 12
             }
         ],
@@ -13047,7 +13093,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/sound_03.png",
+                "img": "block_icon/sound_03.png",
                 "size": 12
             }
         ],
@@ -13084,7 +13130,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/sound_03.png",
+                "img": "block_icon/sound_03.png",
                 "size": 12
             }
         ],
@@ -13109,7 +13155,8 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "sounds",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_SOUNDS
             }
         ],
         "events": {},
@@ -13135,7 +13182,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/sound_03.png",
+                "img": "block_icon/sound_03.png",
                 "size": 12
             }
         ],
@@ -13158,8 +13205,12 @@ Entry.block = {
             var soundId = script.getStringValue("VALUE", script);
             var sound = sprite.parent.getSound(soundId);
 
-            if (sound)
-                createjs.Sound.play(sound.id);
+            if (sound) createjs.Sound.play(sound.id);
+            //else
+                //Entry.engine.stopProjectWithToast(
+                    //this.block,
+                    //'소리를 찾지 못했습니다.'
+                //);
 
             return script.callReturn();
         }
@@ -13179,7 +13230,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/sound_03.png",
+                "img": "block_icon/sound_03.png",
                 "size": 12
             }
         ],
@@ -13232,7 +13283,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/sound_03.png",
+                "img": "block_icon/sound_03.png",
                 "size": 12
             }
         ],
@@ -13288,7 +13339,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/sound_03.png",
+                "img": "block_icon/sound_03.png",
                 "size": 12
             }
         ],
@@ -13357,7 +13408,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/sound_03.png",
+                "img": "block_icon/sound_03.png",
                 "size": 12
             }
         ],
@@ -13420,7 +13471,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/sound_03.png",
+                "img": "block_icon/sound_03.png",
                 "size": 12
             }
         ],
@@ -13488,7 +13539,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/start_icon_play.png",
+                "img": "block_icon/start_icon_play.png",
                 "size": 17,
                 "position": {
                     "x": 0,
@@ -13515,7 +13566,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/start_icon_keyboard.png",
+                "img": "block_icon/start_icon_keyboard.png",
                 "size": 17,
                 "position": {
                     "x": 0,
@@ -13544,7 +13595,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/start_03.png",
+                "img": "block_icon/start_03.png",
                 "size": 12
             }
         ],
@@ -13566,7 +13617,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/start_icon_keyboard.png",
+                "img": "block_icon/start_icon_keyboard.png",
                 "size": 17,
                 "position": {
                     "x": 0,
@@ -13600,7 +13651,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/start_icon_mouse.png",
+                "img": "block_icon/start_icon_mouse.png",
                 "size": 17,
                 "position": {
                     "x": 0,
@@ -13627,7 +13678,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/start_icon_mouse.png",
+                "img": "block_icon/start_icon_mouse.png",
                 "size": 17,
                 "position": {
                     "x": 0,
@@ -13654,7 +13705,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/start_icon_mouse.png",
+                "img": "block_icon/start_icon_mouse.png",
                 "size": 17,
                 "position": {
                     "x": 0,
@@ -13681,7 +13732,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/start_icon_mouse.png",
+                "img": "block_icon/start_icon_mouse.png",
                 "size": 17,
                 "position": {
                     "x": 0,
@@ -13708,7 +13759,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/start_icon_keyboard.png",
+                "img": "block_icon/start_icon_keyboard.png",
                 "size": 17,
                 "position": {
                     "x": 0,
@@ -13732,7 +13783,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/start_icon_signal.png",
+                "img": "block_icon/start_icon_signal.png",
                 "size": 17,
                 "position": {
                     "x": 0,
@@ -13743,7 +13794,8 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "messages",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_START
             }
         ],
         "events": {
@@ -13783,11 +13835,12 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "messages",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_START
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/start_03.png",
+                "img": "block_icon/start_03.png",
                 "size": 12
             }
         ],
@@ -13837,11 +13890,12 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "messages",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_START
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/start_03.png",
+                "img": "block_icon/start_03.png",
                 "size": 12
             }
         ],
@@ -14087,7 +14141,8 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "variables",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE
             },
             {
                 "type": "Block",
@@ -14095,7 +14150,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/variable_03.png",
+                "img": "block_icon/variable_03.png",
                 "size": 12
             }
         ],
@@ -14153,7 +14208,8 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "variables",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE
             },
             {
                 "type": "Block",
@@ -14161,7 +14217,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/variable_03.png",
+                "img": "block_icon/variable_03.png",
                 "size": 12
             }
         ],
@@ -14213,11 +14269,12 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "variables",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/variable_03.png",
+                "img": "block_icon/variable_03.png",
                 "size": 12
             }
         ],
@@ -14261,11 +14318,12 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "variables",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/variable_03.png",
+                "img": "block_icon/variable_03.png",
                 "size": 12
             }
         ],
@@ -14308,7 +14366,8 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "variables",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE
             },
             {
                 "type": "Text",
@@ -14356,7 +14415,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/variable_03.png",
+                "img": "block_icon/variable_03.png",
                 "size": 12
             }
         ],
@@ -14468,11 +14527,12 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "lists",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/variable_03.png",
+                "img": "block_icon/variable_03.png",
                 "size": 12
             }
         ],
@@ -14532,11 +14592,12 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "lists",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/variable_03.png",
+                "img": "block_icon/variable_03.png",
                 "size": 12
             }
         ],
@@ -14585,7 +14646,8 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "lists",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE
             },
             {
                 "type": "Block",
@@ -14593,7 +14655,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/variable_03.png",
+                "img": "block_icon/variable_03.png",
                 "size": 12
             }
         ],
@@ -14643,7 +14705,8 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "lists",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE
             },
             {
                 "type": "Block",
@@ -14655,7 +14718,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/variable_03.png",
+                "img": "block_icon/variable_03.png",
                 "size": 12
             }
         ],
@@ -14710,7 +14773,8 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "lists",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE
             },
             {
                 "type": "Text",
@@ -14772,7 +14836,8 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "lists",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE
             },
             {
                 "type": "Text",
@@ -14806,11 +14871,12 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "lists",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/variable_03.png",
+                "img": "block_icon/variable_03.png",
                 "size": 12
             }
         ],
@@ -14841,11 +14907,12 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "lists",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/variable_03.png",
+                "img": "block_icon/variable_03.png",
                 "size": 12
             }
         ],
@@ -14906,11 +14973,12 @@ Entry.block = {
                     [Lang.Blocks.CALC_timer_visible_hide,"HIDE"]
                 ],
                 "value": "SHOW",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/variable_03.png",
+                "img": "block_icon/variable_03.png",
                 "size": 12
             }
         ],
@@ -14958,7 +15026,8 @@ Entry.block = {
                 "type": "DropdownDynamic",
                 "value": null,
                 "menuName": "lists",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE
             },
             {
                 "type": "Text",
@@ -15020,7 +15089,8 @@ Entry.block = {
                     [Lang.Blocks.XBOT_D11_digitalInput, "D11"]
                 ],
                 "value": "D2",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_HW
             }
         ],
         "events": {},
@@ -15101,7 +15171,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -15168,7 +15238,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -15224,7 +15294,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -15275,7 +15345,8 @@ Entry.block = {
                     [Lang.Blocks.XBOT_bothWheel, "bothWheel"]
                 ],
                 "value": "rightWheel",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_HW
             },
             {
                 "type": "Block",
@@ -15283,7 +15354,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -15336,7 +15407,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -15390,7 +15461,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -15441,7 +15512,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -15504,7 +15575,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -15602,7 +15673,8 @@ Entry.block = {
                     [ "1", "1" ]
                 ],
                 "value": "0",
-                "fontSize": 11
+                "fontSize": 11,
+                'arrowColor': EntryStatic.ARROW_COLOR_HW
             },
             {
                 "type": "Block",
@@ -15610,7 +15682,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+                "img": "block_icon/hardware_03.png",
                 "size": 12
             }
         ],
@@ -15673,7 +15745,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/img/assets/ntry/bitmap/jr/block_play_image.png",
+                "img": "../../../img/assets/ntry/bitmap/jr/block_play_image.png",
                 "highlightColor": "#3BBD70",
                 "position": {
                     "x": 0,
@@ -15748,7 +15820,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Indicator",
-                "img": "/img/assets/ntry/bitmap/jr/block_item_image.png",
+                "img": "../../../img/assets/ntry/bitmap/jr/block_item_image.png",
                 "highlightColor": "#FFF",
                 "position": {
                     "x": 83,
@@ -15786,7 +15858,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/img/assets/ntry/bitmap/cpartyjr/pen.png",
+                "img": "../../../img/assets/ntry/bitmap/cpartyjr/pen.png",
                 "highlightColor": "#FFF",
                 "position": {
                     "x": 83,
@@ -15794,7 +15866,26 @@ Entry.block = {
                 },
                 "size": 22
             }
-        ]
+        ],
+        func: function() {
+            if (!this.isContinue) {
+                this.isContinue = true;
+                this.isAction = true;
+                var self = this;
+                var callBack = function() {
+                    Ntry.dispatchEvent("getItem");
+                    self.isAction = false;
+                };
+                Ntry.dispatchEvent("unitAction", Ntry.STATIC.GET_ITEM , callBack);
+                return Entry.STATIC.BREAK;
+            } else if (this.isAction) {
+                return Entry.STATIC.BREAK;
+            } else {
+                delete this.isAction;
+                delete this.isContinue;
+
+            }
+        }
     },
     "jr_north": {
         "skeleton": "pebble_basic",
@@ -15806,7 +15897,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/img/assets/ntry/bitmap/jr/block_up_image.png",
+                "img": "../../../img/assets/ntry/bitmap/jr/block_up_image.png",
                 "position": {
                     "x": 83,
                     "y": 0
@@ -15863,7 +15954,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/img/assets/ntry/bitmap/jr/block_right_image.png",
+                "img": "../../../img/assets/ntry/bitmap/jr/block_right_image.png",
                 "position": {
                     "x": 83,
                     "y": 0
@@ -15925,7 +16016,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/img/assets/ntry/bitmap/jr/block_down_image.png",
+                "img": "../../../img/assets/ntry/bitmap/jr/block_down_image.png",
                 "position": {
                     "x": 83,
                     "y": 0
@@ -15987,7 +16078,7 @@ Entry.block = {
             },
             {
                 "type": "Indicator",
-                "img": "/img/assets/ntry/bitmap/jr/block_left_image.png",
+                "img": "../../../img/assets/ntry/bitmap/jr/block_left_image.png",
                 "position": {
                     "x": 83,
                     "y": 0
@@ -16045,7 +16136,7 @@ Entry.block = {
             {
                 "type": "Indicator",
                 "boxMultiplier": 2,
-                "img": "/img/assets/block_icon/start_icon_play.png",
+                "img": "../../../img/assets/block_icon/start_icon_play.png",
                 "highlightColor": "#3BBD70",
                 "size": 17,
                 "position": {
@@ -16079,7 +16170,7 @@ Entry.block = {
             },
             {
                 "type": "Image",
-                "img": "/img/assets/ntry/bitmap/jr/cparty_go_straight.png",
+                "img": "../../../img/assets/ntry/bitmap/jr/cparty_go_straight.png",
                 "size": 24
             }
         ],
@@ -16114,7 +16205,7 @@ Entry.block = {
             },
             {
                 "type": "Image",
-                "img": "/img/assets/ntry/bitmap/jr/cparty_rotate_l.png",
+                "img": "../../../img/assets/ntry/bitmap/jr/cparty_rotate_l.png",
                 "size": 24
             }
         ],
@@ -16150,7 +16241,7 @@ Entry.block = {
             },
             {
                 "type": "Image",
-                "img": "/img/assets/ntry/bitmap/jr/cparty_rotate_r.png",
+                "img": "../../../img/assets/ntry/bitmap/jr/cparty_rotate_r.png",
                 "size": 24
             }
         ],
@@ -16186,7 +16277,7 @@ Entry.block = {
             },
             {
                 "type": "Image",
-                "img": "/img/assets/ntry/bitmap/jr/cparty_go_slow.png",
+                "img": "../../../img/assets/ntry/bitmap/jr/cparty_go_slow.png",
                 "size": 24
             }
         ],
@@ -16222,7 +16313,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Image",
-                "img": "/img/assets/ntry/bitmap/jr/jr_goal_image.png",
+                "img": "../../../img/assets/ntry/bitmap/jr/jr_goal_image.png",
                 "size": 18
             },
             {
@@ -16259,7 +16350,7 @@ Entry.block = {
             },
             {
                 "type": "Image",
-                "img": "/img/assets/ntry/bitmap/jr/jr_construction_image.png",
+                "img": "../../../img/assets/ntry/bitmap/jr/jr_construction_image.png",
                 "size": 18
             },
             {
@@ -16324,7 +16415,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Image",
-                "img": "/img/assets/ntry/bitmap/jr/jr_speed_image.png",
+                "img": "../../../img/assets/ntry/bitmap/jr/jr_speed_image.png",
                 "size": 18
             },
             {
@@ -16391,7 +16482,7 @@ Entry.block = {
             {
                 "type": "Indicator",
                 "boxMultiplier": 2,
-                "img": "/img/assets/block_icon/start_icon_play.png",
+                "img": "../../../img/assets/block_icon/start_icon_play.png",
                 "highlightColor": "#3BBD70",
                 "size": 17,
                 "position": {
@@ -16580,7 +16671,15 @@ Entry.block = {
             {
                 "accept": "basic"
             }
-        ]
+        ],
+        func: function() {
+            var statement = this.block.statements[0];
+            if (statement.getBlocks().length === 0)
+                return;
+
+            this.executor.stepInto(statement);
+            return Entry.STATIC.BREAK;
+        }
     },
     "maze_step_if_1": {
         "skeleton": "basic_loop",
@@ -16674,7 +16773,7 @@ Entry.block = {
         "params": [
             {
                 "type": "Image",
-                "img": "/img/assets/ntry/bitmap/maze2/obstacle_01.png",
+                "img": "../../../img/assets/ntry/bitmap/maze2/obstacle_01.png",
                 "size": 18
             },
             {
@@ -17168,8 +17267,7 @@ Entry.block = {
                     "type": "arduino_get_number_sensor_value",
                     "params": [
                         {
-                            "type": "arduino_get_sensor_number",
-                            "id": "bl5e"
+                            "type": "arduino_get_sensor_number"
                         }
                     ]
                 },
@@ -17214,13 +17312,13 @@ Entry.block = {
                 ["적외선", "INFR"]
             ],
             "value": "ADJU",
-            "fontSize": 11
+            "fontSize": 11,
+            'arrowColor': EntryStatic.ARROW_COLOR_HW
         }],
         "events": {},
         "def": {
             "params": [{
-                "type": "arduino_get_sensor_number",
-                "id": "4rx2"
+                "type": "arduino_get_sensor_number"
             }, null],
             "type": "dplay_get_value",
             "id": "hh5b"
@@ -17249,13 +17347,13 @@ Entry.block = {
                 ["오른쪽", "LIGHT"]
             ],
             "value": "LEFT",
-            "fontSize": 11
+            "fontSize": 11,
+            'arrowColor': EntryStatic.ARROW_COLOR_HW
         }],
         "events": {},
         "def": {
             "params": [null],
-            "type": "dplay_get_tilt",
-            "id": "edht"
+            "type": "dplay_get_tilt"
         },
         "paramsKeyMap": {
             "STATUS": 0
@@ -17282,7 +17380,8 @@ Entry.block = {
                 ["오른쪽", "6"]
             ],
             "value": "3",
-            "fontSize": 11
+            "fontSize": 11,
+            'arrowColor': EntryStatic.ARROW_COLOR_HW
         }, {
             "type": "Dropdown",
             "options": [
@@ -17291,17 +17390,17 @@ Entry.block = {
                 ["정지", "OFF"]
             ],
             "value": "FRONT",
-            "fontSize": 11
+            "fontSize": 11,
+            'arrowColor': EntryStatic.ARROW_COLOR_HW
         }, {
             "type": "Indicator",
-            "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+            "img": "block_icon/hardware_03.png",
             "size": 12
         }],
         "events": {},
         "def": {
             "params": [null, null, null],
-            "type": "dplay_DCmotor",
-            "id": "7b8v"
+            "type": "dplay_DCmotor"
         },
         "paramsKeyMap": {
             "PORT": 0,
@@ -17348,24 +17447,23 @@ Entry.block = {
                 ["미", "3"]
             ],
             "value": "1",
-            "fontSize": 11
+            "fontSize": 11,
+            'arrowColor': EntryStatic.ARROW_COLOR_HW
         }, {
             "type": "Block",
             "accept": "string"
         }, {
             "type": "Indicator",
-            "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+            "img": "block_icon/hardware_03.png",
             "size": 12
         }],
         "events": {},
         "def": {
             "params": [null, {
                 "type": "arduino_text",
-                "params": ["0"],
-                "id": "04wh"
+                "params": ["0"]
             }, null],
-            "type": "dplay_buzzer",
-            "id": "rl5l"
+            "type": "dplay_buzzer"
         },
         "paramsKeyMap": {
             "PORT": 0,
@@ -17398,7 +17496,7 @@ Entry.block = {
             "accept": "string"
         }, {
             "type": "Indicator",
-            "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+            "img": "block_icon/hardware_03.png",
             "size": 12
         }],
         "events": {},
@@ -17441,7 +17539,8 @@ Entry.block = {
                 ["10", "10"]
             ],
             "value": "7",
-            "fontSize": 11
+            "fontSize": 11,
+            'arrowColor': EntryStatic.ARROW_COLOR_HW
         }, {
             "type": "Dropdown",
             "options": [
@@ -17449,17 +17548,17 @@ Entry.block = {
                 ["끄기", "off"]
             ],
             "value": "on",
-            "fontSize": 11
+            "fontSize": 11,
+            'arrowColor': EntryStatic.ARROW_COLOR_HW
         }, {
             "type": "Indicator",
-            "img": "/lib/entryjs/images/block_icon/hardware_03.png",
+            "img": "block_icon/hardware_03.png",
             "size": 12
         }],
         "events": {},
         "def": {
             "params": [null, null, null],
-            "type": "dplay_select_led",
-            "id": "9kmq"
+            "type": "dplay_select_led"
         },
         "paramsKeyMap": {
             "PORT": 0,
@@ -17493,7 +17592,8 @@ Entry.block = {
                 ["4", "4"]
             ],
             "value": "2",
-            "fontSize": 11
+            "fontSize": 11,
+            'arrowColor': EntryStatic.ARROW_COLOR_HW
         }, {
             "type": "Dropdown",
             "options": [
@@ -17501,13 +17601,13 @@ Entry.block = {
                 ["열림", "OFF"]
             ],
             "value": "ON",
-            "fontSize": 11
+            "fontSize": 11,
+            'arrowColor': EntryStatic.ARROW_COLOR_HW
         }],
         "events": {},
         "def": {
             "params": [null, null],
-            "type": "dplay_get_switch_status",
-            "id": "fik8"
+            "type": "dplay_get_switch_status"
         },
         "paramsKeyMap": {
             "PORT": 0,
@@ -17538,13 +17638,13 @@ Entry.block = {
                 ["어두움", "DARK"]
             ],
             "value": "BRIGHT",
-            "fontSize": 11
+            "fontSize": 11,
+            'arrowColor': EntryStatic.ARROW_COLOR_HW
         }],
         "events": {},
         "def": {
             "params": [null],
-            "type": "dplay_get_light_status",
-            "id": "do3r"
+            "type": "dplay_get_light_status"
         },
         "paramsKeyMap": {
             "STATUS": 0
@@ -17636,8 +17736,7 @@ Entry.block = {
                     "type": "arduino_get_number_sensor_value",
                     "params": [
                         {
-                            "type": "arduino_get_sensor_number",
-                            "id": "bl5e"
+                            "type": "arduino_get_sensor_number"
                         }
                     ]
                 },
@@ -17844,8 +17943,7 @@ Entry.block = {
                     "type": "arduino_get_number_sensor_value",
                     "params": [
                         {
-                            "type": "arduino_get_sensor_number",
-                            "id": "bl5e"
+                            "type": "arduino_get_sensor_number"
                         }
                     ]
                 },
@@ -17869,6 +17967,36 @@ Entry.block = {
             "type": "CODEino_convert_scale"
         },
         "class": "arduino"
+    },
+    "ebs_if": {
+        "parent": "_if",
+        "def": {
+            type: "_if",
+            params: [
+                {
+                    type: 'reach_something',
+                    params: [
+                        null,
+                        "wall"
+                    ]
+                }
+            ]
+        }
+    },
+    "ebs_if2": {
+        "parent": "_if",
+        "def": {
+            type: "_if",
+            params: [
+                {
+                    type: 'reach_something',
+                    params: [
+                        null,
+                        "cwz5"
+                    ]
+                }
+            ]
+        }
     }
 };
 
