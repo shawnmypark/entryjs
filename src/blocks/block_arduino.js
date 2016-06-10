@@ -44,6 +44,11 @@ Entry.SensorBoard = {
     setZero: Entry.Arduino.setZero
 };
 
+Entry.Ardublock = {
+    name: 'Ardublock',
+    setZero: Entry.Arduino.setZero
+};
+
 Entry.dplay = {
     name: 'dplay',
     vel_value : 255,

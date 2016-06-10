@@ -18755,6 +18755,58 @@ Entry.block = {
         },
         "class": "arduino"
     },
+    "Ardublock_get_digital_value": {
+        "parent": "arduino_get_digital_value",
+        "isNotFor": [
+            "Ardublock"
+        ],
+        "def": {
+            "params": [
+                {
+                    "type": "arduino_get_port_number"
+                }
+            ],
+            "type": "Ardublock_get_digital_value"
+        },
+        "class": "arduino_value"
+    },
+    "Ardublock_toggle_led": {
+        "parent": "arduino_toggle_led",
+        "isNotFor": [
+            "Ardublock"
+        ],
+        "def": {
+            "params": [
+                {
+                    "type": "arduino_get_port_number"
+                },
+                null,
+                null
+            ],
+            "type": "Ardublock_toggle_led"
+        },
+        "class": "arduino_set"
+    },
+    "Ardublock_toggle_pwm": {
+        "parent": "arduino_toggle_pwm",
+        "isNotFor": [
+            "Ardublock"
+        ],
+        "def": {
+            "params": [
+                {
+                    "type": "arduino_get_pwm_port_number"
+                },
+                {
+                    "type": "arduino_text",
+                    "params": [ "255" ]
+                },
+                null
+            ],
+            "type": "Ardublock_toggle_pwm"
+        },
+        "class": "arduino_set"
+    },
     "ebs_if": {
         "parent": "_if",
         "def": {

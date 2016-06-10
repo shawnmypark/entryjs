@@ -437,8 +437,14 @@ EntryStatic.getAllBlocks = function() {
                 "xbot_servo",
                 "xbot_oneWheel",
                 "xbot_twoWheel",
-                "xbot_lcd"
-                //end of XBOT Blocks added
+                "xbot_lcd",
+                //end of XBOT Blocks added            
+
+                // Ardublock Added 2016-06-01
+                "Ardublock_get_digital_value",
+                "Ardublock_toggle_led",
+                "Ardublock_toggle_pwm"
+				// Ardublock Added 2016-06-01
             ]
         }
     ]
@@ -2238,7 +2244,30 @@ EntryStatic.blockInfo = {
         "isNotFor": ['robotis_carCont'],
         "xml": "<block type='robotis_carCont_cm_calibration'><value name='VALUE'><block type='number'><field name='NUM'>0</field></block></value></block>",
         "class": "robotis_carCont_cm"
-    },
+    },	
+	
+	// Ardublock Added 2016-06-01
+    "ArduBlock_get_digital_value": {
+        "xml": "<block type='arduino_get_digital_value'><value name='VALUE'><block type='arduino_get_port_number'></block></value></block>",
+        "isNotFor": ['ArduBlock'],
+        "usage": ["arduino"],
+        "class": "arduino_value"
+    },	
+	
+    "ArduBlock_toggle_led": {
+        "xml": "<block type='arduino_toggle_led'><value name='VALUE'><block type='arduino_get_port_number'></block></value></block>",
+        "isNotFor": ['ArduBlock'],
+        "usage": ["arduino"],
+        "class": "arduino_set"
+    },	
+	
+    "ArduBlock_toggle_pwm": {
+        "xml": "<block type='arduino_toggle_pwm'><value name='PORT'><block type='arduino_get_pwm_port_number'></block></value><value name='VALUE'><block type='arduino_text'><field name='NAME'>255</field></block></value></block>",
+        "isNotFor": ['ArduBlock'],
+        "usage": ["arduino"],
+        "class": "arduino_set"
+    },	
+	// Ardublock Added 2016-06-01
 }
 
 EntryStatic.discussCategories = [
