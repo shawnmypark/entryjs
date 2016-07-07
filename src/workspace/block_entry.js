@@ -19372,12 +19372,10 @@ Entry.block = {
         }, {
             "type": "Dropdown",
             "options": [
-                ["RGB", "RGB"],
-                ["R", "R"],
-                ["G", "G"],
-                ["B", "B"]
+                ["컬러", "2"],
+                ["음영값", "0"]
             ],
-            "value": "RGB",
+            "value": "MODE",
             "fontSize": 11
         }],
         "events": {},
@@ -19387,37 +19385,19 @@ Entry.block = {
         },
         "paramsKeyMap": {
             "PORT": 0,
-            "RGB": 1
+            "MODE": 1
         },
         "class": "ev3_sensor",
         "isNotFor": ["EV3"],
         "func": function (sprite, script) {
             var port = script.getStringField("PORT", script);
-            var rgb = script.getStringField("RGB", script);
+            var mode = script.getStringField("MODE", script);
             var portData = Entry.hw.getDigitalPortValue(script.getNumberField("PORT", script));
-            var result = '';
-            if(portData.type == Entry.EV3.deviceTypes.Color) {
-                if(portData.siValue == 0) {
-                    result = '';
-                } else {
-                    switch(rgb) {
-                        case 'RGB':
-                            result = Entry.EV3.colorSensorValue[portData.siValue];
-                            break;
-                        case 'R':
-                            result = Entry.EV3.colorSensorValue[portData.siValue].substring(0, 2);
-                            break;
-                        case 'G':
-                            result = Entry.EV3.colorSensorValue[portData.siValue].substring(2, 4);
-                            break;
-                        case 'B':
-                            result = Entry.EV3.colorSensorValue[portData.siValue].substring(4, 6);
-                            break;
-                    }
-                }
-            } else {
-                result = '컬러 센서 아님';
-            }
+            var result = Entry.EV3.colorSensorValue[portData.siValue];
+            Entry.hw.sendQueue[port] = {
+                'type': Entry.EV3.deviceTypes.Color,
+                'mode': mode
+            };
             return result;
         }
     }, 

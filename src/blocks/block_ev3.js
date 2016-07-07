@@ -61,7 +61,10 @@ Entry.EV3 = {
 					power: 0
 				}
 			} else {
-				Entry.hw.sendQueue[port] = portMap[port];
+				Entry.hw.sendQueue[port] = {
+					type: Entry.EV3.deviceTypes.Touch,
+					mode: 0
+				}
 			}
 
 		});
