@@ -19380,7 +19380,7 @@ Entry.block = {
         }],
         "events": {},
         "def": {
-            "params": [null, null],
+            "params": [null, "2"],
             "type": "ev3_color_sensor"
         },
         "paramsKeyMap": {
@@ -19393,7 +19393,10 @@ Entry.block = {
             var port = script.getStringField("PORT", script);
             var mode = script.getStringField("MODE", script);
             var portData = Entry.hw.getDigitalPortValue(script.getNumberField("PORT", script));
-            var result = Entry.EV3.colorSensorValue[portData.siValue];
+            var result = 0;
+            if(portData && portData.mode == mode) {
+                result = portData.siValue || 0;
+            }
             Entry.hw.sendQueue[port] = {
                 'type': Entry.EV3.deviceTypes.Color,
                 'mode': mode

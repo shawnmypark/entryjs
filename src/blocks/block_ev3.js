@@ -34,7 +34,6 @@ Entry.EV3 = {
 		WrongPort: 0x7f,
 		Unknown: 0xff
 	},
-	colorSensorValue: ['', '000000', '0000FF', '00FF00', 'FFFF00', 'FF0000', 'FFFFFF', 'A52A2A'],
 	timeouts: [],
 	removeTimeout: function(id) {
 		clearTimeout(id);
