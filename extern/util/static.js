@@ -452,8 +452,18 @@ EntryStatic.getAllBlocks = function() {
                 "ardublock_get_digital_value",
                 "ardublock_toggle_led",
                 "ardublock_toggle_pwm",
-                "ardublock_convert_scale"
+                "ardublock_convert_scale",
 				// ardublock Added 2016-06-01
+
+                // wedo blocks added
+                "wedo_get_battery_pct",
+                "wedo_get_motion",
+                "wedo_get_tilt",
+                "wedo_turn_cw",
+                "wedo_set_motor_stop",
+                "wedo_set_led_color",
+                "wedo_is_button_pressed"
+                // end of wedo blocks. 2016-07-11
             ]
         }
     ]

@@ -19378,6 +19378,271 @@ Entry.block = {
                 }
             ]
         }
+    },
+    "wedo_get_battery_pct": {
+      "color": "#00979D",
+      "fontColor": "#FFF",
+      "skeleton": "basic_string_field",
+      "template": "배터리값",
+      "def": {
+        "type": "wedo_get_battery_pct",
+      },
+      "class": "wedo",
+      //"isNotFor": ["wedo"],
+      "func": function (sprite, script) {
+          //TODO: read and return battery value
+          return "50";
+      }
+    },
+    "wedo_get_motion": {
+      "color": "#00979D",
+      "fontColor": "#FFF",
+      "skeleton": "basic_string_field",
+      "template": "%1 에서 모션값",
+      "params": [
+        {
+          "type": "Dropdown",
+          "options": [
+            ["1번", "1"],
+            ["2번", "2"]
+          ],
+          "fontSize": 11,
+          "arrowColor": EntryStatic.ARROW_COLOR_HW
+        }
+      ],
+      "def": {
+        "type": "wedo_get_motion",
+        "params": [ "1" ]
+      },
+      "paramsKeyMap": {
+        "VALUE": 0
+      },
+      "class": "wedo",
+      //"isNotFor": ["wedo"],
+      "func": function (sprite, script) {
+          var port = script.getNumberValue("VALUE", script);
+          //TODO: get proper value and return
+          return 5;
+      }
+    },
+    "wedo_get_tilt": {
+      "color": "#00979D",
+      "fontColor": "#FFF",
+      "skeleton": "basic_string_field",
+      "template": "%1 에서 틸트 %2 값",
+      "params": [
+        {
+          "type": "Dropdown",
+          "options": [
+            ["1번", "1"],
+            ["2번", "2"]
+          ],
+          "fontSize": 11,
+          "arrowColor": EntryStatic.ARROW_COLOR_HW
+        },
+        {
+          "type": "Dropdown",
+          "options": [
+            ["X", "1"],
+            ["Y", "2"]
+          ],
+          "fontSize": 11,
+          "arrowColor": EntryStatic.ARROW_COLOR_HW
+        }
+      ],
+      "def": {
+        "type": "wedo_get_tilt",
+        "params": [
+          "1", "1"
+        ]
+      },
+      "paramsKeyMap": {
+        "LEFTHAND": 0,
+        "RIGHTHAND": 1
+      },
+      "class": "wedo",
+      //"isNotFor": ["wedo"],
+      "func": function (sprite, script) {
+          var port = script.getNumberValue("LEFTHAND", script);
+          var which = script.getNumberValue("RIGHTHAND", script);
+          //TODO: get proper value and return
+          return 100;
+      }
+    },
+    "wedo_turn_cw": {
+      "color": "#00979D",
+      "fontColor": "#FFF",
+      "skeleton": "basic",
+      "template": "%1 방향으로 %2 만큼 회전 %3",
+      "params": [
+        {
+          "type": "Dropdown",
+          "options": [
+            ["시계", "1"],
+            ["반시계", "2"]
+          ],
+          "fontize": 11,
+          "arrowColor": EntryStatic.ARROW_COLOR_HW
+        },
+        {
+          "type": "Block",
+          "accept": "string"
+        },
+        {
+          "type": "Indicator",
+          "img": "block_icon/hardware_03.png",
+          "size": 12
+        }
+      ],
+      "def": {
+        "type": "wedo_turn_cw",
+        "params": [ "1",
+        {
+          "type": "number",
+          "params": [ "50" ]
+        }, null]
+      },
+      "paramsKeyMap": {
+        "LEFTHAND": 0,
+        "RIGHTHAND": 1
+      },
+      "class": "wedo",
+      //"isNotFor": ["wedo"],
+      "func": function (sprite, script) {
+          var direction = script.getNumberValue("LEFTHAND", script);
+          var value = script.getNumberValue("RIGHTHAND", script);
+          //TODO: turn direction and return
+
+          return script.callReturn();
+      }
+    },
+    "wedo_set_motor_stop": {
+      "color": "#00979D",
+      "fontColor": "#FFF",
+      "skeleton": "basic",
+      "template": "%1 하기 %2",
+      "params": [
+        {
+          "type": "Dropdown",
+          "options": [
+            ["정지", "1"],
+            ["드리프트", "2"]
+          ],
+          "fontize": 11,
+          "arrowColor": EntryStatic.ARROW_COLOR_HW
+        },
+        {
+          "type": "Indicator",
+          "img": "block_icon/hardware_03.png",
+          "size": 12
+        }
+      ],
+      "def": {
+        "type": "wedo_set_motor_stop",
+        "params": [ "1", null ]
+      },
+      "paramsKeyMap": {
+        "VALUE": 0
+      },
+      "class": "wedo",
+      //"isNotFor": ["wedo"],
+      "func": function (sprite, script) {
+          var mode = script.getNumberValue("VALUE", script);
+          //TODO: set stop mode and return
+
+          return script.callReturn();
+      }
+    },
+    "wedo_get_led_color": {
+      "color": "#00979D",
+      "skeleton": "basic_string_field",
+      "statements": [],
+      "template": "%1",
+      "params": [
+          {
+              "type": "Dropdown",
+              "options": [
+                  [ "1", "1" ],
+                  [ "2", "2" ],
+                  [ "3", "3" ],
+                  [ "4", "4" ],
+                  [ "5", "5" ],
+                  [ "6", "6" ],
+                  [ "7", "7" ],
+                  [ "8", "8" ],
+                  [ "9", "9" ],
+                  [ "10", "10" ]
+              ],
+              "value": "1",
+              "fontSize": 11,
+              'arrowColor': EntryStatic.ARROW_COLOR_HW
+          }
+      ],
+      "events": {},
+      "def": {
+          "params": [ null ]
+      },
+      "paramsKeyMap": {
+          "COLOR": 0
+      },
+      "func": function (sprite, script) {
+          return script.getStringField("COLOR");
+      }
+
+    },
+    "wedo_set_led_color": {
+      "color": "#00979D",
+      "skeleton": "basic",
+      "statements": [],
+      "template": "LED %1 정하기 %2",
+      "params": [
+        {
+          "type": "Block",
+          "accept": "string"
+        },
+        {
+            "type": "Indicator",
+            "img": "block_icon/hardware_03.png",
+            "size": 12
+        }
+      ],
+      "events": {},
+      "def": {
+        "params": [
+          {
+            "type": "wedo_get_led_color"
+          },
+          null
+        ],
+        "type": "wedo_set_led_color"
+      },
+      "paramsKeyMap": {
+        "VALUE": 0
+      },
+      "class": "wedo",
+      //"isNotFor": [ "wedo" ],
+      "func": function(sprite, script) {
+        //TODO: set led color to selected value
+
+        return script.callReturn();
+      }
+    },
+    "wedo_is_button_pressed": {
+      "color": "#00979D",
+      "fontColor": "#FFF",
+      "skeleton": "basic_boolean_field",
+      "template": "버튼이 눌렸는가",
+      "params": [],
+      "def": {
+        "type": "wedo_is_button_pressed"
+      },
+      "class": "wedo",
+      //"isNotFor": [ "wedo" ],
+      "func": function(sprite, script) {
+        //TODO: set led color to selected value
+
+        return false;
+      }
     }
 };
 
