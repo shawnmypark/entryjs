@@ -19380,269 +19380,399 @@ Entry.block = {
         }
     },
     "wedo_get_battery_pct": {
-      "color": "#00979D",
-      "fontColor": "#FFF",
-      "skeleton": "basic_string_field",
-      "template": "배터리값",
-      "def": {
-        "type": "wedo_get_battery_pct",
-      },
-      "class": "wedo",
-      //"isNotFor": ["wedo"],
-      "func": function (sprite, script) {
-          //TODO: read and return battery value
-          return "50";
-      }
+        "color": "#00979D",
+        "fontColor": "#FFF",
+        "skeleton": "basic_string_field",
+        "template": "배터리 값",
+        "def": {
+            "type": "wedo_get_battery_pct",
+        },
+        "class": "wedo_get",
+        "isNotFor": ["wedo"],
+        "func": function (sprite, script) {
+            return Entry.hw.portData["BAT"];
+        }
     },
     "wedo_get_motion": {
-      "color": "#00979D",
-      "fontColor": "#FFF",
-      "skeleton": "basic_string_field",
-      "template": "%1 에서 모션값",
-      "params": [
-        {
-          "type": "Dropdown",
-          "options": [
-            ["1번", "1"],
-            ["2번", "2"]
-          ],
-          "fontSize": 11,
-          "arrowColor": EntryStatic.ARROW_COLOR_HW
-        }
-      ],
-      "def": {
-        "type": "wedo_get_motion",
-        "params": [ "1" ]
-      },
-      "paramsKeyMap": {
-        "VALUE": 0
-      },
-      "class": "wedo",
-      //"isNotFor": ["wedo"],
-      "func": function (sprite, script) {
-          var port = script.getNumberValue("VALUE", script);
-          //TODO: get proper value and return
-          return 5;
-      }
-    },
-    "wedo_get_tilt": {
-      "color": "#00979D",
-      "fontColor": "#FFF",
-      "skeleton": "basic_string_field",
-      "template": "%1 에서 틸트 %2 값",
-      "params": [
-        {
-          "type": "Dropdown",
-          "options": [
-            ["1번", "1"],
-            ["2번", "2"]
-          ],
-          "fontSize": 11,
-          "arrowColor": EntryStatic.ARROW_COLOR_HW
-        },
-        {
-          "type": "Dropdown",
-          "options": [
-            ["X", "1"],
-            ["Y", "2"]
-          ],
-          "fontSize": 11,
-          "arrowColor": EntryStatic.ARROW_COLOR_HW
-        }
-      ],
-      "def": {
-        "type": "wedo_get_tilt",
+        "color": "#00979D",
+        "fontColor": "#FFF",
+        "skeleton": "basic_string_field",
+        "template": "%1 센서 값",
         "params": [
-          "1", "1"
-        ]
-      },
-      "paramsKeyMap": {
-        "LEFTHAND": 0,
-        "RIGHTHAND": 1
-      },
-      "class": "wedo",
-      //"isNotFor": ["wedo"],
-      "func": function (sprite, script) {
-          var port = script.getNumberValue("LEFTHAND", script);
-          var which = script.getNumberValue("RIGHTHAND", script);
-          //TODO: get proper value and return
-          return 100;
-      }
-    },
-    "wedo_turn_cw": {
-      "color": "#00979D",
-      "fontColor": "#FFF",
-      "skeleton": "basic",
-      "template": "%1 방향으로 %2 만큼 회전 %3",
-      "params": [
-        {
-          "type": "Dropdown",
-          "options": [
-            ["시계", "1"],
-            ["반시계", "2"]
-          ],
-          "fontize": 11,
-          "arrowColor": EntryStatic.ARROW_COLOR_HW
-        },
-        {
-          "type": "Block",
-          "accept": "string"
-        },
-        {
-          "type": "Indicator",
-          "img": "block_icon/hardware_03.png",
-          "size": 12
-        }
-      ],
-      "def": {
-        "type": "wedo_turn_cw",
-        "params": [ "1",
-        {
-          "type": "number",
-          "params": [ "50" ]
-        }, null]
-      },
-      "paramsKeyMap": {
-        "LEFTHAND": 0,
-        "RIGHTHAND": 1
-      },
-      "class": "wedo",
-      //"isNotFor": ["wedo"],
-      "func": function (sprite, script) {
-          var direction = script.getNumberValue("LEFTHAND", script);
-          var value = script.getNumberValue("RIGHTHAND", script);
-          //TODO: turn direction and return
-
-          return script.callReturn();
-      }
-    },
-    "wedo_set_motor_stop": {
-      "color": "#00979D",
-      "fontColor": "#FFF",
-      "skeleton": "basic",
-      "template": "%1 하기 %2",
-      "params": [
-        {
-          "type": "Dropdown",
-          "options": [
-            ["정지", "1"],
-            ["드리프트", "2"]
-          ],
-          "fontize": 11,
-          "arrowColor": EntryStatic.ARROW_COLOR_HW
-        },
-        {
-          "type": "Indicator",
-          "img": "block_icon/hardware_03.png",
-          "size": 12
-        }
-      ],
-      "def": {
-        "type": "wedo_set_motor_stop",
-        "params": [ "1", null ]
-      },
-      "paramsKeyMap": {
-        "VALUE": 0
-      },
-      "class": "wedo",
-      //"isNotFor": ["wedo"],
-      "func": function (sprite, script) {
-          var mode = script.getNumberValue("VALUE", script);
-          //TODO: set stop mode and return
-
-          return script.callReturn();
-      }
-    },
-    "wedo_get_led_color": {
-      "color": "#00979D",
-      "skeleton": "basic_string_field",
-      "statements": [],
-      "template": "%1",
-      "params": [
-          {
-              "type": "Dropdown",
-              "options": [
-                  [ "1", "1" ],
-                  [ "2", "2" ],
-                  [ "3", "3" ],
-                  [ "4", "4" ],
-                  [ "5", "5" ],
-                  [ "6", "6" ],
-                  [ "7", "7" ],
-                  [ "8", "8" ],
-                  [ "9", "9" ],
-                  [ "10", "10" ]
-              ],
-              "value": "1",
-              "fontSize": 11,
-              'arrowColor': EntryStatic.ARROW_COLOR_HW
-          }
-      ],
-      "events": {},
-      "def": {
-          "params": [ null ]
-      },
-      "paramsKeyMap": {
-          "COLOR": 0
-      },
-      "func": function (sprite, script) {
-          return script.getStringField("COLOR");
-      }
-
-    },
-    "wedo_set_led_color": {
-      "color": "#00979D",
-      "skeleton": "basic",
-      "statements": [],
-      "template": "LED %1 정하기 %2",
-      "params": [
-        {
-          "type": "Block",
-          "accept": "string"
-        },
-        {
-            "type": "Indicator",
-            "img": "block_icon/hardware_03.png",
-            "size": 12
-        }
-      ],
-      "events": {},
-      "def": {
-        "params": [
-          {
-            "type": "wedo_get_led_color"
-          },
-          null
+            {
+                "type": "Dropdown",
+                "options": [
+                    ["왼쪽", "LEFT"],
+                    ["오른쪽", "RIGHT"]
+                ],
+                "fontSize": 11,
+                "arrowColor": EntryStatic.ARROW_COLOR_HW
+            }
         ],
-        "type": "wedo_set_led_color"
-      },
-      "paramsKeyMap": {
-        "VALUE": 0
-      },
-      "class": "wedo",
-      //"isNotFor": [ "wedo" ],
-      "func": function(sprite, script) {
-        //TODO: set led color to selected value
-
-        return script.callReturn();
-      }
+        "def": {
+            "type": "wedo_get_motion",
+            "params": [ "LEFT" ]
+        },
+        "paramsKeyMap": {
+            "VALUE": 0
+        },
+        "class": "wedo_get",
+        "isNotFor": ["wedo"],
+        "func": function (sprite, script) {
+            var port = script.getField("VALUE", script);
+            return Entry.hw.portData[port];
+        }
     },
     "wedo_is_button_pressed": {
-      "color": "#00979D",
-      "fontColor": "#FFF",
-      "skeleton": "basic_boolean_field",
-      "template": "버튼이 눌렸는가",
-      "params": [],
-      "def": {
-        "type": "wedo_is_button_pressed"
-      },
-      "class": "wedo",
-      //"isNotFor": [ "wedo" ],
-      "func": function(sprite, script) {
-        //TODO: set led color to selected value
+        "color": "#00979D",
+        "fontColor": "#FFF",
+        "skeleton": "basic_boolean_field",
+        "template": "버튼이 눌렸는가?",
+        "params": [],
+        "def": {
+            "type": "wedo_is_button_pressed"
+        },
+        "class": "wedo_get",
+        "isNotFor": [ "wedo" ],
+        "func": function(sprite, script) {
+            return Entry.hw.portData["BUTTON"];
+        }
+    },
+    "wedo_get_tilt": {
+        "color": "#00979D",
+        "fontColor": "#FFF",
+        "skeleton": "basic_string_field",
+        "template": "%1 에서 틸트 %2 값",
+        "params": [
+            {
+                "type": "Dropdown",
+                "options": [
+                    ["왼쪽", "LEFT"],
+                    ["오른쪽", "RIGHT"]
+                ],
+                "fontSize": 11,
+                "arrowColor": EntryStatic.ARROW_COLOR_HW
+            },
+            {
+                "type": "Dropdown",
+                "options": [
+                    ["X", "X"],
+                    ["Y", "Y"]
+                ],
+                "fontSize": 11,
+                "arrowColor": EntryStatic.ARROW_COLOR_HW
+            }
+        ],
+        "def": {
+            "type": "wedo_get_tilt",
+            "params": [
+                "LEFT", "X"
+            ]
+        },
+        "paramsKeyMap": {
+            "PORT": 0,
+            "COORD": 1
+        },
+        "class": "wedo",
+        "isNotFor": ["wedo"],
+        "func": function (sprite, script) {
+            var port = script.getField("PORT", script);
+            var coord = script.getField("COORD", script);
+            
+            return 100;
+        }
+    },
+    "wedo_set_motor_turn": {
+        "color": "#00979D",
+        "fontColor": "#FFF",
+        "skeleton": "basic",
+        "template": "%1 포트의 모터를 %2 방향으로 %3 속도로 회전 %4",
+        "params": [
+            {
+                "type": "Dropdown",
+                "options": [
+                    ["왼쪽", "2"],
+                    ["오른쪽", "1"]
+                ],
+                "fontize": 11,
+                "arrowColor": EntryStatic.ARROW_COLOR_HW
+            },
+            {
+                "type": "Dropdown",
+                "options": [
+                    ["시계", "1"],
+                    ["반시계", "2"]
+                ],
+                "fontize": 11,
+                "arrowColor": EntryStatic.ARROW_COLOR_HW
+            },
+            {
+                "type": "Block",
+                "accept": "string"
+            },
+            {
+                "type": "Indicator",
+                "img": "block_icon/hardware_03.png",
+                "size": 12
+            }
+        ],
+        "def": {
+            "type": "wedo_set_motor_turn",
+            "params": [ "2", "1", {
+                "type": "number",
+                "params": [ "50" ]
+            }, null]
+        },
+        "paramsKeyMap": {
+            "PORT": 0,
+            "DIRECTION": 1,
+            "VALUE": 2
+        },
+        "class": "wedo",
+        "isNotFor": ["wedo"],
+        "func": function (sprite, script) {
+            var direction = script.getField("DIRECTION", script);
+            var value = script.getNumberValue("VALUE", script);
+            var port = script.getField("PORT", script);
 
-        return false;
-      }
+            Entry.hw.sendQueue['Motor'] = {
+                Value: value,
+                Port: port,
+                Direction: direction
+            };
+
+            return script.callReturn();
+        }
+    },
+    "wedo_set_motor_stop": {
+        "color": "#00979D",
+        "fontColor": "#FFF",
+        "skeleton": "basic",
+        "template": "%1 모터를 %2 하기 %3",
+        "params": [
+            {
+                "type": "Dropdown",
+                "options": [
+                    ["왼쪽", "2"],
+                    ["오른쪽", "1"],
+                    ["양쪽", "0"]
+                ],
+                "fontize": 11,
+                "arrowColor": EntryStatic.ARROW_COLOR_HW
+            },
+            {
+                "type": "Dropdown",
+                "options": [
+                    ["정지", "3"],
+                    ["드리프트", "0"]
+                ],
+                "fontize": 11,
+                "arrowColor": EntryStatic.ARROW_COLOR_HW
+            },
+            {
+                "type": "Indicator",
+                "img": "block_icon/hardware_03.png",
+                "size": 12
+            }
+        ],
+        "def": {
+            "type": "wedo_set_motor_stop",
+            "params": [ "2", "3", null ]
+        },
+        "paramsKeyMap": {
+            "PORT": 0,
+            "DIRECTION": 1
+        },
+        "class": "wedo",
+        "isNotFor": ["wedo"],
+        "func": function (sprite, script) {
+            var direction = script.getField("DIRECTION", script);
+            var port = script.getField("PORT", script);
+
+            Entry.hw.sendQueue['Motor'] = {
+                Value: 0,
+                Port: port,
+                Direction: direction
+            };
+
+            return script.callReturn();
+        }
+    },
+    "wedo_led_color_list": {
+        "color": "#00979D",
+        "skeleton": "basic_string_field",
+        "statements": [],
+        "template": "%1",
+        "params": [
+            {
+                "type": "Dropdown",
+                "options": [
+                    [ "1", "1" ],
+                    [ "2", "2" ],
+                    [ "3", "3" ],
+                    [ "4", "4" ],
+                    [ "5", "5" ],
+                    [ "6", "6" ],
+                    [ "7", "7" ],
+                    [ "8", "8" ],
+                    [ "9", "9" ],
+                    [ "10", "10" ]
+                ],
+                "value": "1",
+                "fontSize": 11,
+                "arrowColor": EntryStatic.ARROW_COLOR_HW
+            }
+        ],
+        "events": {},
+        "def": {
+            "params": [ null ]
+        },
+        "paramsKeyMap": {
+            "COLOR": 0
+        },
+        "func": function (sprite, script) {
+            return script.getStringField("COLOR");
+        }
+    },
+    "wedo_set_led_color": {
+        "color": "#00979D",
+        "skeleton": "basic",
+        "statements": [],
+        "template": "LED의 색상을 %1로 정하기 %2",
+        "params": [
+            {
+                "type": "Block",
+                "accept": "string"
+            },
+            {
+                "type": "Indicator",
+                "img": "block_icon/hardware_03.png",
+                "size": 12
+            }
+        ],
+        "events": {},
+        "def": {
+            "params": [
+            {
+                "type": "wedo_led_color_list"
+            }, null ],
+            "type": "wedo_set_led_color"
+        },
+        "paramsKeyMap": {
+            "VALUE": 0
+        },
+        "class": "wedo",
+        "isNotFor": [ "wedo" ],
+        "func": function(sprite, script) {
+            var color = script.getValue("VALUE", script);
+            Entry.hw.sendQueue['RGBLight'] = {
+                Color: color
+            };
+
+            return script.callReturn();
+        }
+    },
+    "wedo_set_tone": {
+        "color": "#00979D",
+        "skeleton": "basic",
+        "statements": [],
+        "template": "%1을(를) %2 옥타브로 %3 길이만큼 소리내기 %4",
+        "params": [
+            {
+                "type": "Dropdown",
+                "options": [
+                    ["무음", "0"],
+                    ["도", "1"],
+                    ["도#", "2"],
+                    ["레", "3"],
+                    ["레#", "4"],
+                    ["미", "5"],
+                    ["파", "6"],
+                    ["파#", "7"],
+                    ["솔", "8"],
+                    ["솔#", "9"],
+                    ["라", "10"],
+                    ["라#", "11"],
+                    ["시", "12"]
+                ],
+                "value": "0",
+                "fontSize": 11
+            }, {
+                "type": "Dropdown",
+                "options": [
+                    ["1", "1"],
+                    ["2", "2"],
+                    ["3", "3"],
+                    ["4", "4"],
+                    ["5", "5"],
+                    ["6", "6"]
+                ],
+                "value": "0",
+                "fontSize": 11
+            }, {
+                "type": "Dropdown",
+                "options": [
+                    ["2분음표", "2"],
+                    ["4분음표", "4"],
+                    ["8분음표", "8"],
+                    ["16분음표", "16"]
+                ],
+                "value": "2",
+                "fontSize": 11
+            }, {
+                "type": "Indicator",
+                "img": "block_icon/hardware_03.png",
+                "size": 12
+            }
+        ],
+        "events": {},
+        "def": {
+            "params": ["1", "3", "4", null],
+            "type": "wedo_set_tone"
+        },
+        "paramsKeyMap": {
+            "TONE": 0,
+            "OCTAVE": 1,
+            "DURATION": 2
+        },
+        "class": "wedo",
+        "isNotFor": [ "wedo" ],
+        "func": function(sprite, script) {
+            var sq = Entry.hw.sendQueue;
+
+            if (!script.isStart) {
+                var tone = script.getNumberField("TONE", script);
+                var octave = script.getNumberField("OCTAVE", script);
+                var duration = script.getNumberField("DURATION", script);
+                duration = 1 / duration * 2000;
+                script.isStart = true;
+                script.timeFlag = 1;
+                sq.Piezo = {
+                    Tone: tone,
+                    Octave: octave,
+                    Duration: duration
+                }
+                setTimeout(function() {
+                    sq.Piezo = {
+                        Tone: 0,
+                        Octave: 0,
+                        Duration: 0
+                    }
+                    Entry.hw.update();
+                    setTimeout(function() {
+                        script.timeFlag = 0;
+                    }, 10)
+                }, duration);
+                return script;
+            } else if (script.timeFlag == 1) {
+                return script;
+            } else {
+                delete script.timeFlag;
+                delete script.isStart;
+                Entry.engine.isContinue = false;
+                return script.callReturn();
+            }
+        }
     }
 };
 

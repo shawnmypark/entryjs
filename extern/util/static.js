@@ -458,11 +458,12 @@ EntryStatic.getAllBlocks = function() {
                 // wedo blocks added
                 "wedo_get_battery_pct",
                 "wedo_get_motion",
-                "wedo_get_tilt",
-                "wedo_turn_cw",
+                "wedo_is_button_pressed",
+                // "wedo_get_tilt",
+                "wedo_set_motor_turn",
                 "wedo_set_motor_stop",
                 "wedo_set_led_color",
-                "wedo_is_button_pressed"
+                "wedo_set_tone",
                 // end of wedo blocks. 2016-07-11
             ]
         }

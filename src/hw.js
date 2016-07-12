@@ -37,7 +37,8 @@ Entry.HW = function() {
         '51': Entry.Neobot,
         '71': Entry.Robotis_carCont,
         '72': Entry.Robotis_openCM70,
-        '81': Entry.Arduino
+        '81': Entry.Arduino,
+        '182': Entry.Wedo,
     };
 };
 
