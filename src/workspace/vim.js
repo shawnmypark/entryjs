@@ -165,16 +165,19 @@ Entry.Vim = function(dom, textType) {
             textCode = codeDescription
             .concat("\n\n")
             .concat(Entry.Vim.PYTHON_IMPORT_ENTRY)
-            /*.concat("\n")
-            .concat(Entry.Vim.PYTHON_IMPORT_HW)*/
+            //.concat("\n")
+            //.concat(Entry.Vim.PYTHON_IMPORT_HW)
             .concat("\n\n")
             .concat(textCode);
         }
 
         this.codeMirror.setValue(textCode);
+        this.codeMirror.getDoc().markText({line:0, ch:0}, {line: 4, ch:0}, {readOnly: true});
+
         var doc = this.codeMirror.getDoc();
         doc.setCursor({ line: doc.lastLine() - 1});
         // this.codeMirror.getDoc().markText({line:0, ch:0}, {line: 1, ch: 100}, {readOnly: true});
+
     };
 
     p.getCodeToText = function(code) {

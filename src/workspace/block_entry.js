@@ -5016,6 +5016,7 @@ Entry.block = {
                 default:
                     returnVal = Math[operator](value);
             }
+
             return returnVal;
         },
         "syntax": {"js": [], "py": ["Entry.value_of_math_operation(%2, %4)"]}
@@ -6399,8 +6400,8 @@ Entry.block = {
         "func": function (sprite, script) {
             return script.callReturn();
         },
-        "event": "when_clone_start",
-        "syntax": {"js": [], "py": ["def entry_event_clone_create()"]}
+        "event": "when_clone_start", 
+        "syntax": {"js": [], "py": ["def entry_event_clone_create():"]}
     },
     "stop_run": {
         "color": "#498deb",

@@ -131,7 +131,11 @@ Entry.TextCodingUtil = function() {
         for(var index in options) {
             var option = options[index];
             if(option[1] == "null") {
-                result = "None";
+                var item = {};
+                var None = {};
+                item.None = None;
+                result = item.None;
+
                 found = true;
                 return result; 
             }
@@ -723,9 +727,12 @@ Entry.TextCodingUtil = function() {
     };
 
     p.searchFuncDefParam = function(block) {
+        //console.log("searchFuncDefParam block", block);
         if(block.data.type == "function_field_label") {
             var name = block.data.params[0];
             this._funcNameQ.enqueue(name);
+            //console.log("searchFuncDefParam name enqueue", name);
+
         }
 
         if(block && block.data && block.data.params && block.data.params[1]){
@@ -749,15 +756,16 @@ Entry.TextCodingUtil = function() {
                     var param = block.data.params[0].data.type;
                     if(block.data.type == "function_field_string" || block.data.type == "function_field_boolean") {
                         this._funcParamQ.enqueue(param);
+
                     } 
                 } else if(block.data.type == "function_field_label") {
                     var name = block.data.params[0];
                     this._funcNameQ.enqueue(name);
                 }
             }
-
             if(block.data.params[1]){
                 var result = this.searchFuncDefParam(block.data.params[1]);  
+
                 if(result.data.params[0].data) {
                     var param = result.data.params[0].data.type;
                     
@@ -801,6 +809,7 @@ Entry.TextCodingUtil = function() {
             matchFlag = false;
             var blockFuncContent = blockFuncContents[i];
             var textFuncStatement = textFuncStatements[i];
+
             if(blockFuncContent && !textFuncStatement) {
                 matchFlag = fasle;
                 return matchFlag;
@@ -821,6 +830,7 @@ Entry.TextCodingUtil = function() {
                         cleansingParams.push(blockFuncContentParam);
                 });
                 blockFuncContentParams = cleansingParams;
+
                 if(textFuncStatementParams.length == blockFuncContentParams.length) { //Statement Param Length Comparison   
                     matchFlag = true;
                     for(var j = 0; j < textFuncStatementParams.length; j++) {
@@ -830,11 +840,16 @@ Entry.TextCodingUtil = function() {
                         if(textFuncStatementParams[j].name) {
                             for(var k in textFuncParams) {
                                 if(textFuncStatementParams[j].name == textFuncParams[k]) { // Pram Locatin Comparision
+                                    //console.log("textFuncStatementParams[j].name", textFuncStatementParams[j].name);
+                                    //console.log("textFuncParams[k]", textFuncParams[k]);
                                     for(var bfcParam in paramMap) {
                                         if(blockFuncContentParams[j].data.type == bfcParam) {
+                                            //console.log("blockFuncContentParams[j].data.type", blockFuncContentParams[j].data.type);
+                                            //console.log("bfcParam", bfcParam);
                                             if(paramMap[bfcParam] == k) {
                                                 matchFlag = true;
                                                 break;
+                                                //console.log("Function Definition Param Found", paramMap[bfcParam], "index k", j);
                                             }  
                                         }   
                                     } 

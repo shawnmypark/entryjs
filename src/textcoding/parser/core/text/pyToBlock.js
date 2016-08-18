@@ -1000,9 +1000,11 @@ Entry.PyToBlockParser = function(blockSyntax) {
 
         console.log("WhileStatement bodyData", bodyData);
 
-        structure.type = type;
-        structure.params = params; 
-        structure.statements.push(bodyData.statements);
+        if(params[0].type == "True") {
+            structure.type = type;
+            //structure.params = params; 
+            structure.statements.push(bodyData.statements);
+        }
 
         result = structure;
         
