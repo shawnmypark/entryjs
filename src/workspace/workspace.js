@@ -101,7 +101,7 @@ Entry.Workspace.MODE_OVERLAYBOARD = 2;
                 this.board.clear();
                 break;
 
-            case Entry.Workspace.MODE_BOARD:
+            case Entry.Workspace.MODE_BOARD:  
                 try {
                     this.board.show();
                     this.set({selectedBoard:this.board});
@@ -115,11 +115,13 @@ Entry.Workspace.MODE_OVERLAYBOARD = 2;
 
                     mode.boardType = Entry.Workspace.MODE_VIMBOARD;
                     mode.textType = Entry.Vim.TEXT_TYPE_JS;
-                    mode.runType = Entry.Vim.WORKSPACE_MODE;
+                    mode.runType = Entry.Vim.WORKSPACE_MODE;  
 
                     this.mode = Entry.Workspace.MODE_VIMBOARD;
-                    Entry.dispatchEvent("changeMode", mode, function (mode) {
-                        $scope.programmingMode = String(mode);
+
+                    console.log("text error before");
+
+                    Entry.dispatchEvent("changeMode", mode, function(mode) {
                     });
 
                     //throw e;

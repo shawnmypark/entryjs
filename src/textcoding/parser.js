@@ -25,6 +25,7 @@ Entry.Parser = function(mode, type, cm, syntax) {
     this._lang = syntax || "js"; //for maze
     this._type = type;
     this.availableCode = [];
+    this._syntax_cache = {};
 
     Entry.Parser.PARSE_GENERAL = 0;
     Entry.Parser.PARSE_SYNTAX = 1;
@@ -139,7 +140,7 @@ Entry.Parser = function(mode, type, cm, syntax) {
                 this._parser = new Entry.BlockToPyParser(this.syntax);
 
                 cm.setOption("mode", {name: "python", globalVars: true});
-                cm.markText({line: 0, ch: 0}, {line: 5}, {readOnly: true});
+                cm.markText({line: 0, ch: 0}, {line: 4}, {readOnly: true});
 
                 this._parserType = Entry.Vim.PARSER_TYPE_BLOCK_TO_PY;
 
@@ -224,8 +225,10 @@ Entry.Parser = function(mode, type, cm, syntax) {
                         
                     }
                     result = [];
-                    Ntry.dispatchEvent("textError");
-                    //throw error;
+
+                    //Ntry.dispatchEvent("textError");
+
+                    throw error;
                 }
                 break;
             case Entry.Vim.PARSER_TYPE_PY_TO_BLOCK:
@@ -259,7 +262,7 @@ Entry.Parser = function(mode, type, cm, syntax) {
 
                     break;
                 } catch(error) {
-                    if (this.codeMirror) {
+                    /*if (this.codeMirror) {
                         var annotation;
                         if (error instanceof SyntaxError) {
                             annotation = {
@@ -297,7 +300,60 @@ Entry.Parser = function(mode, type, cm, syntax) {
                         Entry.toast.alert(errorTitle, errorMsg);
                         throw error;
                     }
+                    result = [];*/
+
+                    if (this.codeMirror) {
+                        var annotation;
+                        if (error instanceof SyntaxError) {
+                            annotation = {
+                                from: {line: error.loc.line - 1, ch: error.loc.column - 2},
+                                to: {line: error.loc.line - 1, ch: error.loc.column + 1}
+                            }
+                            error.message = "문법(Syntax) 오류입니다.";
+                            error.type = 1;
+                        } else {
+                            annotation = this.getLineNumber(error.node.start, error.node.end);
+                            annotation.message = error.message;
+                            annotation.severity = "error";
+
+                            var errorInfo = this.findErrorInfo(error);
+                            annotation.from.line = errorInfo.lineNumber;
+                            annotation.from.ch = errorInfo.location.start;
+                            annotation.to.line = errorInfo.lineNumber;
+                            annotation.to.ch = errorInfo.location.end; 
+
+                            error.type = 2;
+                        }
+
+                        this.codeMirror.markText(
+                            annotation.from, annotation.to, {
+                            className: "CodeMirror-lint-mark-error",
+                            __annotation: annotation,
+                            clearOnEnter: true 
+                        });
+
+                        if(error.title) {
+                            var errorTitle = error.title;
+                        }
+                        else {
+                            var errorTitle = '문법 오류';
+                        }
+
+                        if(error.type == 2 && error.message) {
+                            var errorMsg = error.message;
+                        }
+                        else if(error.type == 2 && !error.message) {
+                            var errorMsg = '파이썬 코드를 확인해주세요.';
+                        }
+                        else  if(error.type == 1) {
+                            var errorMsg = '파이썬 문법을 확인해주세요.';
+                        }
+
+                        Entry.toast.alert(errorTitle, errorMsg);   
+                    }
                     result = [];
+
+                    throw error;
                 }
                 break;
             case Entry.Vim.PARSER_TYPE_BLOCK_TO_JS:
@@ -358,6 +414,9 @@ Entry.Parser = function(mode, type, cm, syntax) {
     };
 
     p.mappingSyntax = function(mode) {
+        if (this._syntax_cache[mode])
+            return this._syntax_cache[mode];
+
         var types = Object.keys(Entry.block);
         var syntax = {};
 
@@ -368,16 +427,16 @@ Entry.Parser = function(mode, type, cm, syntax) {
             if(mode === Entry.Vim.MAZE_MODE) {
                 if(this.availableCode.indexOf(type) > -1) {
                     var syntaxArray = block.syntax;
-                    if (!syntaxArray) continue;
+                    if (!syntaxArray)
+                        continue;
+
+                    if(block.syntax.py)
+                        continue;
 
                     var syntaxTemp = syntax;
                     //console.log("syntaxArray", syntaxArray);
                     for (var j = 0; j < syntaxArray.length; j++) {
                         var key = syntaxArray[j];
-                        var index = key.indexOf("(");
-                        if(index > -1) {
-                            key = key.substring(0, index);
-                        }
                         if (j === syntaxArray.length - 2 &&
                             typeof syntaxArray[j + 1] === "function") {
                             syntaxTemp[key] = syntaxArray[j + 1];
@@ -393,7 +452,8 @@ Entry.Parser = function(mode, type, cm, syntax) {
                         }
                     }
                 }
-            } else {
+            }
+            else {
                 if(mode === Entry.Vim.WORKSPACE_MODE) {
                     var blockList = Entry.block;
 
@@ -420,6 +480,9 @@ Entry.Parser = function(mode, type, cm, syntax) {
                 }
             }
         }
+
+        this._syntax_cache[mode] = syntax;
+
 
         return syntax;
     };

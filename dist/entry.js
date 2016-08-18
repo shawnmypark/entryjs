@@ -13500,6 +13500,7 @@ Entry.Parser = function(b, a, d, c) {
   this._lang = c || "js";
   this._type = a;
   this.availableCode = [];
+  this._syntax_cache = {};
   Entry.Parser.PARSE_GENERAL = 0;
   Entry.Parser.PARSE_SYNTAX = 1;
   Entry.Parser.PARSE_VARIABLE = 2;
@@ -13564,7 +13565,7 @@ Entry.Parser = function(b, a, d, c) {
         this._parserType = Entry.Vim.PARSER_TYPE_JS_TO_BLOCK;
         break;
       case Entry.Vim.PARSER_TYPE_BLOCK_TO_PY:
-        this._parser = new Entry.BlockToPyParser(this.syntax), c.setOption("mode", {name:"python", globalVars:!0}), c.markText({line:0, ch:0}, {line:5}, {readOnly:!0}), this._parserType = Entry.Vim.PARSER_TYPE_BLOCK_TO_PY;
+        this._parser = new Entry.BlockToPyParser(this.syntax), c.setOption("mode", {name:"python", globalVars:!0}), c.markText({line:0, ch:0}, {line:4}, {readOnly:!0}), this._parserType = Entry.Vim.PARSER_TYPE_BLOCK_TO_PY;
     }
   };
   b.parse = function(a, b) {
@@ -13592,8 +13593,7 @@ Entry.Parser = function(b, a, d, c) {
             }
             Entry.toast.alert(c, l);
           }
-          c = [];
-          Ntry.dispatchEvent("textError");
+          throw q;
         }
         break;
       case Entry.Vim.PARSER_TYPE_PY_TO_BLOCK:
@@ -13608,14 +13608,12 @@ Entry.Parser = function(b, a, d, c) {
           }
           c = this._parser.Program(f);
           this._parser._variableMap.clear();
+          break;
         } catch (q) {
-          if (this.codeMirror) {
-            throw q instanceof SyntaxError ? (c = {from:{line:q.loc.line - 1, ch:q.loc.column - 2}, to:{line:q.loc.line - 1, ch:q.loc.column + 1}}, q.message = "\ubb38\ubc95 \uc624\ub958\uc785\ub2c8\ub2e4.") : (c = this.getLineNumber(q.node.start, q.node.end), c.message = q.message, c.severity = "error"), l = parseInt(c.to.line) + 1, c.from.line = l - 1, c.to.line = l, this.codeMirror.markText(c.from, c.to, {className:"CodeMirror-lint-mark-error", __annotation:c, clearOnEnter:!0}), c = q.title ? 
-            q.title : "\ubb38\ubc95 \uc624\ub958", l = q.message && l ? q.message + " (line: " + l + ")" : "\ud30c\uc774\uc36c \ucf54\ub4dc\ub97c \ud655\uc778\ud574\uc8fc\uc138\uc694", Entry.toast.alert(c, l), q;
-          }
-          c = [];
+          throw this.codeMirror && (q instanceof SyntaxError ? (c = {from:{line:q.loc.line - 1, ch:q.loc.column - 2}, to:{line:q.loc.line - 1, ch:q.loc.column + 1}}, q.message = "\ubb38\ubc95(Syntax) \uc624\ub958\uc785\ub2c8\ub2e4.", q.type = 1) : (c = this.getLineNumber(q.node.start, q.node.end), c.message = q.message, c.severity = "error", e = this.findErrorInfo(q), c.from.line = e.lineNumber, c.from.ch = e.location.start, c.to.line = e.lineNumber, c.to.ch = e.location.end, q.type = 2), this.codeMirror.markText(c.from, 
+          c.to, {className:"CodeMirror-lint-mark-error", __annotation:c, clearOnEnter:!0}), c = q.title ? q.title : "\ubb38\ubc95 \uc624\ub958", 2 == q.type && q.message ? l = q.message : 2 != q.type || q.message ? 1 == q.type && (l = "\ud30c\uc774\uc36c \ubb38\ubc95\uc744 \ud655\uc778\ud574\uc8fc\uc138\uc694.") : l = "\ud30c\uc774\uc36c \ucf54\ub4dc\ub97c \ud655\uc778\ud574\uc8fc\uc138\uc694.", Entry.toast.alert(c, l)), q;
         }
-        break;
+      ;
       case Entry.Vim.PARSER_TYPE_BLOCK_TO_JS:
         c = l = this._parser.Code(a, b);
         break;
@@ -13634,19 +13632,24 @@ Entry.Parser = function(b, a, d, c) {
     return e;
   };
   b.mappingSyntax = function(a) {
+    if (this._syntax_cache[a]) {
+      return this._syntax_cache[a];
+    }
     for (var b = Object.keys(Entry.block), c = {}, e = 0;e < b.length;e++) {
       var f = b[e], g = Entry.block[f];
       if (a === Entry.Vim.MAZE_MODE) {
-        if (-1 < this.availableCode.indexOf(f) && (g = g.syntax)) {
-          for (var h = c, k = 0;k < g.length;k++) {
-            var l = g[k], m = l.indexOf("(");
-            -1 < m && (l = l.substring(0, m));
-            if (k === g.length - 2 && "function" === typeof g[k + 1]) {
-              h[l] = g[k + 1];
-              break;
+        if (-1 < this.availableCode.indexOf(f)) {
+          var h = g.syntax;
+          if (h && !g.syntax.py) {
+            for (var g = c, k = 0;k < h.length;k++) {
+              var l = h[k];
+              if (k === h.length - 2 && "function" === typeof h[k + 1]) {
+                g[l] = h[k + 1];
+                break;
+              }
+              g[l] || (g[l] = {});
+              k === h.length - 1 ? g[l] = f : g = g[l];
             }
-            h[l] || (h[l] = {});
-            k === g.length - 1 ? h[l] = f : h = h[l];
           }
         }
       } else {
@@ -13657,7 +13660,7 @@ Entry.Parser = function(b, a, d, c) {
         }
       }
     }
-    return c;
+    return this._syntax_cache[a] = c;
   };
   b.setAvailableCode = function(a, b) {
     var c = [], e;
@@ -23066,7 +23069,7 @@ Entry.Vim = function(b, a) {
     var e = b.textType;
     e === Entry.Vim.TEXT_TYPE_JS ? (this._parserType = Entry.Vim.PARSER_TYPE_BLOCK_TO_JS, this._parser.setParser(this._mode, this._parserType, this.codeMirror)) : e === Entry.Vim.TEXT_TYPE_PY && (this._parserType = Entry.Vim.PARSER_TYPE_BLOCK_TO_PY, this._parser.setParser(this._mode, this._parserType, this.codeMirror));
     var f = this._parser.parse(a, Entry.Parser.PARSE_GENERAL);
-    e === Entry.Vim.TEXT_TYPE_PY && (f = c.concat("\n\n").concat(Entry.Vim.PYTHON_IMPORT_ENTRY).concat("\n").concat(Entry.Vim.PYTHON_IMPORT_HW).concat("\n\n").concat(f));
+    e === Entry.Vim.TEXT_TYPE_PY && (f = c.concat("\n\n").concat(Entry.Vim.PYTHON_IMPORT_ENTRY).concat("\n\n").concat(f));
     this.codeMirror.setValue(f);
     c = this.codeMirror.getDoc();
     c.setCursor({line:c.lastLine() - 1});
@@ -23142,8 +23145,7 @@ Entry.Workspace.MODE_OVERLAYBOARD = 2;
         try {
           this.board.show(), this.set({selectedBoard:this.board}), this.textToCode(c, this.oldTextType), this.vimBoard && this.vimBoard.hide(), this.overlayBoard && this.overlayBoard.hide(), this.blockMenu.renderBlock();
         } catch (e) {
-          this.board && this.board.hide(), this.set({selectedBoard:this.vimBoard}), a.boardType = Entry.Workspace.MODE_VIMBOARD, a.textType = Entry.Vim.TEXT_TYPE_JS, a.runType = Entry.Vim.WORKSPACE_MODE, this.mode = Entry.Workspace.MODE_VIMBOARD, Entry.dispatchEvent("changeMode", a, function(a) {
-            $scope.programmingMode = String(a);
+          this.board && this.board.hide(), this.set({selectedBoard:this.vimBoard}), a.boardType = Entry.Workspace.MODE_VIMBOARD, a.textType = Entry.Vim.TEXT_TYPE_JS, a.runType = Entry.Vim.WORKSPACE_MODE, this.mode = Entry.Workspace.MODE_VIMBOARD, console.log("text error before"), Entry.dispatchEvent("changeMode", a, function(a) {
           });
         }
         Entry.commander.setCurrentEditor("board", this.board);
@@ -23331,9 +23333,10 @@ Entry.Playground.prototype.generateCodeView = function(b) {
   b = Entry.Dom(b);
   a = Entry.Dom("div", {parent:b, id:"entryWorkspaceBoard", class:"entryWorkspaceBoard"});
   b = Entry.Dom("div", {parent:b, id:"entryWorkspaceBlockMenu", class:"entryWorkspaceBlockMenu"});
-  this.mainWorkspace = new Entry.Workspace({blockMenu:{dom:b, align:"LEFT", categoryData:EntryStatic.getAllBlocks(), scroll:!0}, board:{dom:a}});
+  this.mainWorkspace = new Entry.Workspace({blockMenu:{dom:b, align:"LEFT", categoryData:EntryStatic.getAllBlocks(), scroll:!0}, board:{dom:a}, vimBoard:{dom:a}});
   this.blockMenu = this.mainWorkspace.blockMenu;
   this.board = this.mainWorkspace.board;
+  this.vimBoard = this.mainWorkspace.vimBoard;
   Entry.hw && this.updateHW();
 };
 Entry.Playground.prototype.generatePictureView = function(b) {
