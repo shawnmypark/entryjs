@@ -13008,15 +13008,16 @@ Entry.TextCodingUtil = {};
             continue;
           }
         }
-        var a = "", e = e.array_, g;
-        for (g in e) {
-          var h = e[g].data, k = parseInt(h);
-          isNaN(k) || (h = k);
-          "string" === typeof h && (h = '"' + h + '"');
-          a += h;
-          g != e.length - 1 && (a += ", ");
+        var g = "", e = e.array_, h;
+        for (h in e) {
+          var k = e[h].data, l = parseInt(k);
+          isNaN(l) || (k = l);
+          "string" === typeof k && (k = '"' + k + '"');
+          g += k;
+          h != e.length - 1 && (g += ", ");
         }
-        a = f + " = [" + a + "]\n";
+        a += f + " = [" + g + "]\n";
+        console.log("list dec", a);
       }
       return a;
     }
@@ -13267,8 +13268,8 @@ Entry.BlockToPyParser = function(b) {
       return "None";
     }
     console.log("currentBlock", c);
-    (syntaxObj = this.searchSyntax(c)) && syntaxObj.paramCodes && (b = syntaxObj.paramCodes[e]) && (console.log("paramCode", b, "param", a), b = b[a], console.log("pCode", b), b && (a = b[0], a = a.replace(/\"/g, "")));
-    Entry.TextCodingUtil.isBinaryOperator(a) || Entry.TextCodingUtil.isNumeric(a) || (a = '"' + a + '"');
+    (syntaxObj = this.searchSyntax(c)) && syntaxObj.paramCodes && (b = syntaxObj.paramCodes[e]) && (console.log("paramCode", b, "param", a), b = b[a], console.log("pCode", b), b && (a = b[0], console.log("dataParam.split('.')[0]", a.split(".")[0]), a = "Hamster" == a.split(".")[0] ? "".replace("", a) : a.replace(/\"/g, "")));
+    "Hamster" != a.split(".")[0] && (Entry.TextCodingUtil.isBinaryOperator(a) || Entry.TextCodingUtil.isNumeric(a) || (a = '"' + a + '"'));
     return a;
   };
   b.FieldDropdownDynamic = function(a, b, c, e) {
@@ -14415,7 +14416,7 @@ Entry.PyToBlockParser = function(b) {
         Entry.TextCodingUtil.isGlobalListExisted(g) ? Entry.TextCodingUtil.updateGlobalList(g, f) : Entry.TextCodingUtil.createGlobalList(g, f);
       } else {
         g = e.name;
-        "Literal" == f.type ? (c = f.value, "string" === typeof c && (c = '"' + c + '"')) : "Identifier" == f.type ? c = f.name : "UnaryExpression" == f.type ? (h = this[f.type](f), console.log("VariableDeclarator initData UnaryExpression", h), c = h.params[0], console.log("gl initData", h, "type", typeof c), "string" != typeof c && "number" != typeof c && (c = 0)) : c = 0;
+        "Literal" == f.type ? (c = f.value, "string" === typeof c && (c = '"' + c + '"')) : "Identifier" == f.type ? c = f.name : "UnaryExpression" == f.type ? (h = this[f.type](f), console.log("VariableDeclarator initData UnaryExpression", h), c = h.params[0], console.log("gl initData", h, "type", typeof c), "string" != typeof c && "number" != typeof c && (c = 1)) : c = 1;
         console.log("variable name", g, "value", c);
         (c && !isNaN(c) || 0 == c) && g && !g.includes("__filbert") && (Entry.TextCodingUtil.isGlobalVariableExisted(g) ? (console.log("this is update", g, c), Entry.TextCodingUtil.updateGlobalVariable(g, c)) : Entry.TextCodingUtil.createGlobalVariable(g, c));
         g = this[e.type](e);

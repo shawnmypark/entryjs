@@ -2645,6 +2645,38 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": ["%1arduino_ext_tone_value#"]}
     },
+    "arduino_ext_octave_list": {
+        "color": "#00979D",
+        "skeleton": "basic_string_field",
+        "statements": [],
+        "template": "%1",
+        "params": [
+            {
+                "type": "Dropdown",
+                "options": [
+                    ["1", "0"],
+                    ["2", "1"],
+                    ["3", "2"],
+                    ["4", "3"],
+                    ["5", "4"],
+                    ["6", "5"]
+                ],
+                "value": "3",
+                "fontSize": 11
+            }
+        ],
+        "events": {},
+        "def": {
+            "params": [ null ]
+        },
+        "paramsKeyMap": {
+            "OCTAVE": 0
+        },
+        "func": function (sprite, script) {
+            return script.getField("OCTAVE");
+        },
+        "syntax": {"js": [], "py": ["%1arduino_ext_octave_list#"]}
+    },
     "arduino_ext_set_tone": {
         "color": "#00979D",
         "skeleton": "basic",
@@ -2656,17 +2688,8 @@ Entry.block = {
             "type": "Block",
             "accept": "string"
         }, {
-            "type": "Dropdown",
-            "options": [
-                ["1", "0"],
-                ["2", "1"],
-                ["3", "2"],
-                ["4", "3"],
-                ["5", "4"],
-                ["6", "5"]
-            ],
-            "value": "3",
-            "fontSize": 11
+            "type": "Block",
+            "accept": "string"
         }, {
             "type": "Block",
             "accept": "string"
@@ -2683,7 +2706,9 @@ Entry.block = {
                 {
                     "type": "arduino_ext_tone_list"
                 },
-                null,
+                {
+                    "type": "arduino_ext_octave_list"
+                },
                 {
                     "type": "text",
                     "params": [ "1" ]
@@ -2706,7 +2731,8 @@ Entry.block = {
 
             if (!script.isStart) {
                 var note = script.getValue("NOTE", script);
-                note = Entry.ArduinoExt.toneTable[note];
+                if(isNaN(note))
+                    note = Entry.ArduinoExt.toneTable[note];
 
                 if(note < 0) {
                     note = 0;
@@ -2729,9 +2755,14 @@ Entry.block = {
                     return script.callReturn();
                 }
 
-                var octave = script.getNumberField("OCTAVE", script);
+                var octave = script.getNumberValue("OCTAVE", script);
+                if(octave < 0) {
+                    octave = 0;
+                } else if(octave > 5) {
+                    octave = 5;
+                }
                 var value = Entry.ArduinoExt.toneMap[note][octave];
-                
+
                 duration = duration * 1000;
                 script.isStart = true;
                 script.timeFlag = 1;
@@ -2767,9 +2798,7 @@ Entry.block = {
                 return script.callReturn();
             }
         },
-        "syntax": {"js": [], "py": [
-            {syntax: "Arduino.tone(%1, %2, %3, %4)"}
-        ]}
+        "syntax": {"js": [], "py": [ "Arduino.tone(%1, %2, %3, %4)" ]}
     },
     "arduino_ext_set_servo": {
         "color": "#00979D",
@@ -10201,7 +10230,7 @@ Entry.block = {
         "syntax": {"js": [], "py": [
             {syntax: "Hamster.note(%1, %2, %3)",
             paramCodes:[
-                {"4":["Hamster.NOTE_C"],
+                {"4":["Hamster.NOTE_C"], 
                 "5":["Hamster.NOTE_C_SHARP","Hamster.NOTE_D_FLAT"],
                 "6":["Hamster.NOTE_D"],
                 "7":["Hamster.NOTE_E_FLAT","Hamster.NOTE_D_SHARP"],

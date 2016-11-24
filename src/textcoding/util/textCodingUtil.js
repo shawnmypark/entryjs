@@ -1916,7 +1916,8 @@ Entry.TextCodingUtil = {};
                     value += ", ";
             }
             
-            result = name + " = [" + value + "]" + "\n";
+            result += name + " = [" + value + "]" + "\n";
+            console.log("list dec", result);
         }
 
         return result;

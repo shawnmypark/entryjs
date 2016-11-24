@@ -490,16 +490,25 @@ Entry.BlockToPyParser = function(blockSyntax) {
                     console.log("pCode", pCode);
                     if(pCode) {
                         dataParam = pCode[0];
-                        dataParam = dataParam.replace(/\"/g, "");
+                        console.log("dataParam.split('.')[0]", dataParam.split('.')[0]);
+                        if(dataParam.split('.')[0] == "Hamster") {
+                            dataParam = ''.replace('', dataParam);
+                        }
+                        else
+                            dataParam = dataParam.replace(/\"/g, "");
+
                     }
                 }
             }
         }
 
-        if(!Entry.TextCodingUtil.isBinaryOperator(dataParam)) {
-            if(!Entry.TextCodingUtil.isNumeric(dataParam))
-                dataParam = "\"" + dataParam + "\"";
-        }
+        if(dataParam.split('.')[0] != "Hamster") 
+            if(!Entry.TextCodingUtil.isBinaryOperator(dataParam)) {
+                if(!Entry.TextCodingUtil.isNumeric(dataParam))
+                    dataParam = "\"" + dataParam + "\"";
+            }
+
+        
 
         return dataParam;
     };
