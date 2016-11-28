@@ -77,6 +77,9 @@ Entry.PyToBlockParser = function(blockSyntax) {
                         else if(Entry.TextCodingUtil.isMaterialBlock(block.type)) {
                             continue;
                         }
+                        else if(Entry.TextCodingUtil.isHWParamBlock(block.type)) {
+                            continue;
+                        }
 
                         if(Entry.TextCodingUtil.isEventBlockByType(block.type)) {
                             isEntryEventExisted = true;
@@ -1427,12 +1430,8 @@ Entry.PyToBlockParser = function(blockSyntax) {
                 var value = initData.params[0];
                 console.log("gl initData", initData, "type", typeof value);
                 if(typeof value != "string" && typeof value != "number") {
-                    value = NaN;
-                    value = 1;
+                    value = 0;
                 }
-            }
-            else {
-                var value = 1;
             }
 
             console.log("variable name", name, "value", value);
