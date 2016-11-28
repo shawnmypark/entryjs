@@ -491,24 +491,25 @@ Entry.BlockToPyParser = function(blockSyntax) {
                     if(pCode) {
                         dataParam = pCode[0];
                         console.log("dataParam.split('.')[0]", dataParam.split('.')[0]);
+                        //Temporary Code !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                         if(dataParam.split('.')[0] == "Hamster") {
                             dataParam = ''.replace('', dataParam);
                         }
-                        else
+                        else {
                             dataParam = dataParam.replace(/\"/g, "");
-
+                        }
                     }
                 }
             }
         }
 
-        if(dataParam.split('.')[0] != "Hamster") 
+        //Temporary Code !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if(dataParam.split('.')[0] != "Hamster") {
             if(!Entry.TextCodingUtil.isBinaryOperator(dataParam)) {
                 if(!Entry.TextCodingUtil.isNumeric(dataParam))
                     dataParam = "\"" + dataParam + "\"";
             }
-
-        
+        }
 
         return dataParam;
     };
