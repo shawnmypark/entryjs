@@ -6382,7 +6382,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.set_brush_color_to(%1)",
+                syntax: "Entry.set_brush_color(%1)",
                 textParams: [
                     {
                         "type": "Color",
@@ -6427,7 +6427,7 @@ Entry.block = {
             }
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.set_brush_color_to_random()"]}
+        "syntax": {"js": [], "py": ["Entry.set_brush_color_random()"]}
     },
     "change_thickness": {
         "color": "#FF9E20",
@@ -7021,7 +7021,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.value_of_distance_to(%2)",
+                syntax: "Entry.value_of_distance(%2)",
                 blockType: "param",
                 textParams: [
                     undefined,
@@ -7084,7 +7084,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.value_of_mouse_pointer(%2)",
+                syntax: "Entry.coordinate_mouse(%2)",
                 blockType: "param",
                 textParams: [
                     {
@@ -7195,7 +7195,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.value_of_object(%2, %4)",
+                syntax: "Entry.value_of(%2, %4)",
                 blockType: "param",
                 textParams: [
                     undefined,
@@ -7736,6 +7736,43 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
+                syntax: "Entry.value_of_math_operation(%2, %4)",
+                blockType: "param",
+                textParams: [
+                    undefined,
+                    {
+                        "type": "Block",
+                        "accept": "string"
+                    },
+                    undefined,
+                    {
+                        "type": "Dropdown",
+                        "options": [
+                            [Lang.Blocks.CALC_calc_operation_square,"square"],
+                            [Lang.Blocks.CALC_calc_operation_root, "root"],
+                            [Lang.Blocks.CALC_calc_operation_sin, "sin"],
+                            [Lang.Blocks.CALC_calc_operation_cos,"cos"],
+                            [Lang.Blocks.CALC_calc_operation_tan,"tan"],
+                            [Lang.Blocks.CALC_calc_operation_asin, "asin_radian"],
+                            [Lang.Blocks.CALC_calc_operation_acos,"acos_radian"],
+                            [Lang.Blocks.CALC_calc_operation_atan,"atan_radian"],
+                            [Lang.Blocks.CALC_calc_operation_log,"log"],
+                            [Lang.Blocks.CALC_calc_operation_ln,"ln"],
+                            [Lang.Blocks.CALC_calc_operation_unnatural,"unnatural"],
+                            [Lang.Blocks.CALC_calc_operation_floor,"floor"],
+                            [Lang.Blocks.CALC_calc_operation_ceil,"ceil"],
+                            [Lang.Blocks.CALC_calc_operation_round,"round"],
+                            [Lang.Blocks.CALC_calc_operation_factorial,"factorial"],
+                            [Lang.Blocks.CALC_calc_operation_abs,"abs"]
+                        ],
+                        "value": "square",
+                        "fontSize": 11,
+                        'arrowColor': EntryStatic.ARROW_COLOR_CALC,
+                        converter: Entry.block.converters.returnStringValue
+                    }
+                ]
+            }
+            /*{
                 syntax: "(%2**2)",
                 params: [null, null, null, "square"],
                 blockType: "param",
@@ -7944,7 +7981,7 @@ Entry.block = {
                     undefined,
                     null
                 ]
-            },
+            },*/
         ]}
     },
     "calc_rand": {
@@ -8082,7 +8119,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.value_of_current_time(%2)",
+                syntax: "Entry.value_of_date_time(%2)",
                 blockType: "param",
                 textParams: [
                     undefined,
@@ -8150,7 +8187,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.value_of_sound_length_of(%2)",
+                syntax: "Entry.value_of_sound_duration(%2)",
                 blockType: "param",
                 textParams: [
                     undefined,
@@ -8266,7 +8303,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.timer_view(%2)",
+                syntax: "Entry.set_timer_mode(%2)",
                 textParams: [
                     undefined,
                     {
@@ -8349,7 +8386,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.value_of_timer()",
+                syntax: "Entry.value_timer()",
                 blockType: "param"
             }
         ]}
@@ -8417,7 +8454,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "%2\[%4\]",
+                syntax: "Entry.string_index_of(%2, %4)",
                 blockType: "param",
                 textParams: [
                     {
@@ -8492,7 +8529,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "len(%2)",
+                syntax: "Entry.string_length(%2)",
                 blockType: "param",
                 keyOption: "length_of_string"
             }
@@ -8578,7 +8615,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "%2\[%4:%6\]",
+                syntax: "Entry.string_substring(%2, %4, %6)",
                 blockType: "param",
                 textParams: [
                     null,
@@ -8679,7 +8716,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "%2.replace(%4, %6)",
+                syntax: "Entry.string_replace(%2, %4, %6)",
                 blockType: "param"
             }
         ]}
@@ -8745,6 +8782,30 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
+                syntax: "Entry.string_case(%2, %4)",
+                blockType: "param",
+                textParams: [
+                    undefined,
+                    {
+                        "type": "Block",
+                        "accept": "string"
+                    },
+                    undefined,
+                    {
+                        "type": "Dropdown",
+                        "options": [
+                            [Lang.Blocks.CALC_change_string_case_sub_1,"toUpperCase"],
+                            [Lang.Blocks.CALC_change_string_case_sub_2,"toLowerCase"]
+                        ],
+                        "value": "toUpperCase",
+                        "fontSize": 11,
+                        'arrowColor': EntryStatic.ARROW_COLOR_CALC,
+                        converter: Entry.block.converters.returnStringValue
+                    },
+                ]
+
+            }
+            /*{
                 syntax: "%2.upper()",
                 params: [null,null,null,"toUpperCase",null],
                 blockType: "param",
@@ -8791,7 +8852,7 @@ Entry.block = {
                         converter: Entry.block.converters.returnStringValue
                     },
                 ]
-            }
+            }*/
         ]}
     },
     "index_of_string": {
@@ -8855,7 +8916,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "%2.find(%4)",
+                syntax: "Entry.string_start_index(%2, %4)",
                 blockType: "param"
             }
         ]}
@@ -8957,7 +9018,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.value_of_sound_volume()",
+                syntax: "Entry.value_of_sound()",
                 blockType: "param"
             }
         ]}
@@ -9039,7 +9100,35 @@ Entry.block = {
                 return left % right;
         },
         "syntax": {"js": [], "py": [
-            {
+            { 
+                syntax : "Entry.value_div(%2, %4, %6)",
+                blockType: "param",
+                textParams: [
+                    undefined,
+                    {
+                        "type": "Block",
+                        "accept": "string"
+                    },
+                    undefined,
+                    {
+                        "type": "Block",
+                        "accept": "string"
+                    },
+                    undefined,
+                    {
+                        "type": "Dropdown",
+                        "options": [
+                              [Lang.Blocks.CALC_quotient_and_mod_sub_1,"QUOTIENT"],
+                              [Lang.Blocks.CALC_quotient_and_mod_sub_2,"MOD"]
+                        ],
+                        "value": "QUOTIENT",
+                        "fontSize": 11,
+                        'arrowColor': EntryStatic.ARROW_COLOR_CALC,
+                        converter: Entry.block.converters.returnStringValue
+                    }
+                ]
+            }
+            /*{
                 syntax: "(%2 // %4)",
                 params: [null,null,null,null,null,"QUOTIENT"],
                 blockType: "param",
@@ -9096,7 +9185,7 @@ Entry.block = {
                         converter: Entry.block.converters.returnStringValue
                     }
                 ]
-            }
+            }*/
         ]}
     },
     "choose_project_timer_action": {
@@ -9261,7 +9350,7 @@ Entry.block = {
                 return script.callReturn();
             }
         },
-        "syntax": {"js": [], "py": ["Entry.wait_for_sec(%1)"]}
+        "syntax": {"js": [], "py": ["Entry.wait_for_seconds(%1)"]}
     },
     "repeat_basic": {
         "color": "#498deb",
@@ -9607,7 +9696,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.make_clone_of(%1)",
+                syntax: "Entry.create_clone(%1)",
                 textParams: [
                     {
                         "type": "DropdownDynamic",
@@ -9645,7 +9734,7 @@ Entry.block = {
             sprite.removeClone();
             return this.die();
         },
-        "syntax": {"js": [], "py": ["Entry.remove_this_clone()"]}
+        "syntax": {"js": [], "py": ["Entry.remove_clone()"]}
     },
     "when_clone_start": {
         "color": "#498deb",
@@ -9673,7 +9762,12 @@ Entry.block = {
             return script.callReturn();
         },
         "event": "when_clone_start",
-        "syntax": {"js": [], "py": ["def when_make_clone():"]}
+        "syntax": {"js": [], "py": [
+            {
+                syntax: "def entry_event_clone_create():",
+                blockType: "event"
+            }
+        ]}
     },
     "stop_run": {
         "color": "#498deb",
@@ -9827,7 +9921,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.stop_code(%1)",
+                syntax: "Entry.stop(%1)",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -9869,7 +9963,7 @@ Entry.block = {
             Entry.engine.toggleStop();
             Entry.engine.toggleRun();
         },
-        "syntax": {"js": [], "py": ["Entry.start_again()"]}
+        "syntax": {"js": [], "py": ["Entry.restart()"]}
     },
     "remove_all_clones": {
         "color": "#498deb",
@@ -13359,7 +13453,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.is_key_pressed(%1)",
+                syntax: "Entry.is_pressed(%1)",
                 blockType: "param",
                 textParams: [
                     {
@@ -13466,7 +13560,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.is_touched(%2)",
+                syntax: "Entry.is_reached(%2)",
                 blockType: "param",
                 textParams: [
                     undefined,
@@ -14239,7 +14333,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.print_for_sec(%1, %2)",
+                syntax: "Entry.print_for_seconds(%1, %2, %3)",
                 params: [null,null,"speak"],
                 textParams: [
                     {
@@ -14345,7 +14439,7 @@ Entry.block = {
             if(sprite.dialog)   sprite.dialog.remove();
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.clear_print()"]}
+        "syntax": {"js": [], "py": ["Entry.print_remove()"]}
     },
     "change_to_nth_shape": {
         "color": "#EC4466",
@@ -14425,7 +14519,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.change_shape_to(%1)",
+                syntax: "Entry.set_shape_of(%1)",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -15262,7 +15356,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.send_layer_to(%1)",
+                syntax: "Entry.send_layer(%1)",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -15322,7 +15416,7 @@ Entry.block = {
             }
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.move_to_direction(%1)"]}
+        "syntax": {"js": [], "py": ["Entry.move(%1)"]}
     },
     "move_x": {
         "color": "#A751E3",
@@ -15363,7 +15457,7 @@ Entry.block = {
             }
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.add_x(%1)"]}
+        "syntax": {"js": [], "py": ["Entry.set_x(%1)"]}
     },
     "move_y": {
         "color": "#A751E3",
@@ -15404,7 +15498,7 @@ Entry.block = {
             }
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.add_y(%1)"]}
+        "syntax": {"js": [], "py": ["Entry.set_y(%1)"]}
     },
     "locate_xy_time": {
         "color": "#A751E3",
@@ -15489,7 +15583,7 @@ Entry.block = {
                 }
             }
         },
-        "syntax": {"js": [], "py": ["Entry.set_xy_for_sec(%2, %3, %1)"]}
+        "syntax": {"js": [], "py": ["Entry.set_xy_for_seconds(%1, %2, %3)"]}
     },
     "rotate_by_angle": {
         "color": "#A751E3",
@@ -15735,7 +15829,7 @@ Entry.block = {
             }
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.set_x(%1)"]}
+        "syntax": {"js": [], "py": ["Entry.move_x(%1)"]}
     },
     "locate_y": {
         "color": "#A751E3",
@@ -15777,7 +15871,7 @@ Entry.block = {
             }
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.set_y(%1)"]}
+        "syntax": {"js": [], "py": ["Entry.move_y(%1)"]}
     },
     "locate": {
         "color": "#A751E3",
@@ -15827,7 +15921,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.move_to(%1)",
+                syntax: "Entry.set_location(%1)",
                 textParams: [
                     {
                         "type": "DropdownDynamic",
@@ -15922,7 +16016,7 @@ Entry.block = {
                 }
             };
         },
-        "syntax": {"js": [], "py": ["Entry.add_xy_for_sec(%2, %3, %1)"]}
+        "syntax": {"js": [], "py": ["Entry.add_xy_for_sec(%1, %2, %3)"]}
     },
     "rotate_by_angle_time": {
         "color": "#A751E3",
@@ -16163,7 +16257,7 @@ Entry.block = {
             }
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.bounce_on_edge()"]}
+        "syntax": {"js": [], "py": ["Entry.bounce_wall()"]}
     },
     "flip_arrow_horizontal": {
         "color": "#A751E3",
@@ -16269,7 +16363,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.look_at(%1)",
+                syntax: "Entry.look_at_object(%1)",
                 textParams: [
                     {
                         "type": "DropdownDynamic",
@@ -16454,7 +16548,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.move_to_for_sec(%2, %1)",
+                syntax: "Entry.set_location_for_seconds(%1, %2)",
                 textParams: [
                     {
                         "type": "Block",
@@ -16659,7 +16753,7 @@ Entry.block = {
             }
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.move_to_degree(%2, %1)"]}
+        "syntax": {"js": [], "py": ["Entry.move_degree(%2, %1)"]}
     },
     "rotate_by_time": {
         "color": "#A751E3",
@@ -16725,7 +16819,7 @@ Entry.block = {
                 script.frameCount--;
             }
         },
-        "syntax": {"js": [], "py": ["Entry.add_rotation_for_sec(%2, %1)"]}
+        "syntax": {"js": [], "py": ["Entry.add_rotation_for_seconds(%1, %2)"]}
     },
     "direction_relative_duration": {
         "color": "#A751E3",
@@ -16790,7 +16884,7 @@ Entry.block = {
                 script.frameCount--;
             }
         },
-        "syntax": {"js": [], "py": ["Entry.add_direction_for_sec(%2, %1)"]}
+        "syntax": {"js": [], "py": ["Entry.add_direction_for_seconds(%1, %2)"]}
 
     },
     "neobot_sensor_value": {
@@ -19163,7 +19257,7 @@ Entry.block = {
         "event": "when_scene_start",
         "syntax": {"js": [], "py": [
             {
-                syntax: "def when_start_scene():",
+                syntax: "def entry_event_scene_start():",
                 blockType: "event"
             }
         ]}
@@ -19207,7 +19301,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.start_scene_of(%1)",
+                syntax: "Entry.scene_start(%1)",
                 textParams: [
                     {
                         "type": "DropdownDynamic",
@@ -19278,7 +19372,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.start_scene_to(%1)",
+                syntax: "Entry.scene_start_of(%1)",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -19548,7 +19642,7 @@ Entry.block = {
             createjs.Sound.setVolume(value);
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.add_sound_volume(%1)"]}
+        "syntax": {"js": [], "py": ["Entry.add_volume(%1)"]}
     },
     "sound_volume_set": {
         "color": "#A4D01D",
@@ -19590,7 +19684,7 @@ Entry.block = {
             createjs.Sound.setVolume(value);
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.set_sound_volume(%1)"]}
+        "syntax": {"js": [], "py": ["Entry.set_volume(%1)"]}
     },
     "sound_silent_all": {
         "color": "#A4D01D",
@@ -19758,7 +19852,7 @@ Entry.block = {
             }
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.play_sound_for_sec(%1, %2)"]}
+        "syntax": {"js": [], "py": ["Entry.play_sound_for_seconds(%1, %2)"]}
     },
     "sound_something_wait_with_block": {
         "color": "#A4D01D",
@@ -19877,7 +19971,7 @@ Entry.block = {
                 return script.callReturn();
             }
         },
-        "syntax": {"js": [], "py": ["Entry.play_sound_for_sec_and_wait(%1, %2)"]}
+        "syntax": {"js": [], "py": ["Entry.play_sound_for_seconds_and_wait(%1, %2)"]}
     },
     "sound_from_to": {
         "color": "#A4D01D",
@@ -19941,7 +20035,7 @@ Entry.block = {
             }
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.play_sound_from_to(%1, %2, %3)"]}
+        "syntax": {"js": [], "py": ["Entry.play_sound_from_to_seconds(%1, %2, %3)"]}
     },
     "sound_from_to_and_wait": {
         "color": "#A4D01D",
@@ -20022,7 +20116,7 @@ Entry.block = {
                 return script.callReturn();
             }
         },
-        "syntax": {"js": [], "py": ["Entry.play_sound_from_to_and_wait(%1, %2, %3)"]}
+        "syntax": {"js": [], "py": ["Entry.play_sound_from_to_seconds_and_wait(%1, %2, %3)"]}
     },
     "when_run_button_click": {
         "color": "#3BBD70",
@@ -20052,7 +20146,7 @@ Entry.block = {
         "event": "start",
         "syntax": {"js": [], "py": [
             {
-                syntax: "def when_start():",
+                syntax: "def entry_event_start():",
                 blockType: "event"
             }
         ]}
@@ -20146,7 +20240,7 @@ Entry.block = {
         //"syntax": {"js": [], "py": ["def entry_event_key():\n\tif key == %2:"]}
         "syntax": {"js": [], "py": [
             {
-                syntax: "def when_press_key(%2):",
+                syntax: "def entry_event_key(%2):",
                 blockType: "event",
                 textParams: [
                     undefined,
@@ -20187,7 +20281,7 @@ Entry.block = {
         "event": "mouse_clicked",
         "syntax": {"js": [], "py": [
             {
-                syntax: "def when_click_mouse_on():",
+                syntax: "def entry_event_mouse_down():",
                 blockType: "event"
             }
         ]}
@@ -20220,7 +20314,7 @@ Entry.block = {
         "event": "mouse_click_cancled",
         "syntax": {"js": [], "py": [
             {
-                syntax: "def when_click_mouse_off():",
+                syntax: "def entry_event_mouse_up():",
                 blockType: "event"
             }
         ]}
@@ -20253,7 +20347,7 @@ Entry.block = {
         "event": "when_object_click",
         "syntax": {"js": [], "py": [
             {
-                syntax: "def when_click_object_on():",
+                syntax: "def entry_event_object_down():",
                 blockType: "event"
             }
         ]}
@@ -20286,7 +20380,7 @@ Entry.block = {
         "event": "when_object_click_canceled",
         "syntax": {"js": [], "py": [
             {
-                syntax: "def when_click_object_off():",
+                syntax: "def entry_event_object_up():",
                 blockType: "event"
             }
         ]}
@@ -20369,7 +20463,7 @@ Entry.block = {
         //"syntax": {"js": [], "py": ["def entry_event_signal():\n\tif signal == %2:"]}
         "syntax": {"js": [], "py": [
             {
-                syntax: "def when_get_signal(%2):",
+                syntax: "def entry_event_signal(%2):",
                 blockType: "event",
                 textParams: [
                     undefined,
@@ -21269,7 +21363,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.answer()",
+                syntax: "Entry.output()",
                 blockType: "param"
             }
         ]}
@@ -22028,7 +22122,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.answer_view(%1)",
+                syntax: "Entry.answer_mode(%1)",
                 textParams: [
                     {
                         "type": "Dropdown",

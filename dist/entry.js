@@ -12646,11 +12646,6 @@ Entry.TextCodingUtil = {};
     console.log("newEventFunction result", a);
     return a.join("\n");
   };
-  b.eventBlockSyntaxFilter = function(a) {
-    if ("when_start" == a || "when_press_key" == a || "when_click_mouse_on" == a || "when_click_mouse_off" == a || "when_click_object_on" == a || "when_click_object_off" == a || "when_get_signal" == a || "when_start_scene" == a || "when_make_clone" == a) {
-      return "def " + a;
-    }
-  };
   b.isEntryEventFunc = function(a) {
     return "def when_start" == a || "def when_press_key" == a || "def when_click_mouse_on" == a || "def when_click_mouse_off" == a || "def when_click_object_on" == a || "def when_click_object_off" == a || "def when_get_signal" == a || "def when_start_scene" == a || "def when_make_clone" == a ? !0 : !1;
   };
@@ -12658,11 +12653,21 @@ Entry.TextCodingUtil = {};
     var b = a.indexOf("(");
     a = a.substring(0, b);
     console.log("isEntryEventFuncByFullText name", a);
-    return "def when_start" == a || "def when_press_key" == a || "def when_click_mouse_on" == a || "def when_click_mouse_off" == a || "def when_click_object_on" == a || "def when_click_object_off" == a || "def when_get_signal" == a || "def when_start_scene" == a || "def when_make_clone" == a ? !0 : !1;
+    return "def when_start" == a || "def when_press_key" == a || "def when_click_mouse_on" == a || "def when_click_mouse_off" == a || "def when_click_object_on" == a || "def when_click_object_off" == a || "def when_get_signal" == a || "def when_start_scene" == a || "def when_make_clone" == a || "def entry_event_start" == a || "def entry_event_key" == a || "def entry_event_mouse_down" == a || "def entry_event_mouse_up" == a || "def entry_event_object_down" == a || "def entry_event_object_up" == a || 
+    "def entry_event_signal" == a || "def entry_event_scene_start" == a || "def entry_event_clone_create" == a ? !0 : !1;
+  };
+  b.eventBlockSyntaxFilter = function(a) {
+    if ("when_start" == a || "when_press_key" == a || "when_click_mouse_on" == a || "when_click_mouse_off" == a || "when_click_object_on" == a || "when_click_object_off" == a || "when_get_signal" == a || "when_start_scene" == a || "when_make_clone" == a) {
+      return "def " + a;
+    }
+    if ("entry_event_start" == a || "entry_event_key" == a || "entry_event_mouse_down" == a || "entry_event_mouse_up" == a || "entry_event_object_down" == a || "entry_event_object_up" == a || "entry_event_signal" == a || "entry_event_scene_start" == a || "entry_event_clone_create" == a) {
+      return a = "def " + a;
+    }
   };
   b.isEntryEventFuncName = function(a) {
     console.log("isEntryEventFuncName name", a);
-    if ("when_start" == a || "when_press_key" == a || "when_click_mouse_on" == a || "when_click_mouse_off" == a || "when_click_object_on" == a || "when_click_object_off" == a || "when_get_signal" == a || "when_start_scene" == a || "when_make_clone" == a) {
+    if ("when_start" == a || "when_press_key" == a || "when_click_mouse_on" == a || "when_click_mouse_off" == a || "when_click_object_on" == a || "when_click_object_off" == a || "when_get_signal" == a || "when_start_scene" == a || "when_make_clone" == a || "entry_event_start" == a || "entry_event_key" == a || "entry_event_mouse_down" == a || "entry_event_mouse_up" == a || "entry_event_object_down" == a || "entry_event_object_up" == a || "entry_event_signal" == a || "entry_event_scene_start" == a || 
+    "entry_event_clone_create" == a) {
       return !0;
     }
     console.log("isEntryEventFuncName result is NOT");
@@ -14722,7 +14727,7 @@ Entry.PyToBlockParser = function(b) {
               y = l.params[0];
             }
             if (y || 0 == y) {
-              console.log("final value", y), console.log("final currentObject", currentObject), Entry.TextCodingUtil.isLocalVariableExisted(q, this._currentObject) ? Entry.TextCodingUtil.updateLocalVariable(q, y, this._currentObject) : Entry.TextCodingUtil.createLocalVariable(q, y, this._currentObject);
+              console.log("final value", y), Entry.TextCodingUtil.isLocalVariableExisted(q, this._currentObject) ? Entry.TextCodingUtil.updateLocalVariable(q, y, this._currentObject) : Entry.TextCodingUtil.createLocalVariable(q, y, this._currentObject);
             }
             q = this.ParamDropdownDynamic(q, k[0], m[0]);
             e.push(q);
@@ -15018,7 +15023,7 @@ Entry.PyToBlockParser = function(b) {
       b.params = e;
     } else {
       if (e = [], "self" == c.name) {
-        if (c = this.getBlockSyntax("%1")) {
+        if (c = this.getBlockSyntax("%1#get_variable")) {
           h = c.key;
         }
         c = h;
@@ -16277,7 +16282,7 @@ Entry.Parser = function(b, a, d, c) {
     a = a.split("\n");
     for (var b = [], c = "", e = 3;e < a.length;e++) {
       var f = a[e] + "\n";
-      Entry.TextCodingUtil.isEntryEventFuncByFullText(f) && (f = Entry.TextCodingUtil.entryEventFilter(f), 0 != c.length && b.push(c), c = "");
+      Entry.TextCodingUtil.isEntryEventFuncByFullText(f.trim()) && (f = Entry.TextCodingUtil.entryEventFilter(f), 0 != c.length && b.push(c), c = "");
       c += f;
     }
     b.push(c);

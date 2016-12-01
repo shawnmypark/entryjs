@@ -125,7 +125,7 @@ Entry.BlockToPyParser = function(blockSyntax) {
 
 
         var blockReg = /(%.)/mi;
-        var statementReg = /(\$.)/mi;
+        var statementReg = /(\$.)/mi; 
         var blockTokens = syntax.split(blockReg);
         var schemaParams = block._schema.params;
         var dataParams = block.data.params;
