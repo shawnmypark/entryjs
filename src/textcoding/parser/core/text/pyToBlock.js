@@ -2970,6 +2970,9 @@ Entry.PyToBlockParser = function(blockSyntax) {
             result = map[value];
         }
 
+        if(!result)
+            result = value;
+
         console.log("ParamColor result", result);
 
         return result;
@@ -3002,6 +3005,8 @@ Entry.PyToBlockParser = function(blockSyntax) {
             result = map[result];
         }
 
+        if(!result)
+            result = value;
         console.log("ParamDropdown result", result);
 
         return result;
@@ -3036,7 +3041,8 @@ Entry.PyToBlockParser = function(blockSyntax) {
         if(!result)
             result = Entry.TextCodingUtil.dropdownDynmaicNameToIdConvertor(value, paramMeta.menuName);
 
-
+        if(!result)
+            result = value;
         console.log("ParamDropdownDynamic result", result);
 
         return result;
