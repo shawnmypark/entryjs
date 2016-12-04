@@ -7373,7 +7373,8 @@ Entry.block = {
                         "fontSize": 11,
                         noArrow: true,
                         converter: Entry.block.converters.returnOperator,
-                        caseType: "upper"
+                        caseType: "upper",
+                        paramType: "operator"
                     },
                     {
                         "type": "Block",
