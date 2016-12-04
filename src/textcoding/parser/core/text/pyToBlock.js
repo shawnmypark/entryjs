@@ -240,7 +240,7 @@ Entry.PyToBlockParser = function(blockSyntax) {
                         if(blockSyntax) {
                             type = blockSyntax.key;
                             break;
-                        }
+                        } 
                     }
                 }
             }
