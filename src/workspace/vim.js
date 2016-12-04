@@ -168,9 +168,12 @@ Entry.Vim.PYTHON_IMPORT_HW = "import Arduino, Hamster, Albert, Bitbrick, Codeino
         if(mode)
             this._mode = mode.runType;
 
-        if(Entry.playground) {
-            object = Entry.playground.object;
-            codeDescription = "# " + object.name + " 오브젝트의 파이썬 코드";
+         if(Entry.playground) {
+            var currentObject = Entry.playground.object;
+            if(currentObject)
+                codeDescription = "# " + currentObject.name + " 오브젝트의 파이썬 코드";
+            else
+                codeDescription = "# " + "파이썬 코드"; 
         }
 
         var textType = mode.textType;

@@ -392,7 +392,8 @@ Entry.Parser = function(mode, type, cm, syntax) {
                         }
                     }
                 }
-                result += textCode.trim();
+                if(textCode)
+                    result += textCode.trim();
                 result = result.replace(/\t/g, "    ");
 
                 break;
