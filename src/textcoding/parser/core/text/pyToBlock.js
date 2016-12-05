@@ -1403,8 +1403,8 @@ Entry.PyToBlockParser = function(blockSyntax) {
                         var calleeName = callee.object.name + "." + callee.property.name;
                         var param1 = params[0];
                         var param2 = params[1];
-                        //if(param1.params[0] == param2.params[0]) {
-                        if(!params[1]) {
+                        if(param1.params[0] == param2.params[0]) {
+                        //if(!params[1]) {
                             var keyOption = "SAME";
                             var syntax = calleeName + "#" + keyOption;
                             var blockSyntax = this.getBlockSyntax(syntax);
@@ -1417,8 +1417,8 @@ Entry.PyToBlockParser = function(blockSyntax) {
                         var calleeName = callee.object.name + "." + callee.property.name;
                         var param1 = params[0];
                         var param2 = params[1];
-                        //if(param1.params[0] == param2.params[0]) {
-                            if(!params[1]) {
+                        if(param1.params[0] == param2.params[0]) {
+                        //if(!params[1]) {
                             var keyOption = "SAME";
                             var syntax = calleeName + "#" + keyOption;
                             var blockSyntax = this.getBlockSyntax(syntax);
