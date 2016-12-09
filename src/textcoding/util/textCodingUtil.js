@@ -320,7 +320,7 @@ Entry.TextCodingUtil = {};
         var result = id;
 
         if(menuName == "variables") {
-            var entryVariables = Entry.variableContainer.variables_;
+            var entryVariables = Entry.variableContainer.variables_; 
             for(var e in entryVariables) {
                 var entryVariable = entryVariables[e];
                 console.log("entryVariable", entryVariable);
@@ -333,11 +333,11 @@ Entry.TextCodingUtil = {};
             }
         }
         else if(menuName == "lists") {
-            var entryLists = Entry.variableContainer.lists;
+            var entryLists = Entry.variableContainer.lists_;
             for(var e in entryLists) {
                 var entryList = entryLists[e];
                 if(entryList.id_ == id) {
-                    if(entryVariable.object_)
+                    if(entryList.object_)
                         return true;
                     else
                         return false;
