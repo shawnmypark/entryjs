@@ -13415,7 +13415,7 @@ Entry.BlockToPyParser = function(b) {
                   b += f;
                 }
               } else {
-                f = c.textParams ? c.textParams : [], f = this["Field" + k[r].type](l[r], f[r]), b += f, b = Entry.TextCodingUtil.assembleRepeatWhileTrueBlock(a, b);
+                f = c.textParams ? c.textParams : [], f = this["Field" + k[r].type](l[r], f[r]), b += f, c && "repeat_while_true" == c.key && (b = Entry.TextCodingUtil.assembleRepeatWhileTrueBlock(a, b));
               }
             }
           } else {
@@ -13481,9 +13481,10 @@ Entry.BlockToPyParser = function(b) {
         if (a == f) {
           c = e;
           e = f;
-          b.codeMap && (f = eval(b.codeMap)[e]) && (e = f);
+          b.codeMap && (f = eval(b.codeMap), console.log("codeMap FieldDropdown", f), (f = f[e]) && (e = f));
           console.log("dropdown key, value", c, e);
           isNaN(c) && isNaN(e) && "no" != b.caseType && ("upper" == b.caseType ? (c = c.toUpperCase(), e = e.toUpperCase()) : (c = c.toLowerCase(), e = e.toLowerCase()));
+          console.log("dropdown2 key, value", c, e);
           a = b.converter(c, e);
           if ("variable" == b.paramType || "list" == b.paramType) {
             a = a.replace(/\"/g, "");

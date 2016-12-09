@@ -185,11 +185,9 @@ Entry.BlockToPyParser = function(blockSyntax) {
 
                         param = this['Field' + schemaParams[index].type](dataParams[index], textParams[index]);
 
-                        /*if(Entry.TextCodingUtil.isLocalType(currentBlock, block.params[index]))
-                            param = "self".concat('.').concat(param);*/
-
                         result += param;
-                        result = Entry.TextCodingUtil.assembleRepeatWhileTrueBlock(currentBlock, result);
+                        if(syntaxObj && syntaxObj.key == "repeat_while_true")
+                            result = Entry.TextCodingUtil.assembleRepeatWhileTrueBlock(currentBlock, result);
                     }
                 }
             } else if (statementReg.test(blockToken)) {
@@ -287,6 +285,7 @@ Entry.BlockToPyParser = function(blockSyntax) {
                     value = op1;
                     if(textParam.codeMap) {
                         var codeMap = eval(textParam.codeMap);
+                        console.log("codeMap FieldDropdown", codeMap);
                         var code = codeMap[value];
                         if(code)
                             value = code;  
@@ -306,6 +305,7 @@ Entry.BlockToPyParser = function(blockSyntax) {
                             value = value.toLowerCase();
                         }
                     }
+                    console.log("dropdown2 key, value", key, value);
 
                     dataParam = textParam.converter(key, value);
                     if(textParam.paramType == "variable" || textParam.paramType == "list") {

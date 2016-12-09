@@ -2830,7 +2830,9 @@ Entry.block = {
                         "value": "on",
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_HW,
-                        converter: Entry.block.converters.returnStringValue
+                        converter: Entry.block.converters.returnStringValue,
+                        codeMap: "Entry.CodeMap.Arduino.arduino_get_digital_toggle[0]",
+                        caseType: "upper"
                     }
                 ],
                 keyOption: "arduino_get_digital_toggle"
@@ -2902,8 +2904,8 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Arduino.digitalWrite(%1, %2)",
-                textParams: [
+                syntax: "Arduino.digitalWrite(%1, %2)", 
+                textParams: [ 
                     {
                         "type": "Block",
                         "accept": "string"
