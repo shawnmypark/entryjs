@@ -2911,15 +2911,8 @@ Entry.block = {
                         "accept": "string"
                     },
                     {
-                        "type": "Dropdown",
-                        "options": [
-                            [Lang.Blocks.ARDUINO_on,"on"],
-                            [Lang.Blocks.ARDUINO_off,"off"]
-                        ],
-                        "fontSize": 11,
-                        'arrowColor': EntryStatic.ARROW_COLOR_HW,
-                        converter: Entry.block.converters.returnStringValue,
-                        codeMap: "Entry.CodeMap.Arduino.arduino_ext_toggle_led[1]"
+                        "type": "Block",
+                        "accept": "string"
                     }
                 ]
             }
