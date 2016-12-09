@@ -21180,24 +21180,6 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "%1 = %1 + %2",
-                textParams: [
-                    {
-                        "type": "DropdownDynamic",
-                        "value": null,
-                        "menuName": "variables",
-                        "fontSize": 11,
-                        'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
-                        converter: Entry.block.converters.returnRawStringKey,
-                        caseType: "no"
-                    },
-                    {
-                        "type": "Block",
-                        "accept": "string"
-                    },
-                ]
-            },
-            {
                 syntax: "%1 += %2",
                 textParams: [
                     {
@@ -21207,7 +21189,27 @@ Entry.block = {
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
                         converter: Entry.block.converters.returnRawStringKey,
-                        caseType: "no"
+                        caseType: "no",
+                        paramType: "variable"
+                    },
+                    {
+                        "type": "Block",
+                        "accept": "string"
+                    },
+                ]
+            },
+            {
+                syntax: "%1 = %1 + %2",
+                textParams: [
+                    {
+                        "type": "DropdownDynamic",
+                        "value": null,
+                        "menuName": "variables",
+                        "fontSize": 11,
+                        'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
+                        converter: Entry.block.converters.returnRawStringKey,
+                        caseType: "no",
+                        paramType: "variable"
                     },
                     {
                         "type": "Block",
@@ -21289,7 +21291,8 @@ Entry.block = {
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
                         converter: Entry.block.converters.returnRawStringKey,
-                        caseType: "no"
+                        caseType: "no",
+                        paramType: "variable"
                     },
                     {
                         "type": "Block",
@@ -21485,7 +21488,8 @@ Entry.block = {
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
                         converter: Entry.block.converters.returnRawStringKey,
-                        caseType: "no"
+                        caseType: "no",
+                        paramType: "variable"
                     },
                 ]
             }
@@ -21604,7 +21608,6 @@ Entry.block = {
     },
     "get_canvas_input_value": {
         "color": "#E457DC",
-        "vimModeFontColor": "white",
         "skeleton": "basic_string_field",
         "statements": [],
         "params": [
@@ -21637,8 +21640,16 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.output()",
-                blockType: "param"
+                template: "%1",
+                syntax: "Entry.answer()",
+                blockType: "param",
+                textParams: [
+                    {
+                        "type": "Text",
+                        "text": 'Entry.answer()',
+                        "color": "#fff"
+                    },
+                ]
             }
         ]}
     },
@@ -21721,7 +21732,8 @@ Entry.block = {
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
                         converter: Entry.block.converters.returnRawStringKey,
-                        caseType: "no"
+                        caseType: "no",
+                        paramType: "list"
                     },
                 ]
             }
@@ -21809,7 +21821,8 @@ Entry.block = {
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
                         converter: Entry.block.converters.returnRawStringKey,
-                        caseType: "no"
+                        caseType: "no",
+                        paramType: "list"
                     },
                 ]
             }
@@ -21905,7 +21918,8 @@ Entry.block = {
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
                         converter: Entry.block.converters.returnRawStringKey,
-                        caseType: "no"
+                        caseType: "no",
+                        paramType: "list"
                     },
                     {
                         "type": "Block",
@@ -22002,7 +22016,8 @@ Entry.block = {
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
                         converter: Entry.block.converters.returnRawStringKey,
-                        caseType: "no"
+                        caseType: "no",
+                        paramType: "list"
                     },
                     {
                         "type": "Block",
@@ -22105,7 +22120,8 @@ Entry.block = {
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
                         converter: Entry.block.converters.returnRawStringKey,
-                        caseType: "no"
+                        caseType: "no",
+                        paramType: "list"
                     },
                     undefined,
                     {
@@ -22182,7 +22198,8 @@ Entry.block = {
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
                         converter: Entry.block.converters.returnRawStringKey,
-                        caseType: "no"
+                        caseType: "no",
+                        paramType: "list"
                     },
                 ]
             }
@@ -22246,7 +22263,7 @@ Entry.block = {
                         "menuName": "lists",
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
-                        converter: Entry.block.converters.returnRawStringKey
+                        converter: Entry.block.converters.returnStringKey
                     },
                 ]
             }
@@ -22310,7 +22327,7 @@ Entry.block = {
                         "menuName": "lists",
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
-                        converter: Entry.block.converters.returnRawStringKey
+                        converter: Entry.block.converters.returnStringKey
                     },
                 ]
             }
