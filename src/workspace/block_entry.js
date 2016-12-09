@@ -20,16 +20,8 @@ if (Entry && Entry.block) {
     (function(c) {
         c.keyboardCode = function(key, value) {
             var code;
-
-            if(key) code = key.toUpperCase();
-
-            var map = {
-                32: 'space', 13: 'enter',
-                38: 'up', 37: 'left',
-                39: 'right', 40: 'down'
-            };
-
-            code = map[value] || code;
+            if(key)
+                code = key.toUpperCase();
 
             if(isNaN(code))
                 return '"()"'.replace('()', code);
@@ -128,7 +120,7 @@ Entry.block = {
             var pd = Entry.hw.portData
             return pd.leftProximity > 40 || pd.rightProximity > 40;
         },
-	"syntax": {"js": [], "py": ["Albert.hand_found()"]}
+    "syntax": {"js": [], "py": ["Albert.hand_found()"]}
     },
     "albert_is_oid_value": {
         "color": "#00979D",
@@ -712,7 +704,7 @@ Entry.block = {
             sq.padHeight = script.getNumberValue('HEIGHT');
             return script.callReturn();
         },
-	"syntax": {"js": [], "py": ["Albert.set_pad_size(%1, %2)"]}
+    "syntax": {"js": [], "py": ["Albert.set_pad_size(%1, %2)"]}
     },
     "albert_move_to_x_y_on_board": {
         "color": "#00979D",
@@ -2838,9 +2830,7 @@ Entry.block = {
                         "value": "on",
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_HW,
-                        converter: Entry.block.converters.returnStringValue,
-                        codeMap: "Entry.CodeMap.Arduino.arduino_get_digital_toggle[0]",
-                        caseType: "no"
+                        converter: Entry.block.converters.returnStringValue
                     }
                 ],
                 keyOption: "arduino_get_digital_toggle"
@@ -2927,9 +2917,8 @@ Entry.block = {
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_HW,
                         converter: Entry.block.converters.returnStringValue,
-                        codeMap: "Entry.CodeMap.Arduino.arduino_ext_toggle_led[1]",
-                        caseType: "no"
-                    },
+                        codeMap: "Entry.CodeMap.Arduino.arduino_ext_toggle_led[1]"
+                    }
                 ]
             }
         ]}
@@ -5630,7 +5619,7 @@ Entry.block = {
             result = Math.max(value4, result);
             return Math.round(result);
         },
-	"syntax": {"js": [], "py": ["Bitbrick.convert_scale(%1, %2, %3, %4, %5)"]}
+    "syntax": {"js": [], "py": ["Bitbrick.convert_scale(%1, %2, %3, %4, %5)"]}
     },
     "cobl_read_ultrason": {
         color: "#00979D",
@@ -6433,7 +6422,7 @@ Entry.block = {
             }
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.set_brush_color_to_random()"]}
+        "syntax": {"js": [], "py": ["Entry.set_brush_color_random()"]}
     },
     "change_thickness": {
         "color": "#FF9E20",
@@ -7746,8 +7735,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "(%2**2)",
-                params: [null, null, null, "square"],
+                syntax: "Entry.value_of_math_operation(%2, %4)",
                 blockType: "param",
                 textParams: [
                     undefined,
@@ -7756,219 +7744,33 @@ Entry.block = {
                         "accept": "string"
                     },
                     undefined,
-                    null
-                ]
-            },
-            {
-                syntax: "math.sqrt(%2)",
-                params: [null, null, null, "root"],
-                blockType: "param",
-                textParams: [
-                    undefined,
                     {
-                        "type": "Block",
-                        "accept": "string"
-                    },
-                    undefined,
-                    null
+                        "type": "Dropdown",
+                        "options": [
+                            [Lang.Blocks.CALC_calc_operation_square,"square"],
+                            [Lang.Blocks.CALC_calc_operation_root, "root"],
+                            [Lang.Blocks.CALC_calc_operation_sin, "sin"],
+                            [Lang.Blocks.CALC_calc_operation_cos,"cos"],
+                            [Lang.Blocks.CALC_calc_operation_tan,"tan"],
+                            [Lang.Blocks.CALC_calc_operation_asin, "asin_radian"],
+                            [Lang.Blocks.CALC_calc_operation_acos,"acos_radian"],
+                            [Lang.Blocks.CALC_calc_operation_atan,"atan_radian"],
+                            [Lang.Blocks.CALC_calc_operation_log,"log"],
+                            [Lang.Blocks.CALC_calc_operation_ln,"ln"],
+                            [Lang.Blocks.CALC_calc_operation_unnatural,"unnatural"],
+                            [Lang.Blocks.CALC_calc_operation_floor,"floor"],
+                            [Lang.Blocks.CALC_calc_operation_ceil,"ceil"],
+                            [Lang.Blocks.CALC_calc_operation_round,"round"],
+                            [Lang.Blocks.CALC_calc_operation_factorial,"factorial"],
+                            [Lang.Blocks.CALC_calc_operation_abs,"abs"]
+                        ],
+                        "value": "square",
+                        "fontSize": 11,
+                        'arrowColor': EntryStatic.ARROW_COLOR_CALC,
+                        converter: Entry.block.converters.returnStringValue
+                    }
                 ]
-            },
-            {
-                syntax: "math.sin(%2)",
-                params: [null, null, null, "sin"],
-                blockType: "param",
-                textParams: [
-                    undefined,
-                    {
-                        "type": "Block",
-                        "accept": "string"
-                    },
-                    undefined,
-                    null
-                ]
-            },
-            {
-                syntax: "math.cos(%2)",
-                params: [null, null, null, "cos"],
-                blockType: "param",
-                textParams: [
-                    undefined,
-                    {
-                        "type": "Block",
-                        "accept": "string"
-                    },
-                    undefined,
-                    null
-                ]
-            },
-            {
-                syntax: "math.tan(%2)",
-                params: [null, null, null, "tan"],
-                blockType: "param",
-                textParams: [
-                    undefined,
-                    {
-                        "type": "Block",
-                        "accept": "string"
-                    },
-                    undefined,
-                    null
-                ]
-            },
-            {
-                syntax: "math.asin(%2)",
-                params: [null, null, null, "asin_radian"],
-                blockType: "param",
-                textParams: [
-                    undefined,
-                    {
-                        "type": "Block",
-                        "accept": "string"
-                    },
-                    undefined,
-                    null
-                ]
-            },
-            {
-                syntax: "math.acos(%2)",
-                params: [null, null, null, "acos_radian"],
-                blockType: "param",
-                textParams: [
-                    undefined,
-                    {
-                        "type": "Block",
-                        "accept": "string"
-                    },
-                    undefined,
-                    null
-                ]
-            },
-            {
-                syntax: "math.atan(%2)",
-                params: [null, null, null, "atan_radian"],
-                blockType: "param",
-                textParams: [
-                    undefined,
-                    {
-                        "type": "Block",
-                        "accept": "string"
-                    },
-                    undefined,
-                    null
-                ]
-            },
-            {
-                syntax: "math.log10(%2)",
-                params: [null, null, null, "log"],
-                blockType: "param",
-                textParams: [
-                    undefined,
-                    {
-                        "type": "Block",
-                        "accept": "string"
-                    },
-                    undefined,
-                    null
-                ]
-            },
-            {
-                syntax: "math.log(%2)",
-                params: [null, null, null, "ln"],
-                blockType: "param",
-                textParams: [
-                    undefined,
-                    {
-                        "type": "Block",
-                        "accept": "string"
-                    },
-                    undefined,
-                    null
-                ]
-            },
-            {
-                syntax: "1 - math.floor(%2)",
-                params: [null, null, null, "unnatural"],
-                blockType: "param",
-                textParams: [
-                    undefined,
-                    {
-                        "type": "Block",
-                        "accept": "string"
-                    },
-                    undefined,
-                    null
-                ]
-            },
-            {
-                syntax: "math.floor(%2)",
-                params: [null, null, null, "floor"],
-                blockType: "param",
-                textParams: [
-                    undefined,
-                    {
-                        "type": "Block",
-                        "accept": "string"
-                    },
-                    undefined,
-                    null
-                ]
-            },
-            {
-                syntax: "math.ceil(%2)",
-                params: [null, null, null, "ceil"],
-                blockType: "param",
-                textParams: [
-                    undefined,
-                    {
-                        "type": "Block",
-                        "accept": "string"
-                    },
-                    undefined,
-                    null
-                ]
-            },
-            {
-                syntax: "math.round(%2)",
-                params: [null, null, null, "round"],
-                blockType: "param",
-                textParams: [
-                    undefined,
-                    {
-                        "type": "Block",
-                        "accept": "string"
-                    },
-                    undefined,
-                    null
-                ]
-            },
-            {
-                syntax: "math.factorial(%2)",
-                params: [null, null, null, "factorial"],
-                blockType: "param",
-                textParams: [
-                    undefined,
-                    {
-                        "type": "Block",
-                        "accept": "string"
-                    },
-                    undefined,
-                    null
-                ]
-            },
-            {
-                syntax: "math.fabs(%2)",
-                params: [null, null, null, "abs"],
-                blockType: "param",
-                textParams: [
-                    undefined,
-                    {
-                        "type": "Block",
-                        "accept": "string"
-                    },
-                    undefined,
-                    null
-                ]
-            },
+            }
         ]}
     },
     "calc_rand": {
@@ -8291,14 +8093,9 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                template: "%1 %2 %3",
                 syntax: "Entry.timer_view(%2)",
                 textParams: [
-                    {
-                        "type": "Text",
-                        "text": 'Entry.timer_view(',
-                        "color": "#3D3D3D"
-                    },
+                    undefined,
                     {
                         "type": "Dropdown",
                         "options": [
@@ -8310,11 +8107,6 @@ Entry.block = {
                         'arrowColor': EntryStatic.ARROW_COLOR_CALC,
                         converter: Entry.block.converters.returnStringValue,
                         codeMap: "Entry.CodeMap.Entry.set_visible_project_timer[1]"
-                    },
-                    {
-                        "type": "Text",
-                        "text": ')',
-                        "color": "#3D3D3D"
                     },
                 ]
             }
@@ -9074,37 +8866,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "(%2 // %4)",
-                params: [null,null,null,null,null,"QUOTIENT"],
-                blockType: "param",
-                textParams: [
-                    undefined,
-                    {
-                        "type": "Block",
-                        "accept": "string"
-                    },
-                    undefined,
-                    {
-                        "type": "Block",
-                        "accept": "string"
-                    },
-                    undefined,
-                    {
-                        "type": "Dropdown",
-                        "options": [
-                              [Lang.Blocks.CALC_quotient_and_mod_sub_1,"QUOTIENT"],
-                              [Lang.Blocks.CALC_quotient_and_mod_sub_2,"MOD"]
-                        ],
-                        "value": "QUOTIENT",
-                        "fontSize": 11,
-                        'arrowColor': EntryStatic.ARROW_COLOR_CALC,
-                        converter: Entry.block.converters.returnStringValue
-                    }
-                ]
-            },
-            {
-                syntax: "(%2 % %4)",
-                params: [null,null,null,null,null,"MOD"],
+                syntax: "Entry.value_div(%2, %4, %6)",
                 blockType: "param",
                 textParams: [
                     undefined,
@@ -9225,14 +8987,9 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                template: "%1 %2 %3",
                 syntax: "Entry.timer(%2)",
                 textParams: [
-                    {
-                        "type": "Text",
-                        "text": 'Entry.timer(',
-                        "color": "#3D3D3D"
-                    },
+                    undefined,
                     {
                         "type": "Dropdown",
                         "options": [
@@ -9245,11 +9002,6 @@ Entry.block = {
                         'arrowColor': EntryStatic.ARROW_COLOR_CALC,
                         converter: Entry.block.converters.returnStringValue,
                         codeMap: "Entry.CodeMap.Entry.choose_project_timer_action[1]"
-                    },
-                    {
-                        "type": "Text",
-                        "text": ')',
-                        "color": "#3D3D3D"
                     },
                 ]
             }
@@ -9306,7 +9058,7 @@ Entry.block = {
                 return script.callReturn();
             }
         },
-        "syntax": {"js": [], "py": ["Entry.wait_for_sec(%1)"]}
+        "syntax": {"js": [], "py": ["Entry.wait_for_seconds(%1)"]}
     },
     "repeat_basic": {
         "color": "#498deb",
@@ -9367,7 +9119,7 @@ Entry.block = {
             {
                 syntax: "for i in range(%1):\n$1",
                 template: "for i in range(%1):",
-                idChar: ['i', 'j', 'k']
+                idChar: ['i', 'j', 'k', 'x', 'y', 'z', 'o', 'p', 'm', 'n']
             }
         ]}
     },
@@ -10658,7 +10410,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Hamster.board_forward()"
+                syntax: "Hamster.move_forward_on_board()"
             }
         ]}
     },
@@ -10825,7 +10577,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Hamster.board_left()",
+                syntax: "Hamster.turn_left_on_board()",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -10841,7 +10593,7 @@ Entry.block = {
                 params: ["LEFT"]
             },
             {
-                syntax: "Hamster.board_right()",
+                syntax: "Hamster.turn_right_on_board()",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -11343,7 +11095,7 @@ Entry.block = {
                 params: ["RIGHT"]
             },
             {
-                syntax: "Hamster.wheels_by(%2)",
+                syntax: "Hamster.wheels_by(%2, %2)",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -11468,7 +11220,7 @@ Entry.block = {
                 params: ["RIGHT"]
             },
             {
-                syntax: "Hamster.wheels(%2)",
+                syntax: "Hamster.wheels(%2, %2)",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -12621,7 +12373,7 @@ Entry.block = {
                 params: ["RIGHT", "7"]
             },
             {
-                syntax: "Hamster.leds(Hamster.LED_RED)",
+                syntax: "Hamster.leds(Hamster.LED_RED,Hamster.LED_RED)",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -12653,7 +12405,7 @@ Entry.block = {
                 params: ["BOTH", "4"]
             },
             {
-                syntax: "Hamster.leds(Hamster.LED_YELLOW)",
+                syntax: "Hamster.leds(Hamster.LED_YELLOW,Hamster.LED_YELLOW)",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -12685,7 +12437,7 @@ Entry.block = {
                 params: ["BOTH", "6"]
             },
             {
-                syntax: "Hamster.leds(Hamster.LED_GREEN)",
+                syntax: "Hamster.leds(Hamster.LED_GREEN,Hamster.LED_GREEN)",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -12717,7 +12469,7 @@ Entry.block = {
                 params: ["BOTH", "2"]
             },
             {
-                syntax: "Hamster.leds(Hamster.LED_CYAN)",
+                syntax: "Hamster.leds(Hamster.LED_CYAN,Hamster.LED_CYAN)",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -12749,7 +12501,7 @@ Entry.block = {
                 params: ["BOTH", "3"]
             },
             {
-                syntax: "Hamster.leds(Hamster.LED_BLUE)",
+                syntax: "Hamster.leds(Hamster.LED_BLUE,Hamster.LED_BLUE)",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -12781,7 +12533,7 @@ Entry.block = {
                 params: ["BOTH", "1"]
             },
             {
-                syntax: "Hamster.leds(Hamster.LED_MAGENTA)",
+                syntax: "Hamster.leds(Hamster.LED_MAGENTA,Hamster.LED_MAGENTA)",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -12813,7 +12565,7 @@ Entry.block = {
                 params: ["BOTH", "5"]
             },
             {
-                syntax: "Hamster.leds(Hamster.LED_WHITE)",
+                syntax: "Hamster.leds(Hamster.LED_WHITE,Hamster.LED_WHITE)",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -12892,23 +12644,6 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Hamster.left_led(0)",
-                textParams: [
-                    {
-                        "type": "Dropdown",
-                        "options": [
-                            [Lang.Blocks.HAMSTER_left_led,"LEFT"],
-                            [Lang.Blocks.HAMSTER_right_led,"RIGHT"],
-                            [Lang.Blocks.HAMSTER_both_leds,"BOTH"]
-                        ],
-                        "value": "LEFT",
-                        "fontSize": 11,
-                        converter: Entry.block.converters.returnStringValue
-                    }
-                ],
-                params: ["LEFT"]
-            },
-            {
                 syntax: "Hamster.left_led(Hamster.LED_OFF)",
                 textParams: [
                     {
@@ -12926,7 +12661,7 @@ Entry.block = {
                 params: ["LEFT"]
             },
             {
-                syntax: "Hamster.left_led(Hamster.LED_OFF,Hamster.LED_OFF)",
+                syntax: "Hamster.left_led(0)",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -12941,23 +12676,6 @@ Entry.block = {
                     }
                 ],
                 params: ["LEFT"]
-            },
-            {
-                syntax: "Hamster.right_led(0)",
-                textParams: [
-                    {
-                        "type": "Dropdown",
-                        "options": [
-                            [Lang.Blocks.HAMSTER_left_led,"LEFT"],
-                            [Lang.Blocks.HAMSTER_right_led,"RIGHT"],
-                            [Lang.Blocks.HAMSTER_both_leds,"BOTH"]
-                        ],
-                        "value": "LEFT",
-                        "fontSize": 11,
-                        converter: Entry.block.converters.returnStringValue
-                    }
-                ],
-                params: ["RIGHT"]
             },
             {
                 syntax: "Hamster.right_led(Hamster.LED_OFF)",
@@ -12977,7 +12695,7 @@ Entry.block = {
                 params: ["RIGHT"]
             },
             {
-                syntax: "Hamster.right_led(Hamster.LED_OFF,Hamster.LED_OFF)",
+                syntax: "Hamster.right_led(0)",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -12992,6 +12710,23 @@ Entry.block = {
                     }
                 ],
                 params: ["RIGHT"]
+            },
+            {
+                syntax: "Hamster.leds(Hamster.LED_OFF,Hamster.LED_OFF)",
+                textParams: [
+                    {
+                        "type": "Dropdown",
+                        "options": [
+                            [Lang.Blocks.HAMSTER_left_led,"LEFT"],
+                            [Lang.Blocks.HAMSTER_right_led,"RIGHT"],
+                            [Lang.Blocks.HAMSTER_both_leds,"BOTH"]
+                        ],
+                        "value": "LEFT",
+                        "fontSize": 11,
+                        converter: Entry.block.converters.returnStringValue
+                    }
+                ],
+                params: ["BOTH"]
             },
             {
                 syntax: "Hamster.leds(0)",
@@ -13027,23 +12762,7 @@ Entry.block = {
                 ],
                 params: ["BOTH"]
             },
-            {
-                syntax: "Hamster.leds(Hamster.LED_OFF,Hamster.LED_OFF)",
-                textParams: [
-                    {
-                        "type": "Dropdown",
-                        "options": [
-                            [Lang.Blocks.HAMSTER_left_led,"LEFT"],
-                            [Lang.Blocks.HAMSTER_right_led,"RIGHT"],
-                            [Lang.Blocks.HAMSTER_both_leds,"BOTH"]
-                        ],
-                        "value": "LEFT",
-                        "fontSize": 11,
-                        converter: Entry.block.converters.returnStringValue
-                    }
-                ],
-                params: ["BOTH"]
-            }
+            
         ]}
     },
     "hamster_beep": {
@@ -13776,7 +13495,7 @@ Entry.block = {
                 params: ["B"]
             },
             {
-                syntax: "Hamster.outputs_by(%2)",
+                syntax: "Hamster.outputs_by(%2,%2)",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -13899,7 +13618,7 @@ Entry.block = {
                 params: ["B"]
             },
             {
-                syntax: "Hamster.outputs(%2)",
+                syntax: "Hamster.outputs(%2,%2)",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -13982,7 +13701,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.is_key_pressed(%1)",
+                syntax: "Entry.is_pressed(%1)",
                 blockType: "param",
                 textParams: [
                     {
@@ -14089,7 +13808,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.is_touched(%2)",
+                syntax: "Entry.is_reached(%2)",
                 blockType: "param",
                 textParams: [
                     undefined,
@@ -14383,7 +14102,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "(%1 and %3)",
+                syntax: "(%1 and %3)", 
                 blockType: "param"
             }
         ]}
@@ -14862,7 +14581,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.print_for_sec(%1, %2)",
+                syntax: "Entry.print_for_seconds(%1, %2, %3)",
                 params: [null,null,"speak"],
                 textParams: [
                     {
@@ -14968,7 +14687,7 @@ Entry.block = {
             if(sprite.dialog)   sprite.dialog.remove();
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.clear_print()"]}
+        "syntax": {"js": [], "py": ["Entry.print_remove()"]}
     },
     "change_to_nth_shape": {
         "color": "#EC4466",
@@ -15048,7 +14767,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.change_shape_to(%1)",
+                syntax: "Entry.set_shape_of(%1)",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -15494,8 +15213,7 @@ Entry.block = {
                         "menuName": "pictures",
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_LOOKS,
-                        converter: Entry.block.converters.returnStringKey,
-                        paramType: "picture"
+                        converter: Entry.block.converters.returnStringKey
                     }
                 ]
             }
@@ -15540,7 +15258,7 @@ Entry.block = {
             sprite.setImage(picture);
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.change_shape(%1)"]}
+        "syntax": {"js": [], "py": ["Entry.set_shape(%1)"]}
     },
     "add_effect_amount": {
         "color": "#EC4466",
@@ -15886,7 +15604,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.send_layer_to(%1)",
+                syntax: "Entry.send_layer(%1)",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -15900,7 +15618,7 @@ Entry.block = {
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_LOOKS,
                         converter: Entry.block.converters.returnStringValue,
-                        codeMap: "Entry.CodeMap.Entry.change_object_index[0]"
+                        codeMap: "Entry.CodeMap.Entry.send_layer_to[0]"
                     },
                 ]
             }
@@ -15946,7 +15664,7 @@ Entry.block = {
             }
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.move_to_direction(%1)"]}
+        "syntax": {"js": [], "py": ["Entry.move(%1)"]}
     },
     "move_x": {
         "color": "#A751E3",
@@ -15987,7 +15705,7 @@ Entry.block = {
             }
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.add_x(%1)"]}
+        "syntax": {"js": [], "py": ["Entry.set_x(%1)"]}
     },
     "move_y": {
         "color": "#A751E3",
@@ -16028,7 +15746,7 @@ Entry.block = {
             }
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.add_y(%1)"]}
+        "syntax": {"js": [], "py": ["Entry.set_y(%1)"]}
     },
     "locate_xy_time": {
         "color": "#A751E3",
@@ -16113,7 +15831,7 @@ Entry.block = {
                 }
             }
         },
-        "syntax": {"js": [], "py": ["Entry.set_xy_for_sec(%2, %3, %1)"]}
+        "syntax": {"js": [], "py": ["Entry.set_xy_for_seconds(%1, %2, %3)"]}
     },
     "rotate_by_angle": {
         "color": "#A751E3",
@@ -16359,7 +16077,7 @@ Entry.block = {
             }
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.set_x(%1)"]}
+        "syntax": {"js": [], "py": ["Entry.move_x(%1)"]}
     },
     "locate_y": {
         "color": "#A751E3",
@@ -16401,7 +16119,7 @@ Entry.block = {
             }
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.set_y(%1)"]}
+        "syntax": {"js": [], "py": ["Entry.move_y(%1)"]}
     },
     "locate": {
         "color": "#A751E3",
@@ -16451,7 +16169,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.move_to(%1)",
+                syntax: "Entry.set_location(%1)",
                 textParams: [
                     {
                         "type": "DropdownDynamic",
@@ -16547,7 +16265,7 @@ Entry.block = {
                 }
             };
         },
-        "syntax": {"js": [], "py": ["Entry.add_xy_for_sec(%2, %3, %1)"]}
+        "syntax": {"js": [], "py": ["Entry.add_xy_for_sec(%1, %2, %3)"]}
     },
     "rotate_by_angle_time": {
         "color": "#A751E3",
@@ -16788,7 +16506,7 @@ Entry.block = {
             }
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.bounce_on_edge()"]}
+        "syntax": {"js": [], "py": ["Entry.bounce_wall()"]}
     },
     "flip_arrow_horizontal": {
         "color": "#A751E3",
@@ -16894,7 +16612,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.look_at(%1)",
+                syntax: "Entry.look_at_object(%1)",
                 textParams: [
                     {
                         "type": "DropdownDynamic",
@@ -17080,7 +16798,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.move_to_for_sec(%2, %1)",
+                syntax: "Entry.set_location_for_seconds(%1, %2)",
                 textParams: [
                     {
                         "type": "Block",
@@ -17286,7 +17004,7 @@ Entry.block = {
             }
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.move_to_degree(%2, %1)"]}
+        "syntax": {"js": [], "py": ["Entry.move_degree(%2, %1)"]}
     },
     "rotate_by_time": {
         "color": "#A751E3",
@@ -17352,7 +17070,7 @@ Entry.block = {
                 script.frameCount--;
             }
         },
-        "syntax": {"js": [], "py": ["Entry.add_rotation_for_sec(%2, %1)"]}
+        "syntax": {"js": [], "py": ["Entry.add_rotation_for_seconds(%1, %2)"]}
     },
     "direction_relative_duration": {
         "color": "#A751E3",
@@ -17417,7 +17135,7 @@ Entry.block = {
                 script.frameCount--;
             }
         },
-        "syntax": {"js": [], "py": ["Entry.add_direction_for_sec(%2, %1)"]}
+        "syntax": {"js": [], "py": ["Entry.add_direction_for_seconds(%1, %2)"]}
 
     },
     "neobot_sensor_value": {
@@ -19790,7 +19508,7 @@ Entry.block = {
         "event": "when_scene_start",
         "syntax": {"js": [], "py": [
             {
-                syntax: "def when_start_scene():",
+                syntax: "def entry_event_scene_start():",
                 blockType: "event"
             }
         ]}
@@ -19834,7 +19552,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.start_scene(%1)",
+                syntax: "Entry.scene_start(%1)",
                 blockType: "last",
                 textParams: [
                     {
@@ -19906,7 +19624,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.start_scene_of(%1)",
+                syntax: "Entry.scene_start_of(%1)",
                 blockType: "last",
                 textParams: [
                     {
@@ -20177,7 +19895,7 @@ Entry.block = {
             createjs.Sound.setVolume(value);
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.add_sound_volume(%1)"]}
+        "syntax": {"js": [], "py": ["Entry.add_volume(%1)"]}
     },
     "sound_volume_set": {
         "color": "#A4D01D",
@@ -20219,7 +19937,7 @@ Entry.block = {
             createjs.Sound.setVolume(value);
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.set_sound_volume(%1)"]}
+        "syntax": {"js": [], "py": ["Entry.set_volume(%1)"]}
     },
     "sound_silent_all": {
         "color": "#A4D01D",
@@ -20279,8 +19997,7 @@ Entry.block = {
                         "menuName": "sounds",
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_SOUNDS,
-                        converter: Entry.block.converters.returnStringKey,
-                        paramType: "sound"
+                        converter: Entry.block.converters.returnStringKey
                     }
                 ],
                 keyOption: "get_sounds"
@@ -20388,7 +20105,7 @@ Entry.block = {
             }
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.play_sound_for_sec(%1, %2)"]}
+        "syntax": {"js": [], "py": ["Entry.play_sound_for_seconds(%1, %2)"]}
     },
     "sound_something_wait_with_block": {
         "color": "#A4D01D",
@@ -20507,7 +20224,7 @@ Entry.block = {
                 return script.callReturn();
             }
         },
-        "syntax": {"js": [], "py": ["Entry.play_sound_for_sec_and_wait(%1, %2)"]}
+        "syntax": {"js": [], "py": ["Entry.play_sound_for_seconds_and_wait(%1, %2)"]}
     },
     "sound_from_to": {
         "color": "#A4D01D",
@@ -20571,7 +20288,7 @@ Entry.block = {
             }
             return script.callReturn();
         },
-        "syntax": {"js": [], "py": ["Entry.play_sound_from_to(%1, %2, %3)"]}
+        "syntax": {"js": [], "py": ["Entry.play_sound_from_to_seconds(%1, %2, %3)"]}
     },
     "sound_from_to_and_wait": {
         "color": "#A4D01D",
@@ -20652,7 +20369,7 @@ Entry.block = {
                 return script.callReturn();
             }
         },
-        "syntax": {"js": [], "py": ["Entry.play_sound_from_to_and_wait(%1, %2, %3)"]}
+        "syntax": {"js": [], "py": ["Entry.play_sound_from_to_seconds_and_wait(%1, %2, %3)"]}
     },
     "when_run_button_click": {
         "color": "#3BBD70",
@@ -20682,7 +20399,7 @@ Entry.block = {
         "event": "start",
         "syntax": {"js": [], "py": [
             {
-                syntax: "def when_start():",
+                syntax: "def entry_event_start():",
                 blockType: "event"
             }
         ]}
@@ -20776,7 +20493,7 @@ Entry.block = {
         //"syntax": {"js": [], "py": ["def entry_event_key():\n\tif key == %2:"]}
         "syntax": {"js": [], "py": [
             {
-                syntax: "def when_press_key(%2):",
+                syntax: "def entry_event_key(%2):",
                 blockType: "event",
                 textParams: [
                     undefined,
@@ -20817,7 +20534,7 @@ Entry.block = {
         "event": "mouse_clicked",
         "syntax": {"js": [], "py": [
             {
-                syntax: "def when_click_mouse_on():",
+                syntax: "def entry_event_mouse_down():",
                 blockType: "event"
             }
         ]}
@@ -20850,7 +20567,7 @@ Entry.block = {
         "event": "mouse_click_cancled",
         "syntax": {"js": [], "py": [
             {
-                syntax: "def when_click_mouse_off():",
+                syntax: "def entry_event_mouse_up():",
                 blockType: "event"
             }
         ]}
@@ -20883,7 +20600,7 @@ Entry.block = {
         "event": "when_object_click",
         "syntax": {"js": [], "py": [
             {
-                syntax: "def when_click_object_on():",
+                syntax: "def entry_event_object_down():",
                 blockType: "event"
             }
         ]}
@@ -20916,7 +20633,7 @@ Entry.block = {
         "event": "when_object_click_canceled",
         "syntax": {"js": [], "py": [
             {
-                syntax: "def when_click_object_off():",
+                syntax: "def entry_event_object_up():",
                 blockType: "event"
             }
         ]}
@@ -20999,7 +20716,7 @@ Entry.block = {
         //"syntax": {"js": [], "py": ["def entry_event_signal():\n\tif signal == %2:"]}
         "syntax": {"js": [], "py": [
             {
-                syntax: "def when_get_signal(%2):",
+                syntax: "def entry_event_signal(%2):",
                 blockType: "event",
                 textParams: [
                     undefined,
@@ -21461,6 +21178,24 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
+                syntax: "%1 = %1 + %2",
+                textParams: [
+                    {
+                        "type": "DropdownDynamic",
+                        "value": null,
+                        "menuName": "variables",
+                        "fontSize": 11,
+                        'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
+                        converter: Entry.block.converters.returnRawStringKey,
+                        caseType: "no"
+                    },
+                    {
+                        "type": "Block",
+                        "accept": "string"
+                    },
+                ]
+            },
+            {
                 syntax: "%1 += %2",
                 textParams: [
                     {
@@ -21470,8 +21205,7 @@ Entry.block = {
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
                         converter: Entry.block.converters.returnRawStringKey,
-                        caseType: "no",
-                        paramType: "variable"
+                        caseType: "no"
                     },
                     {
                         "type": "Block",
@@ -21553,8 +21287,7 @@ Entry.block = {
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
                         converter: Entry.block.converters.returnRawStringKey,
-                        caseType: "no",
-                        paramType: "variable"
+                        caseType: "no"
                     },
                     {
                         "type": "Block",
@@ -21750,8 +21483,7 @@ Entry.block = {
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
                         converter: Entry.block.converters.returnRawStringKey,
-                        caseType: "no",
-                        paramType: "variable"
+                        caseType: "no"
                     },
                 ]
             }
@@ -21870,6 +21602,7 @@ Entry.block = {
     },
     "get_canvas_input_value": {
         "color": "#E457DC",
+        "vimModeFontColor": "white",
         "skeleton": "basic_string_field",
         "statements": [],
         "params": [
@@ -21902,16 +21635,8 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                template: "%1",
-                syntax: "Entry.answer()",
-                blockType: "param",
-                textParams: [
-                    {
-                        "type": "Text",
-                        "text": 'Entry.answer()',
-                        "color": "#fff"
-                    },
-                ]
+                syntax: "Entry.output()",
+                blockType: "param"
             }
         ]}
     },
@@ -21994,8 +21719,7 @@ Entry.block = {
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
                         converter: Entry.block.converters.returnRawStringKey,
-                        caseType: "no",
-                        paramType: "list"
+                        caseType: "no"
                     },
                 ]
             }
@@ -22083,8 +21807,7 @@ Entry.block = {
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
                         converter: Entry.block.converters.returnRawStringKey,
-                        caseType: "no",
-                        paramType: "list"
+                        caseType: "no"
                     },
                 ]
             }
@@ -22180,8 +21903,7 @@ Entry.block = {
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
                         converter: Entry.block.converters.returnRawStringKey,
-                        caseType: "no",
-                        paramType: "list"
+                        caseType: "no"
                     },
                     {
                         "type": "Block",
@@ -22278,8 +22000,7 @@ Entry.block = {
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
                         converter: Entry.block.converters.returnRawStringKey,
-                        caseType: "no",
-                        paramType: "list"
+                        caseType: "no"
                     },
                     {
                         "type": "Block",
@@ -22382,8 +22103,7 @@ Entry.block = {
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
                         converter: Entry.block.converters.returnRawStringKey,
-                        caseType: "no",
-                        paramType: "list"
+                        caseType: "no"
                     },
                     undefined,
                     {
@@ -22460,8 +22180,7 @@ Entry.block = {
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
                         converter: Entry.block.converters.returnRawStringKey,
-                        caseType: "no",
-                        paramType: "list"
+                        caseType: "no"
                     },
                 ]
             }
@@ -22525,7 +22244,7 @@ Entry.block = {
                         "menuName": "lists",
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
-                        converter: Entry.block.converters.returnStringKey
+                        converter: Entry.block.converters.returnRawStringKey
                     },
                 ]
             }
@@ -22589,7 +22308,7 @@ Entry.block = {
                         "menuName": "lists",
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
-                        converter: Entry.block.converters.returnStringKey
+                        converter: Entry.block.converters.returnRawStringKey
                     },
                 ]
             }
@@ -22675,7 +22394,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Entry.answer_view(%1)",
+                syntax: "Entry.answer_mode(%1)",
                 textParams: [
                     {
                         "type": "Dropdown",
@@ -22686,8 +22405,7 @@ Entry.block = {
                         "value": "SHOW",
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
-                        converter: Entry.block.converters.returnStringValue,
-                        codeMap: "Entry.CodeMap.Entry.set_visible_answer[0]"
+                        converter: Entry.block.converters.returnStringValue
                     },
                 ]
             }
@@ -22782,8 +22500,7 @@ Entry.block = {
                         "fontSize": 11,
                         'arrowColor': EntryStatic.ARROW_COLOR_VARIABLE,
                         converter: Entry.block.converters.returnRawStringKey,
-                        caseType: "no",
-                        paramType: "list"
+                        caseType: "no"
                     },
                     undefined,
                     {

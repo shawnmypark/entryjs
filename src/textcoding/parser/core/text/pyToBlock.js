@@ -655,7 +655,7 @@ Entry.PyToBlockParser = function(blockSyntax) {
                                 }
                             }
                         }
-                        else {
+                        else { 
                             var name = callee.object.name;
                             if(!Entry.TextCodingUtil.isGlobalListExisted(name) && !Entry.TextCodingUtil.isLocalListExisted(name)){
                                 var keyword = name;
@@ -2447,8 +2447,6 @@ Entry.PyToBlockParser = function(blockSyntax) {
                 console.log("assi leftData.property", leftData.property);
 
                 if(leftData.object.name == "self") {
-
-
                     if(calleeName == "__pythonRuntime.objects.list") {
                         var name = leftData.property.name;
 
@@ -2701,6 +2699,7 @@ Entry.PyToBlockParser = function(blockSyntax) {
             }
             else {
                 var block = Entry.block[type];
+                console.log("type", type, "block", block);
                 var paramsMeta = block.params;
                 var paramsDefMeta = block.def.params;
 
