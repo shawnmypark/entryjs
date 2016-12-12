@@ -3037,7 +3037,7 @@ Entry.PyToBlockParser = function(blockSyntax) {
         
         console.log("ParamDropdownDynamic result", result);
 
-        return result;
+        return result; 
     };
 
     p.ParamKeyboard = function(value, paramMeta, paramDefMeta) {
