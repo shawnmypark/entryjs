@@ -101,8 +101,8 @@ Entry.Workspace.MODE_OVERLAYBOARD = 2;
 
         switch (this.mode) {
             case Entry.Workspace.MODE_VIMBOARD:
-                    if(alert_message = Entry.TextCodingUtil.isNamesIncludeSpace()) { 
-                        alert(alert_message); 
+                    if(alert_message = Entry.TextCodingUtil.isNamesIncludeSpace()) {
+                        alert(alert_message);
                         var mode = {};
                         mode.boardType = Entry.Workspace.MODE_BOARD;
                         mode.textType = -1;
@@ -304,6 +304,7 @@ Entry.Workspace.MODE_OVERLAYBOARD = 2;
                         boardType : Entry.Workspace.MODE_BOARD,
                         textType : -1
                     });
+                    e.preventDefault();
                     break;
                 case 221: //setMode(python) for textcoding
                     if (playground && !playground.object) {
@@ -332,6 +333,7 @@ Entry.Workspace.MODE_OVERLAYBOARD = 2;
                         textType : Entry.Vim.TEXT_TYPE_PY,
                         runType : Entry.Vim.WORKSPACE_MODE
                     });
+                    e.preventDefault();
                     break;
                 case 67:
                     if (blockView && !blockView.isInBlockMenu && blockView.block.isDeletable()) {
