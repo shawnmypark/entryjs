@@ -27269,6 +27269,7 @@ Entry.Workspace.MODE_OVERLAYBOARD = 2;
               return;
             }
             this.dSetMode({boardType:Entry.Workspace.MODE_BOARD, textType:-1});
+            a.preventDefault();
             break;
           case 221:
             if (h && !h.object && this.oldMode === Entry.Workspace.MODE_BOARD) {
@@ -27284,6 +27285,7 @@ Entry.Workspace.MODE_OVERLAYBOARD = 2;
               return;
             }
             this.dSetMode({boardType:Entry.Workspace.MODE_VIMBOARD, textType:Entry.Vim.TEXT_TYPE_PY, runType:Entry.Vim.WORKSPACE_MODE});
+            a.preventDefault();
             break;
           case 67:
             l && !l.isInBlockMenu && l.block.isDeletable() && l.block.copyToClipboard();
