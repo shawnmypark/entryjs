@@ -2252,6 +2252,7 @@ Entry.block = {
             {
                 syntax: "Arduino.digitalRead(%1)",
                 blockType: "param",
+                replaceBlockType: "arduino_ext_get_digital",
                 textParams: [
                     {
                         "type": "Block",
@@ -14455,6 +14456,14 @@ Entry.block = {
 
             switch(operator) {
                 case 'EQUAL':
+                    var firstParam = this.block.params[0];
+                    if (firstParam && firstParam.type === "arduino_ext_get_digital") {
+                        if (this.getParam(0)) {
+                            return rightValue === "true" || rightValue === "HIGH";
+                        } else {
+                            return rightValue === "false" || rightValue === "LOW";
+                        }
+                    }
                     return leftValue == rightValue;
                 case 'GREATER':
                     return Number(leftValue) > Number(rightValue);

@@ -32,16 +32,16 @@ Entry.PyToBlockParser = function(blockSyntax) {
     this._threadCount = 0;
     this._blockCount = 0;
 
-    Entry.TextCodingUtil.init(); 
+    Entry.TextCodingUtil.init();
 };
 
 (function(p){
-    p.Program = function(astArr) { 
+    p.Program = function(astArr) {
         console.log("this.syntax", this.blockSyntax);
         this._currentObject = Entry.playground.mainWorkspace.vimBoard._currentObject;
         console.log("_currentObject", this._currentObject);
         try {
-            this._code = []; 
+            this._code = [];
 
             this._threadCount = 0;
             this._blockCount = 0;
@@ -329,6 +329,8 @@ Entry.PyToBlockParser = function(blockSyntax) {
                         var blockSyntax = this.getBlockSyntax(syntax);
                         if(blockSyntax) {
                             type = blockSyntax.key;
+                            if(blockSyntax.replaceBlockType)
+                                type = blockSyntax.replaceBlockType;
                             break;
                         }
                     }
@@ -364,6 +366,9 @@ Entry.PyToBlockParser = function(blockSyntax) {
                 var blockSyntax = this.getBlockSyntax(syntax);
                 if(blockSyntax) {
                     type = blockSyntax.key;
+
+                    if(blockSyntax.replaceBlockType)
+                        type = blockSyntax.replaceBlockType;
                 }
             }
 
@@ -371,8 +376,12 @@ Entry.PyToBlockParser = function(blockSyntax) {
                 var syntax = calleeName;
                 var blockSyntax = this.getBlockSyntax(syntax);
 
-                if(blockSyntax)
+                if(blockSyntax) {
                     type = blockSyntax.key;
+
+                    if(blockSyntax.replaceBlockType)
+                        type = blockSyntax.replaceBlockType;
+                }
             }
 
             console.log("callee check line", callee);
@@ -415,7 +424,7 @@ Entry.PyToBlockParser = function(blockSyntax) {
                         }
                     }
                 }
-                else if(callee.object.name == "Entry") { 
+                else if(callee.object.name == "Entry") {
                     console.log("callee.property.name", callee.property.name);
                     console.log("callee.property.component", component);
                     if(callee.property.name == "send_signal") {
@@ -430,9 +439,9 @@ Entry.PyToBlockParser = function(blockSyntax) {
                             Entry.TextCodingUtil.createMessage(argument.value);
                         }
                     }
-                } 
+                }
             }
-           
+
 
             if(callee.property) {
                 if(callee.property.name == "range"){
@@ -492,11 +501,11 @@ Entry.PyToBlockParser = function(blockSyntax) {
                             if(Entry.TextCodingUtil.isGlobalVariableExisted(arg.property.name) ||
                                 Entry.TextCodingUtil.isLocalVariableExisted(arg.property.name, this._currentObject))
                                 syntax = String("len#length_of_string");
-                        } 
-                        else {
-                            syntax = String("len#length_of_string");    
                         }
-                    } 
+                        else {
+                            syntax = String("len#length_of_string");
+                        }
+                    }
                     console.log("syntax1", syntax);
 
                     var blockSyntax = this.getBlockSyntax(syntax);
@@ -566,7 +575,7 @@ Entry.PyToBlockParser = function(blockSyntax) {
                 }
             }
 
-            console.log("type", type); 
+            console.log("type", type);
 
 
             if(!type) {
@@ -634,7 +643,7 @@ Entry.PyToBlockParser = function(blockSyntax) {
                         }
                         else {
                             var name = callee.object.name;
-                            if(!Entry.TextCodingUtil.isGlobalListExisted(name) && 
+                            if(!Entry.TextCodingUtil.isGlobalListExisted(name) &&
                                 !Entry.TextCodingUtil.isLocalListExisted(name, this._currentObject)){
                                 var keyword = name;
                                 console.log("errorId", 6);
@@ -1622,7 +1631,7 @@ Entry.PyToBlockParser = function(blockSyntax) {
         var init = component.init;
 
         // This is Function-Related Param
-        if(id.name && (id.name.search("__params") != -1 || id.name.search("__formalsIndex") != -1 || 
+        if(id.name && (id.name.search("__params") != -1 || id.name.search("__formalsIndex") != -1 ||
             id.name.search("__args") != -1))
             return undefined;
 
@@ -2014,7 +2023,7 @@ Entry.PyToBlockParser = function(blockSyntax) {
                     var calleeName = rightData.callee.object.object.name.concat('.')
                         .concat(rightData.callee.object.property.name).concat('.')
                         .concat(rightData.callee.property.name);
-                } 
+                }
 
                 /*if(calleeName == "__pythonRuntime.objects.list") {
                     if(leftData && leftData.object && leftData.object.name == "self") {
@@ -2453,7 +2462,7 @@ Entry.PyToBlockParser = function(blockSyntax) {
                         var name = leftData.property.name;
                         if(rightData.type == "number" || rightData.type == "text")
                             var value = rightData.params[0];
-                        else 
+                        else
                             var value = 0;
                         /*else
                             var value = 0;*/
@@ -2491,7 +2500,7 @@ Entry.PyToBlockParser = function(blockSyntax) {
                 var name = leftData.name;
                 if(rightData.type == "number" || rightData.type == "text")
                     var value = rightData.params[0];
-                else 
+                else
                     var value = 0;
                 /*else
                     var value = 0;*/
@@ -2840,7 +2849,7 @@ Entry.PyToBlockParser = function(blockSyntax) {
         var value = component.value;
 
         if(!paramMeta) {
-            var paramMeta = { type: "Block" }; 
+            var paramMeta = { type: "Block" };
             if(!paramDefMeta) {
                 if(typeof value == "number")
                     var paramDefMeta = { type: "number" };
@@ -2885,8 +2894,8 @@ Entry.PyToBlockParser = function(blockSyntax) {
 
     p.ParamBlock = function(value, paramMeta, paramDefMeta) {
         console.log("ParamBlock value", value, "paramMeta", paramMeta, "paramDefMeta", paramDefMeta);
-        
-        
+
+
         var result;
         var structure = {};
 
@@ -2947,15 +2956,15 @@ Entry.PyToBlockParser = function(blockSyntax) {
 
         result = value;
 
-        return result; 
+        return result;
     };
 
     p.ParamTextInput = function(value, paramMeta, paramDefMeta) {
         console.log("ParamTextInput value, paramMeta, paramDefMeta", value, paramMeta, paramDefMeta);
         if(typeof value != "number")
             value = value.replace(/\t/gi, '    ');
-        
-        var result = value; 
+
+        var result = value;
         console.log("ParamTextInput result", result);
 
         return result;
@@ -3005,39 +3014,39 @@ Entry.PyToBlockParser = function(blockSyntax) {
 
         if(textParam && textParam.paramType == "operator")
             value = value.toUpperCase();
-        
+
         result = value;
-        
+
         console.log("ParamDropdown result", result);
 
-        return result; 
+        return result;
     };
 
     p.ParamDropdownDynamic = function(value, paramMeta, paramDefMeta, textParam, currentObject) {
         console.log("ParamDropdownDynamic value, paramMeta, paramDefMeta, textParam, currentObject", value, paramMeta, paramDefMeta, textParam, currentObject);
         var result = value;
 
-        if(textParam)   
+        if(textParam)
             value = Entry.TextCodingUtil.getDynamicIdByNumber(value, textParam, this._currentObject);
-        
+
         if(value.split.length > 2 && value.split(".")[0] == "self") {
             value = value.split(".")[1];
             currentObject = this._currentObject;
         }
 
         value = Entry.TextCodingUtil.dropdownDynamicNameToIdConvertor(value, paramMeta.menuName, currentObject);
-        
+
         if(textParam && textParam.codeMap) {
             var codeMap = textParam.codeMap;
             if(codeMap && eval(codeMap))
                 var codeMapValue =  eval(codeMap)[value.toLowerCase()];
             if(codeMapValue) value = codeMapValue;
         }
-        result = value; 
-        
+        result = value;
+
         console.log("ParamDropdownDynamic result", result);
 
-        return result; 
+        return result;
     };
 
     p.ParamKeyboard = function(value, paramMeta, paramDefMeta) {
@@ -4425,7 +4434,7 @@ Entry.PyToBlockParser = function(blockSyntax) {
                     if(param.property.callee == "__pythonRuntime.ops.subscriptIndex") { // In Case of List
                         if(param.object && param.object.object) {
                             if(param.object.object.name != "self") { // Not Self List
-                                var keyword = param.object.object.name; 
+                                var keyword = param.object.object.name;
                                 console.log("errorId", 76);
                                 Entry.TextCodingError.error(
                                     Entry.TextCodingError.TITLE_CONVERTING,
@@ -4778,7 +4787,7 @@ Entry.PyToBlockParser = function(blockSyntax) {
         var bodyData = this[body.type](body);
 
         console.log("FunctionDeclaration bodyData", bodyData);
-        
+
         if(id.type == "Identifier")
             var idData = this[id.type](id);
 
@@ -4791,7 +4800,7 @@ Entry.PyToBlockParser = function(blockSyntax) {
         textFuncName = idData.name;
 
         var funcBodyData = bodyData.data;
-        
+
         console.log("this_funcLoop", this._funcLoop);
 
         for(var i in funcBodyData) {
@@ -4819,7 +4828,7 @@ Entry.PyToBlockParser = function(blockSyntax) {
         }
 
 
-      
+
         console.log("this_funcLoop", this._funcLoop);
         console.log("FunctionDeclaration textFuncName", textFuncName);
         console.log("FunctionDeclaration textFuncParams", textFuncParams);
@@ -5690,7 +5699,7 @@ Entry.PyToBlockParser = function(blockSyntax) {
 
         result = component;
 
-        console.log("ConditionalExpression result", result); 
+        console.log("ConditionalExpression result", result);
 
         //Convertin Error Control
         /*var keyword = "ConditionalExpression";

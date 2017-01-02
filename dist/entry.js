@@ -7683,16 +7683,8 @@ Entry.isMobile = function() {
   Entry.device = "desktop";
   return !1;
 };
-<<<<<<< HEAD
 Entry.Utils.convertMouseEvent = function(b) {
   return b.originalEvent && b.originalEvent.touches ? b.originalEvent.touches[0] : b;
-=======
-Entry.Engine.prototype.captureKeyEvent = function(b, a) {
-  var d = b.keyCode, c = Entry.type;
-  if (!Entry.Utils.isInInput(b) || a) {
-    b.ctrlKey && "workspace" == c ? 83 == d ? (b.preventDefault(), Entry.dispatchEvent("saveWorkspace")) : 82 == d ? (b.preventDefault(), Entry.engine.run()) : 90 == d && (b.preventDefault(), Entry.dispatchEvent(b.shiftKey ? "redo" : "undo")) : Entry.engine.isState("run") && Entry.container.mapEntityIncludeCloneOnScene(Entry.engine.raiseKeyEvent, ["keyPress", d]), Entry.engine.isState("stop") && "workspace" === c && 37 <= d && 40 >= d && Entry.stage.moveSprite(b);
-  }
->>>>>>> origin/textmode/entry-block-cert-6
 };
 Entry.Utils.convertIntToHex = function(b) {
   return b.toString(16).toUpperCase();
@@ -9093,10 +9085,11 @@ Entry.Engine.prototype.fireEventOnEntity = function(b, a) {
 Entry.Engine.prototype.raiseEventOnEntity = function(b, a) {
   b === a[0] && b.parent.script.raiseEvent(a[1], b);
 };
-Entry.Engine.prototype.captureKeyEvent = function(b) {
-  var a = b.keyCode, c = Entry.type;
-  b.ctrlKey && "workspace" == c ? 83 == a ? (b.preventDefault(), Entry.dispatchEvent("saveWorkspace")) : 82 == a ? (b.preventDefault(), Entry.engine.run()) : 90 == a && (b.preventDefault(), Entry.dispatchEvent(b.shiftKey ? "redo" : "undo")) : Entry.engine.isState("run") && Entry.container.mapEntityIncludeCloneOnScene(Entry.engine.raiseKeyEvent, ["keyPress", a]);
-  Entry.engine.isState("stop") && "workspace" === c && 37 <= a && 40 >= a && Entry.stage.moveSprite(b);
+Entry.Engine.prototype.captureKeyEvent = function(b, a) {
+  var c = b.keyCode, d = Entry.type;
+  if (!Entry.Utils.isInInput(b) || a) {
+    b.ctrlKey && "workspace" == d ? 83 == c ? (b.preventDefault(), Entry.dispatchEvent("saveWorkspace")) : 82 == c ? (b.preventDefault(), Entry.engine.run()) : 90 == c && (b.preventDefault(), Entry.dispatchEvent(b.shiftKey ? "redo" : "undo")) : Entry.engine.isState("run") && Entry.container.mapEntityIncludeCloneOnScene(Entry.engine.raiseKeyEvent, ["keyPress", c]), Entry.engine.isState("stop") && "workspace" === d && 37 <= c && 40 >= c && Entry.stage.moveSprite(b);
+  }
 };
 Entry.Engine.prototype.raiseKeyEvent = function(b, a) {
   return b.parent.script.raiseEvent(a[0], b, String(a[1]));
@@ -14923,6 +14916,7 @@ Entry.Workspace.MODE_OVERLAYBOARD = 2;
               return;
             }
             this.dSetMode({boardType:Entry.Workspace.MODE_BOARD, textType:-1});
+            a.preventDefault();
             break;
           case 221:
             if (h && !h.object && this.oldMode === Entry.Workspace.MODE_BOARD) {
@@ -14938,6 +14932,7 @@ Entry.Workspace.MODE_OVERLAYBOARD = 2;
               return;
             }
             this.dSetMode({boardType:Entry.Workspace.MODE_VIMBOARD, textType:Entry.Vim.TEXT_TYPE_PY, runType:Entry.Vim.WORKSPACE_MODE});
+            a.preventDefault();
             break;
           case 67:
             k && !k.isInBlockMenu && k.block.isDeletable() && k.block.copyToClipboard();
@@ -18101,6 +18096,7 @@ Entry.PyToBlockParser = function(b) {
         for (l in arguments) {
           if (m = arguments[l], "Identifier" == m.type ? r = m.name : "Literal" == m.type ? r = m.value : "MemberExpression" == m.type && (r = m.object.name + "." + m.property.name), q = k + "#" + r, console.log("argKey syntax", q), n = this.getBlockSyntax(q)) {
             e = n.key;
+            n.replaceBlockType && (e = n.replaceBlockType);
             break;
           }
         }
@@ -18115,10 +18111,10 @@ Entry.PyToBlockParser = function(b) {
         q = k + "(" + String(u) + ")";
         console.log("argKey syntax", q);
         if (n = this.getBlockSyntax(q)) {
-          e = n.key;
+          e = n.key, n.replaceBlockType && (e = n.replaceBlockType);
         }
       }
-      !e && (q = k, n = this.getBlockSyntax(q)) && (e = n.key);
+      !e && (q = k, n = this.getBlockSyntax(q)) && (e = n.key, n.replaceBlockType && (e = n.replaceBlockType));
       console.log("callee check line", f);
       if (f.object) {
         if ("Math" === f.object.name) {
@@ -26949,7 +26945,6 @@ Entry.PARAM = -1;
     }
     return !0;
   };
-<<<<<<< HEAD
 })(Entry.Code.prototype);
 Entry.CodeView = function(b, a) {
   Entry.Model(this, !1);
@@ -27026,63 +27021,6 @@ Entry.Executor = function(b, a) {
             var d = !1;
             "\ub7f0\ud0c0\uc784 \uc5d0\ub7ec" != e.message && (d = !0);
             Entry.Utils.stopProjectWithToast(this.scope, "\ub7f0\ud0c0\uc784 \uc5d0\ub7ec", d);
-=======
-  b._keyboardControl = function(a, b) {
-    var c = a.keyCode || a.which, e = a.ctrlKey, f = a.shiftKey, g = a.altKey, h = Entry.playground;
-    if (!Entry.Utils.isInInput(a) || b) {
-      var k = this._isVimMode(), l = this.selectedBlockView;
-      if (e) {
-        switch(c) {
-          case 86:
-            (c = this.selectedBoard) && c instanceof Entry.Board && Entry.clipboard && Entry.do("addThread", Entry.clipboard).value.getFirstBlock().copyToClipboard();
-            break;
-          case 219:
-            if (h && !h.object && k) {
-              alert("\uc624\ube0c\uc81d\ud2b8\uac00 \uc874\uc7ac\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4. \uc624\ube0c\uc81d\ud2b8\ub97c \ucd94\uac00\ud55c \ud6c4 \uc2dc\ub3c4\ud574\uc8fc\uc138\uc694.");
-              return;
-            }
-            if (Entry.getMainWS().oldMode == Entry.Workspace.MODE_OVERLAYBOARD) {
-              return;
-            }
-            if (c = Entry.TextCodingUtil.isNamesIncludeSpace()) {
-              alert(c);
-              return;
-            }
-            this.dSetMode({boardType:Entry.Workspace.MODE_BOARD, textType:-1});
-            a.preventDefault();
-            break;
-          case 221:
-            if (h && !h.object && this.oldMode === Entry.Workspace.MODE_BOARD) {
-              alert("\uc624\ube0c\uc81d\ud2b8\uac00 \uc874\uc7ac\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4. \uc624\ube0c\uc81d\ud2b8\ub97c \ucd94\uac00\ud55c \ud6c4 \uc2dc\ub3c4\ud574\uc8fc\uc138\uc694.");
-              return;
-            }
-            if (c = Entry.TextCodingUtil.canConvertTextModeForOverlayMode(Entry.Workspace.MODE_VIMBOARD)) {
-              alert(c);
-              return;
-            }
-            if (c = Entry.TextCodingUtil.isNamesIncludeSpace()) {
-              alert(c);
-              return;
-            }
-            this.dSetMode({boardType:Entry.Workspace.MODE_VIMBOARD, textType:Entry.Vim.TEXT_TYPE_PY, runType:Entry.Vim.WORKSPACE_MODE});
-            a.preventDefault();
-            break;
-          case 67:
-            l && !l.isInBlockMenu && l.block.isDeletable() && l.block.copyToClipboard();
-            break;
-          case 88:
-            l && !l.isInBlockMenu && l.block.isDeletable() && function(a) {
-              a.copyToClipboard();
-              a.destroy(!0, !0);
-              l.getBoard().setSelectedBlock(null);
-            }(l.block);
-        }
-      } else {
-        if (g) {
-          if (h && !h.object) {
-            alert("\uc624\ube0c\uc81d\ud2b8\uac00 \uc874\uc7ac\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4. \uc624\ube0c\uc81d\ud2b8\ub97c \ucd94\uac00\ud55c \ud6c4 \uc2dc\ub3c4\ud574\uc8fc\uc138\uc694.");
-            return;
->>>>>>> origin/textmode/entry-block-cert-6
           }
         }
         if (this.isEnd()) {
