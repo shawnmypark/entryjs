@@ -1,3 +1,4 @@
+
 'use strict';
 
 goog.provide("Entry.Vim");
@@ -26,11 +27,12 @@ Entry.Vim = function(dom, textType) {
     //this._jsParser = new Entry.Parser("ws", "js", this.codeMirror);
     //this._pyParser = new Entry.Parser("ws", "py", this.codeMirror);
 
+    /*
     Entry.addEventListener('hwChanged', function(e){
         if (Entry.hw.hwModule) {
             var name = Entry.hw.hwModule.name;
             name = name[0].toUpperCase() + name.slice(1);
-            if(name == "ArduinoExt") 
+            if(name == "ArduinoExt")
                 name = "Arduino";
             Entry.Vim.PYTHON_IMPORT_HW = "\nimport " + name + "\n";
             Entry.Vim.INEDITABLE_LINE_PY = 4;
@@ -39,6 +41,7 @@ Entry.Vim = function(dom, textType) {
             Entry.Vim.INEDITABLE_LINE_PY = 3;
         }
     }.bind(this));
+    */
 
     Entry.Model(this, false);
     window.eventset = [];
@@ -177,7 +180,7 @@ Entry.Vim.PYTHON_IMPORT_HW = "";
         return code;
     };
 
-     p.codeToText = function(code, mode) { 
+     p.codeToText = function(code, mode) {
         var codeDescription;
         if(mode)
             this._mode = mode.runType;
@@ -185,7 +188,7 @@ Entry.Vim.PYTHON_IMPORT_HW = "";
         console.log("this._currentObject", this._currentObject);
         console.log("this._changedObject", this._changedObject);
 
-        var textType = mode.textType; 
+        var textType = mode.textType;
         this._oldParserType = mode.textType;
 
         if (textType === Entry.Vim.TEXT_TYPE_JS) {
@@ -225,7 +228,7 @@ Entry.Vim.PYTHON_IMPORT_HW = "";
             doc.setCursor({ line: doc.lastLine() - 1});
         }
         else {
-            this.clearText();  
+            this.clearText();
         }
     };
 

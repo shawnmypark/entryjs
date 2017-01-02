@@ -2966,8 +2966,8 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "Arduino.digitalWrite(%1, %2)", 
-                textParams: [ 
+                syntax: "Arduino.digitalWrite(%1, %2)",
+                textParams: [
                     {
                         "type": "Block",
                         "accept": "string"
@@ -12817,7 +12817,7 @@ Entry.block = {
                 ],
                 params: ["BOTH"]
             },
-            
+
         ]}
     },
     "hamster_beep": {
@@ -14155,7 +14155,7 @@ Entry.block = {
         },
         "syntax": {"js": [], "py": [
             {
-                syntax: "(%1 and %3)", 
+                syntax: "(%1 and %3)",
                 blockType: "param"
             }
         ]}
@@ -21682,12 +21682,12 @@ Entry.block = {
         "syntax": {"js": [], "py": [
             {
                 template: "%1",
-                syntax: "Entry.answer()",
+                syntax: "Entry.output()",
                 blockType: "param",
                 textParams: [
                     {
                         "type": "Text",
-                        "text": 'Entry.answer()',
+                        "text": 'Entry.output()',
                         "color": "#fff"
                     },
                 ]
