@@ -152,6 +152,19 @@ if (Entry && Entry.block) {
             return '"()"'.replace('()', value).toUpperCase();
         };
 
+        c.returnValueUpperCase = function(key, value) {
+            if(this.codeMap)
+                var codeMap = eval(this.codeMap);
+            var codeMapKey = value;
+            if(codeMap) {
+                var codeMapValue = codeMap[codeMapKey];
+                if(codeMapValue)
+                    value = codeMapValue;
+            }
+            return value.toUpperCase();
+        };
+
+
         c.returnStringValueLowerCase = function(key, value) {
             if(this.codeMap)
                 var codeMap = eval(this.codeMap);
@@ -13112,7 +13125,7 @@ Entry.block = {
                         ],
                         "value": "4",
                         "fontSize": 11,
-                        converter: Entry.block.converters.returnStringValueUpperCase,
+                        converter: Entry.block.converters.returnValueUpperCase,
                         codeMap: "Entry.CodeMap.Hamster.hamster_play_note_for[0]"
                     },
                     {
