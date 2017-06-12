@@ -440,6 +440,10 @@ Entry.parseOptions = function(options) {
         this.soundEditable = a.sceneEditable = this.objectAddable = false;
     }
 
+    this.resizable = options.resizable;
+    if (this.resizable === undefined)
+        this.resizable = true;
+
     if (options.isForLecture)
         this.isForLecture = options.isForLecture;
     if (options.textCodingEnable)

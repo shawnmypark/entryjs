@@ -192,7 +192,7 @@ Entry.beforeUnload = function(e) {
             localStorage.setItem('workspace-interface',
                                  JSON.stringify(Entry.captureInterfaceState()));
         }
-        if (!Entry.stateManager.isSaved())
+        if (Entry.stateManager && !Entry.stateManager.isSaved())
             return Lang.Workspace.project_changed;
     }
 };
@@ -236,7 +236,7 @@ Entry.loadInterfaceState = function(interfaceState) {
  */
 Entry.resizeElement = function(interfaceModel) {
     var mainWorkspace = Entry.getMainWS();
-    if (!mainWorkspace)
+    if (!mainWorkspace || this.resizable === false)
         return;
 
     if (!interfaceModel)

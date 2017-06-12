@@ -127,6 +127,9 @@ Entry.BlockMenu = function(dom, align, categoryData, scroll, readOnly) {
             if (!Entry.playground || Entry.playground.resizing ||
                 (selectedBlockView && selectedBlockView.dragMode === Entry.DRAG_MODE_DRAG)) return;
             Entry.playground.focusBlockMenu = true;
+            if (!Entry.resizable)
+                return;
+
             var bBox = that.svgGroup.getBBox();
             var adjust = that.hasCategory() ? 64 : 0;
             var expandWidth = bBox.width + bBox.x + adjust;
@@ -143,6 +146,9 @@ Entry.BlockMenu = function(dom, align, categoryData, scroll, readOnly) {
 
             if (that._scroller)
                 that._scroller.setOpacity(0);
+
+            if (!Entry.resizable)
+                return;
 
             var widthBackup = this.widthBackup;
             if (widthBackup)
