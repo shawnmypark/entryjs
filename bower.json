@@ -14,6 +14,9 @@
   "homepage": "https://github.com/entrylabs/entryjs",
   "ignore": [
     "**/.*",
+    "example",
+    "src",
+    "test_util",
     "node_modules",
     "bower_components",
     "public/lib/",
