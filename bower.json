@@ -16,6 +16,7 @@
     "**/.*",
     "example",
     "src/*",
+    "src/workspace/*",
     "!src/workspace/block_entry.js",
     "test_util",
     "node_modules",
