@@ -644,7 +644,10 @@ Entry.BlockView.RENDER_MODE_TEXT = 2;
             if (dragMode === Entry.DRAG_MODE_DRAG) {
                 var ripple = false;
                 var prevBlock = this.block.getPrevBlock(this.block);
-                var suffix = this._board.workspace.trashcan.isOver ? "ForDestroy" : "";
+                var suffix = '';
+                var trashcan = this._board.workspace.trashcan;
+                if (trashcan && trashcan.isOver)
+                    suffix = "ForDestroy";
                 switch (gsRet) {
                     case gs.DONE:
                         var closeBlock = board.magnetedBlockView;

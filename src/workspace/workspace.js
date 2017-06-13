@@ -15,7 +15,7 @@ Entry.Workspace = function(options) {
     this.dSetMode = Entry.Utils.debounce(this.setMode, 200);
 
     this.observe(this, "_handleChangeBoard", ["selectedBoard"], false);
-    this.trashcan = new Entry.FieldTrashcan();
+    this.addTrashcan();
 
     this.readOnly = options.readOnly === undefined ? false : options.readOnly;
 
@@ -463,7 +463,7 @@ Entry.Workspace.MODE_OVERLAYBOARD = 2;
     p._handleChangeBoard = function() {
         var board = this.selectedBoard;
         if (!board) return;
-        if (board.constructor === Entry.Board)
+        if (board.constructor === Entry.Board && this.trashcan)
             this.trashcan.setBoard(board);
     };
 
@@ -531,5 +531,15 @@ Entry.Workspace.MODE_OVERLAYBOARD = 2;
 
     p.setWidgetUpdateEveryTime = function(val) {
         this.widgetUpdateEveryTime = !!val;
+    };
+
+    p.addTrashcan = function() {
+        this.trashcan = new Entry.FieldTrashcan();
+    };
+
+    p.removeTrashcan = function() {
+        if (!this.trashcan) return;
+        this.trashcan.remove();
+        delete this.trashcan;
     };
 })(Entry.Workspace.prototype);

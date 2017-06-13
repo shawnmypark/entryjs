@@ -13095,7 +13095,7 @@ Entry.FieldTrashcan = function(c) {
   c && this.setBoard(c);
   this.dragBlockObserver = this.dragBlock = null;
   this.isOver = !1;
-  Entry.windowResized && Entry.windowResized.attach(this, this.setPosition);
+  Entry.windowResized && (this.posEvent = Entry.windowResized.attach(this, this.setPosition));
 };
 (function(c) {
   c._generateView = function() {
@@ -13155,14 +13155,20 @@ Entry.FieldTrashcan = function(c) {
     }
   };
   c.setBoard = function(b) {
-    this._dragBlockObserver && this._dragBlockObserver.destroy();
+    this.dragBlockObserver && this.dragBlockObserver.destroy();
     this.board = b;
     this.svgGroup || this._generateView();
     var c = b.svg, d = c.firstChild;
     d ? c.insertBefore(this.svgGroup, d) : c.appendChild(this.svgGroup);
-    this._dragBlockObserver = b.observe(this, "updateDragBlock", ["dragBlock"]);
+    this.dragBlockObserver = b.observe(this, "updateDragBlock", ["dragBlock"]);
     this.svgGroup.attr({filter:"url(#entryTrashcanFilter_" + b.suffix + ")"});
     this.setPosition();
+  };
+  c.remove = function() {
+    Entry.windowResized && this.posEvent && (Entry.windowResized.detach(this, this.posEvent), delete this.posEvent);
+    var b = this.dragBlockObserver;
+    b && (b.destroy(), this.dragBlockObserver = null);
+    $(this.svgGroup).remove();
   };
 })(Entry.FieldTrashcan.prototype);
 Entry.Queue = function() {
@@ -14182,7 +14188,7 @@ Entry.Workspace = function(c) {
   Entry.Model(this, !1);
   this.dSetMode = Entry.Utils.debounce(this.setMode, 200);
   this.observe(this, "_handleChangeBoard", ["selectedBoard"], !1);
-  this.trashcan = new Entry.FieldTrashcan;
+  this.addTrashcan();
   this.readOnly = void 0 === c.readOnly ? !1 : c.readOnly;
   this.blockViewMouseUpEvent = new Entry.Event(this);
   this.widgetUpdateEvent = new Entry.Event(this);
@@ -14428,7 +14434,7 @@ Entry.Workspace.MODE_OVERLAYBOARD = 2;
   };
   c._handleChangeBoard = function() {
     var b = this.selectedBoard;
-    b && b.constructor === Entry.Board && this.trashcan.setBoard(b);
+    b && b.constructor === Entry.Board && this.trashcan && this.trashcan.setBoard(b);
   };
   c._syncTextCode = function() {
     if (!(this.mode !== Entry.Workspace.MODE_VIMBOARD || Entry.engine && Entry.engine.isState("run"))) {
@@ -14466,6 +14472,12 @@ Entry.Workspace.MODE_OVERLAYBOARD = 2;
   };
   c.setWidgetUpdateEveryTime = function(b) {
     this.widgetUpdateEveryTime = !!b;
+  };
+  c.addTrashcan = function() {
+    this.trashcan = new Entry.FieldTrashcan;
+  };
+  c.removeTrashcan = function() {
+    this.trashcan && (this.trashcan.remove(), delete this.trashcan);
   };
 })(Entry.Workspace.prototype);
 Entry.BlockDriver = function() {
@@ -25446,7 +25458,8 @@ Entry.BlockView.RENDER_MODE_TEXT = 2;
       d instanceof Entry.BlockMenu ? (d.terminateDrag(), k === c.DONE && this.vimBoardEvent(b, "dragEnd", g)) : d.clear();
     } else {
       if (b = this.dragInstance && this.dragInstance.isNew, f === Entry.DRAG_MODE_DRAG) {
-        var h = !1, l = this.block.getPrevBlock(this.block), m = this._board.workspace.trashcan.isOver ? "ForDestroy" : "";
+        var h = !1, l = this.block.getPrevBlock(this.block), m = "", n = this._board.workspace.trashcan;
+        n && n.isOver && (m = "ForDestroy");
         switch(k) {
           case c.DONE:
             c = d.magnetedBlockView;

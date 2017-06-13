@@ -10,7 +10,7 @@ Entry.FieldTrashcan = function(board) {
     this.isOver = false;
 
     if (Entry.windowResized)
-        Entry.windowResized.attach(this, this.setPosition);
+        this.posEvent = Entry.windowResized.attach(this, this.setPosition);
 };
 
 (function(p) {
@@ -145,7 +145,7 @@ Entry.FieldTrashcan = function(board) {
     };
 
     p.setBoard = function(board) {
-        if (this._dragBlockObserver) this._dragBlockObserver.destroy();
+        if (this.dragBlockObserver) this.dragBlockObserver.destroy();
         this.board = board;
         if (!this.svgGroup) this._generateView();
 
@@ -155,11 +155,26 @@ Entry.FieldTrashcan = function(board) {
         if (firstChild) svg.insertBefore(this.svgGroup, firstChild);
         else svg.appendChild(this.svgGroup);
 
-        this._dragBlockObserver = board.observe(this, "updateDragBlock", ["dragBlock"]);
+        this.dragBlockObserver = board.observe(this, "updateDragBlock", ["dragBlock"]);
         this.svgGroup.attr({
             'filter': 'url(#entryTrashcanFilter_'+ board.suffix +')'
         });
         this.setPosition();
+    };
+
+    p.remove = function() {
+        if (Entry.windowResized && this.posEvent) {
+            Entry.windowResized.detach(this, this.posEvent);
+            delete this.posEvent;
+        }
+
+        var observer = this.dragBlockObserver;
+        if (observer) {
+            observer.destroy();
+            this.dragBlockObserver = null;
+        }
+
+        $(this.svgGroup).remove();
     };
 
 })(Entry.FieldTrashcan.prototype);

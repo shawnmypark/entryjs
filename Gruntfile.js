@@ -19,7 +19,6 @@ module.exports = function(grunt) {
                 files: ['src/**'],
                 tasks: [
                     'closureCompiler:targetName',
-                    'karma',
                     'jshint',
                     'less'
                 ]
@@ -107,7 +106,6 @@ module.exports = function(grunt) {
     // Default tasks.
     grunt.registerTask('default', [
         'closureCompiler',
-        'karma',
         'jshint',
         'less'
     ]);
@@ -115,7 +113,6 @@ module.exports = function(grunt) {
     grunt.registerTask('development', [
         'watch',
         'closureCompiler:targetName',
-        'karma',
         'concurrent'
     ]);
 
