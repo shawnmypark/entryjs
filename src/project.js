@@ -113,3 +113,85 @@ Entry.getStartProject = function(mediaFilePath) {
         "speed" : 60
     };
 };
+
+//this project is just for init
+Entry.getDummyProject = function(mediaFilePath) {
+    mediaFilePath = mediaFilePath || '/lib/entryjs/images/';
+    return {
+        "category" : "기타",
+        "scenes" : [
+            {
+                "name" : Lang.Blocks.SCENE + " 1",
+                "id" : "7dwq"
+            }
+        ],
+        "variables" : [
+            {
+                "name" : "초시계",
+                "id" : "brih",
+                "visible" : false,
+                "value" : "0",
+                "variableType" : "timer",
+                "x" : 150,
+                "y" : -70,
+                "array" : [],
+                "object" : null,
+                "isCloud" : false
+            },
+            {
+                "name" : "대답",
+                "id" : "1vu8",
+                "visible" : false,
+                "value" : "0",
+                "variableType" : "answer",
+                "x" : 150,
+                "y" : -100,
+                "array" : [],
+                "object" : null,
+                "isCloud" : false
+            }
+        ],
+        "objects" : [
+            {
+                "id" : "7y0y",
+                "name" : "엔트리봇",
+                "script" : [],
+                "selectedPictureId" : "vx80",
+                "objectType" : "sprite",
+                "rotateMethod" : "free",
+                "scene" : "7dwq",
+                "sprite" : {
+                    "sounds" : [],
+                    "pictures" : [
+                        {
+                            "id" : "vx80",
+                            "fileurl" : mediaFilePath + "media/entrybot1.png",
+                            "name" : Lang.Blocks.walking_entryBot+"1",
+                            "scale" : 100,
+                            "dimension" : {
+                                "width" : 284,
+                                "height" : 350
+                            }
+                        }
+                    ]
+                },
+                "entity" : {
+                    "x" : 0,
+                    "y" : 0,
+                    "regX" : 142,
+                    "regY" : 175,
+                    "scaleX" : 0.3154574132492113,
+                    "scaleY" : 0.3154574132492113,
+                    "rotation" : 0,
+                    "direction" : 90,
+                    "width" : 284,
+                    "height" : 350,
+                    "visible" : true
+                },
+                "lock" : false,
+                "active" : true
+            }
+        ],
+        "speed" : 60
+    };
+};

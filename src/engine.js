@@ -577,7 +577,7 @@ Entry.Engine = function() {
         Entry.Func.clearThreads();
         createjs.Sound.setVolume(1);
         createjs.Sound.stop();
-        this.view_.removeClass('entryEngineBlueWorkspace');
+        this.view_ && this.view_.removeClass('entryEngineBlueWorkspace');
         if (this.runButton) {
             this.runButton.removeClass('entryRemove');
             this.stopButton.addClass('entryRemove');
