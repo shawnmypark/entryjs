@@ -1,0 +1,23 @@
+{
+  "name": "entryjs",
+  "description": "JavaScript library for visual programming",
+  "main": "dist/entry.min.js",
+  "authors": [
+    "entrylabs"
+  ],
+  "license": "Apache",
+  "keywords": [
+    "entry",
+    "entryjs",
+    "javascript"
+  ],
+  "homepage": "https://github.com/entrylabs/entryjs",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib/",
+    "test",
+    "tests"
+  ]
+}
