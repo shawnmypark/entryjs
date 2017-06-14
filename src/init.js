@@ -197,9 +197,9 @@ Entry.initialize_ = function() {
      * Initialize hardware manager.
      * @type {!Entry.Toast}
      */
-    if(window.EntryModile) {
+    if(window.EntryMobile) {
         console.log('dasdas');
-        this.hw = new Entry.HW();
+        this.hw = new Entry.mobileHW();
     } else {
         this.hw = new Entry.HW();
     }

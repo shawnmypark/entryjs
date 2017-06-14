@@ -19,7 +19,7 @@ module.exports = function(grunt) {
                 files: ['src/**'],
                 tasks: [
                     'closureCompiler:targetName',
-                    'karma',
+                    // 'karma',
                     'jshint',
                     'less'
                 ]
@@ -115,7 +115,7 @@ module.exports = function(grunt) {
     grunt.registerTask('development', [
         'watch',
         'closureCompiler:targetName',
-        'karma',
+        // 'karma',
         'concurrent'
     ]);
 
