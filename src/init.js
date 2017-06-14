@@ -197,7 +197,12 @@ Entry.initialize_ = function() {
      * Initialize hardware manager.
      * @type {!Entry.Toast}
      */
-    this.hw = new Entry.HW();
+    if(window.EntryModile) {
+        console.log('dasdas');
+        this.hw = new Entry.HW();
+    } else {
+        this.hw = new Entry.HW();
+    }
 
     if (Entry.enableActivityLogging)
         this.reporter = new Entry.Reporter(false);
