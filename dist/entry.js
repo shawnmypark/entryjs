@@ -10357,6 +10357,9 @@ p.initEntryBM = function() {
     c.sendQueue = {};
   });
 };
+p.setZero = function() {
+  Entry.mobileHW.hwInfo && Entry.mobileHW.hwInfo.setZero();
+};
 p.updatePortData = function(c) {
   this.portData = c;
 };

@@ -29,6 +29,12 @@ p.initEntryBM = function() {
     });
 }
 
+p.setZero = function() {
+    if (!Entry.mobileHW.hwInfo)
+        return;
+    Entry.mobileHW.hwInfo.setZero();
+};
+
 p.updatePortData = function(data) {
     this.portData = data;
 };
