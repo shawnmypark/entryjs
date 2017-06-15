@@ -198,7 +198,6 @@ Entry.initialize_ = function() {
      * @type {!Entry.Toast}
      */
     if(window.EntryMobile) {
-        console.log('dasdas');
         this.hw = new Entry.mobileHW();
     } else {
         this.hw = new Entry.HW();

@@ -8,10 +8,30 @@ Entry.mobileHW = function() {
     this.hwInfo = Entry.Neobot;
     this.entryBM = window.EntryBM;
     this.sendQueue = {};
+    this.portData = {};
+
+    this.initEntryBM();
 };
 
 var p = Entry.mobileHW.prototype;
 
+p.initEntryBM = function() {
+    var that = this;
+    this.entryBM.on('message', function (data) {
+        if(data && typeof data === 'string') {
+            var data = JSON.parse(msg.data);
+            that.updatePortData(data);
+        }
+    });
+
+    this.entryBM.on('disconnect', function() {
+        that.sendQueue = {};
+    });
+}
+
+p.updatePortData = function(data) {
+    this.portData = data;
+};
 
 p.banHW = function() {
 };
