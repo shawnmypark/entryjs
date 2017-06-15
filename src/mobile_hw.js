@@ -5,7 +5,7 @@
 
 Entry.mobileHW = function() {
     Entry.addEventListener('stop', this.setZero);
-    this.hwInfo = Entry.Neobot;
+    this.hwModule = Entry.Neobot;
     this.entryBM = window.EntryBM;
     this.sendQueue = {};
     this.portData = {};
@@ -30,9 +30,9 @@ p.initEntryBM = function() {
 }
 
 p.setZero = function() {
-    if (!Entry.mobileHW.hwInfo)
+    if (!Entry.hw.hwModule)
         return;
-    Entry.mobileHW.hwInfo.setZero();
+    Entry.hw.hwModule.setZero();
 };
 
 p.updatePortData = function(data) {
