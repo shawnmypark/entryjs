@@ -10351,7 +10351,7 @@ p = Entry.mobileHW.prototype;
 p.initEntryBM = function() {
   var c = this;
   this.entryBM.on("message", function(b) {
-    b && "string" === typeof b && (b = JSON.parse(msg.data), c.updatePortData(b));
+    b && c.updatePortData(b);
   });
   this.entryBM.on("disconnect", function() {
     c.sendQueue = {};

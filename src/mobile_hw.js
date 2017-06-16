@@ -18,8 +18,7 @@ var p = Entry.mobileHW.prototype;
 p.initEntryBM = function() {
     var that = this;
     this.entryBM.on('message', function (data) {
-        if(data && typeof data === 'string') {
-            var data = JSON.parse(msg.data);
+        if(data) {
             that.updatePortData(data);
         }
     });
