@@ -107,6 +107,7 @@ Entry.BlockMenu = function(dom, align, categoryData, scroll, readOnly) {
     p._generateView = function(categoryData) {
         var parent = this.view;
         var that = this;
+        var svgDom;
 
         categoryData && this._generateCategoryView(categoryData);
 
@@ -115,53 +116,14 @@ Entry.BlockMenu = function(dom, align, categoryData, scroll, readOnly) {
             'parent':parent
         });
 
-        this.svgDom = Entry.Dom(
+        svgDom = this.svgDom = Entry.Dom(
             $('<svg id="' + this._svgId +'" class="blockMenu" version="1.1" xmlns="http://www.w3.org/2000/svg"></svg>'),
             { parent: this.blockMenuContainer }
         );
 
-        this.svgDom.mouseenter(function(e) {
-            that._scroller && that._scroller.setOpacity(1);
+        svgDom.on('mouseenter touchstart', this._enterFunc.bind(this));
 
-            var selectedBlockView = that.workspace.selectedBlockView;
-            if (!Entry.playground || Entry.playground.resizing ||
-                (selectedBlockView && selectedBlockView.dragMode === Entry.DRAG_MODE_DRAG)) return;
-            Entry.playground.focusBlockMenu = true;
-            if (!Entry.resizable)
-                return;
-
-            var bBox = that.svgGroup.getBBox();
-            var adjust = that.hasCategory() ? 64 : 0;
-            var expandWidth = bBox.width + bBox.x + adjust;
-            if (expandWidth > Entry.interfaceState.menuWidth) {
-                this.widthBackup = Entry.interfaceState.menuWidth - adjust;
-                $(this).stop().animate({
-                    width: expandWidth - adjust
-                }, 200);
-            }
-        });
-
-        this.svgDom.mouseleave(function(e) {
-            if (!Entry.playground || Entry.playground.resizing) return;
-
-            if (that._scroller)
-                that._scroller.setOpacity(0);
-
-            if (!Entry.resizable)
-                return;
-
-            var widthBackup = this.widthBackup;
-            if (widthBackup)
-                $(this).stop().animate({
-                    width: widthBackup
-                }, 200);
-            delete this.widthBackup;
-            delete Entry.playground.focusBlockMenu;
-        });
-
-        $(window).scroll(function() {
-            that.updateOffset();
-        });
+        svgDom.mouseleave(this._leaveFunc.bind(this));
     };
 
     p.changeCode = function(code, isImmediate) {
@@ -1070,6 +1032,51 @@ Entry.BlockMenu = function(dom, align, categoryData, scroll, readOnly) {
         function isOverFlow() {
             return rect.bottom > $(window).height() - 10;
         }
+    };
+
+    p._enterFunc = function(e) {
+        var dom = this.svgDom;
+        this._scroller && this._scroller.setOpacity(1);
+
+        var selectedBlockView = this.workspace.selectedBlockView;
+        if (!Entry.playground || Entry.playground.resizing ||
+            (selectedBlockView && selectedBlockView.dragMode === Entry.DRAG_MODE_DRAG)) return;
+        Entry.playground.focusBlockMenu = true;
+
+        var bBox = this.svgGroup.getBBox();
+        var adjust = this._getCategoryDomWidth();
+        console.log('adjust', adjust);
+        var expandWidth = bBox.width + bBox.x + adjust;
+        if (expandWidth > Entry.interfaceState.menuWidth) {
+            dom.widthBackup = Entry.interfaceState.menuWidth - adjust;
+            $(dom).stop().animate({
+                width: expandWidth - adjust
+            }, 200);
+            if (e.type === 'touchstart')
+                setTimeout(this._leaveFunc.bind(this), 2000);
+        }
+    };
+
+    p._leaveFunc = function() {
+        var dom = this.svgDom;
+        if (!Entry.playground || Entry.playground.resizing) return;
+
+        if (this._scroller)
+            this._scroller.setOpacity(0);
+
+        var widthBackup = dom.widthBackup;
+        if (widthBackup)
+            $(dom).stop().animate({
+                width: widthBackup
+            }, 200);
+        delete dom.widthBackup;
+        delete Entry.playground.focusBlockMenu;
+    };
+
+    p._getCategoryDomWidth = function() {
+        if (!this.hasCategory()) return 0;
+        var dom = this._categoryCol;
+        return dom && dom.width();
     };
 
 })(Entry.BlockMenu.prototype);
