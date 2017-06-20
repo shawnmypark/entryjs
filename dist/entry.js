@@ -24,7 +24,7 @@ var Entry = {block:{}, TEXT_ALIGN_CENTER:0, TEXT_ALIGN_LEFT:1, TEXT_ALIGN_RIGHT:
   }
   Entry.Loader.isLoaded() && Entry.Loader.handleLoad();
   "workspace" == this.type && Entry.stateManager.endIgnore();
-  c.interface && Entry.options.loadInterface && Entry.loadInterfaceState(c.interface);
+  c.interface && Entry.options.loadInterface && (console.log("load", c.interface), Entry.loadInterfaceState(c.interface));
   window.parent && window.parent.childIframeLoaded && window.parent.childIframeLoaded();
   return c;
 }, clearProject:function() {
@@ -65,7 +65,7 @@ var Entry = {block:{}, TEXT_ALIGN_CENTER:0, TEXT_ALIGN_LEFT:1, TEXT_ALIGN_RIGHT:
   c.path = c.fileurl ? c.fileurl : Entry.defaultPath + "/uploads/" + c.filename.substring(0, 2) + "/" + c.filename.substring(2, 4) + "/" + c.filename + c.ext;
   Entry.soundQueue.loadFile({id:c.id, src:c.path, type:createjs.LoadQueue.SOUND});
 }, beforeUnload:function(c) {
-  Entry.hw.closeConnection();
+  Entry.hw && Entry.hw.closeConnection && Entry.hw.closeConnection();
   Entry.variableContainer.updateCloudVariables();
   if ("workspace" == Entry.type && (localStorage && Entry.interfaceState && localStorage.setItem("workspace-interface", JSON.stringify(Entry.captureInterfaceState())), Entry.stateManager && !Entry.stateManager.isSaved())) {
     return Lang.Workspace.project_changed;
@@ -24567,8 +24567,8 @@ Entry.BlockMenu = function(c, b, e, d, f) {
     b && this._generateCategoryView(b);
     this.blockMenuContainer = Entry.Dom("div", {"class":"blockMenuContainer", parent:c});
     b = this.svgDom = Entry.Dom($('<svg id="' + this._svgId + '" class="blockMenu" version="1.1" xmlns="http://www.w3.org/2000/svg"></svg>'), {parent:this.blockMenuContainer});
-    b.on("mouseenter touchstart", this._enterFunc.bind(this));
-    b.mouseleave(this._leaveFunc.bind(this));
+    b.on("mouseenter touchstart", this.expand.bind(this));
+    b.mouseleave(this.contract.bind(this));
   };
   c.changeCode = function(b, c) {
     b instanceof Array && (b = new Entry.Code(b));
@@ -25098,24 +25098,23 @@ Entry.BlockMenu = function(c, b, e, d, f) {
       this.getSvgDomByType(b).getBoundingClientRect().bottom > $(window).height() - 10 && this._scroller.scrollByPx(c.y - 20);
     }
   };
-  c._enterFunc = function(b) {
+  c.expand = function(b) {
     var c = this.svgDom;
     this._scroller && this._scroller.setOpacity(1);
     var d = this.workspace.selectedBlockView;
     if (!(!Entry.playground || Entry.playground.resizing || d && d.dragMode === Entry.DRAG_MODE_DRAG)) {
       Entry.playground.focusBlockMenu = !0;
-      var f = this.svgGroup.getBBox(), d = this._getCategoryDomWidth();
-      console.log("adjust", d);
-      f = f.width + f.x + d;
-      f > Entry.interfaceState.menuWidth && (c.widthBackup = Entry.interfaceState.menuWidth - d, $(c).stop().animate({width:f - d}, 200), "touchstart" === b.type && setTimeout(this._leaveFunc.bind(this), 2000));
+      var f = this.svgGroup.getBBox(), d = this._getCategoryDomWidth(), f = f.width + f.x + d;
+      f > Entry.interfaceState.menuWidth && (c.widthBackup = Entry.interfaceState.menuWidth - d, $(c).stop().animate({width:f - d}, 200), b && "touchstart" === b.type && (c.backupTimer && clearTimeout(c.backupTimer), c.backupTimer = setTimeout(this.contract.bind(this), 2000)));
     }
   };
-  c._leaveFunc = function() {
+  c.contract = function() {
     var b = this.svgDom;
     if (Entry.playground && !Entry.playground.resizing) {
       this._scroller && this._scroller.setOpacity(0);
       var c = b.widthBackup;
       c && $(b).stop().animate({width:c}, 200);
+      delete b.backupTimer;
       delete b.widthBackup;
       delete Entry.playground.focusBlockMenu;
     }

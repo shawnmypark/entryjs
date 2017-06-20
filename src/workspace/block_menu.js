@@ -121,9 +121,9 @@ Entry.BlockMenu = function(dom, align, categoryData, scroll, readOnly) {
             { parent: this.blockMenuContainer }
         );
 
-        svgDom.on('mouseenter touchstart', this._enterFunc.bind(this));
+        svgDom.on('mouseenter touchstart', this.expand.bind(this));
 
-        svgDom.mouseleave(this._leaveFunc.bind(this));
+        svgDom.mouseleave(this.contract.bind(this));
     };
 
     p.changeCode = function(code, isImmediate) {
@@ -1034,7 +1034,7 @@ Entry.BlockMenu = function(dom, align, categoryData, scroll, readOnly) {
         }
     };
 
-    p._enterFunc = function(e) {
+    p.expand = function(e) {
         var dom = this.svgDom;
         this._scroller && this._scroller.setOpacity(1);
 
@@ -1045,20 +1045,26 @@ Entry.BlockMenu = function(dom, align, categoryData, scroll, readOnly) {
 
         var bBox = this.svgGroup.getBBox();
         var adjust = this._getCategoryDomWidth();
-        console.log('adjust', adjust);
         var expandWidth = bBox.width + bBox.x + adjust;
         if (expandWidth > Entry.interfaceState.menuWidth) {
             dom.widthBackup = Entry.interfaceState.menuWidth - adjust;
             $(dom).stop().animate({
                 width: expandWidth - adjust
             }, 200);
-            if (e.type === 'touchstart')
-                setTimeout(this._leaveFunc.bind(this), 2000);
+
+            if (e && e.type === 'touchstart') {
+                if (dom.backupTimer) clearTimeout(dom.backupTimer);
+                dom.backupTimer = setTimeout(
+                    this.contract.bind(this),
+                    2000
+                );
+            }
         }
     };
 
-    p._leaveFunc = function() {
+    p.contract = function() {
         var dom = this.svgDom;
+
         if (!Entry.playground || Entry.playground.resizing) return;
 
         if (this._scroller)
@@ -1069,6 +1075,8 @@ Entry.BlockMenu = function(dom, align, categoryData, scroll, readOnly) {
             $(dom).stop().animate({
                 width: widthBackup
             }, 200);
+
+        delete dom.backupTimer;
         delete dom.widthBackup;
         delete Entry.playground.focusBlockMenu;
     };

@@ -73,8 +73,11 @@ Entry.loadProject = function(project) {
     if (this.type == 'workspace')
         Entry.stateManager.endIgnore();
 
-    if (project.interface && Entry.options.loadInterface)
+    if (project.interface && Entry.options.loadInterface) {
+        console.log('load', project.interface);
+
         Entry.loadInterfaceState(project.interface);
+    }
 
     if (window.parent && window.parent.childIframeLoaded)
         window.parent.childIframeLoaded();
@@ -185,7 +188,7 @@ Entry.initSound = function(sound) {
  * @param {event} e
  */
 Entry.beforeUnload = function(e) {
-    Entry.hw.closeConnection();
+    Entry.hw && Entry.hw.closeConnection && Entry.hw.closeConnection();
     Entry.variableContainer.updateCloudVariables();
     if (Entry.type == 'workspace') {
         if (localStorage && Entry.interfaceState) {
