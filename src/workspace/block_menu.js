@@ -18,6 +18,7 @@ Entry.BlockMenu = function(dom, align, categoryData, scroll, readOnly) {
     this._dAlign = this.align;
     this._setDynamic = Entry.Utils.debounce(this._setDynamic, 150);
     this._dSelectMenu = Entry.Utils.debounce(this.selectMenu, 0);
+    this._dContract = Entry.Utils.debounce(this.contract, 2000);
 
     this._align = align || "CENTER";
     this.setAlign(this._align);
@@ -121,7 +122,8 @@ Entry.BlockMenu = function(dom, align, categoryData, scroll, readOnly) {
             { parent: this.blockMenuContainer }
         );
 
-        svgDom.on('mouseenter touchstart', this.expand.bind(this));
+        svgDom.on('mouseenter', this.expand.bind(this));
+        svgDom.on('touchstart', this.contractAfterExpand.bind(this));
 
         svgDom.mouseleave(this.contract.bind(this));
     };
@@ -142,10 +144,8 @@ Entry.BlockMenu = function(dom, align, categoryData, scroll, readOnly) {
             function() {that.changeEvent.notify();}
         );
         code.createView(this);
-        var workspace = this.workspace;
 
-        if (isImmediate)
-            this.align();
+        if (isImmediate) this.align();
         else this._dAlign();
     };
 
@@ -1036,49 +1036,46 @@ Entry.BlockMenu = function(dom, align, categoryData, scroll, readOnly) {
 
     p.expand = function(e) {
         var dom = this.svgDom;
+        var playground = Entry.playground;
         this._scroller && this._scroller.setOpacity(1);
 
         var selectedBlockView = this.workspace.selectedBlockView;
-        if (!Entry.playground || Entry.playground.resizing ||
-            (selectedBlockView && selectedBlockView.dragMode === Entry.DRAG_MODE_DRAG)) return;
-        Entry.playground.focusBlockMenu = true;
+        if (!playground || playground.resizing ||
+            (selectedBlockView && selectedBlockView.dragMode === Entry.DRAG_MODE_DRAG))
+            return;
 
         var bBox = this.svgGroup.getBBox();
         var adjust = this._getCategoryDomWidth();
-        var expandWidth = bBox.width + bBox.x + adjust;
+        var expandWidth = bBox.width + bBox.x + adjust + 1;
         if (expandWidth > Entry.interfaceState.menuWidth) {
             dom.widthBackup = Entry.interfaceState.menuWidth - adjust;
             $(dom).stop().animate({
                 width: expandWidth - adjust
             }, 200);
-
-            if (e && e.type === 'touchstart') {
-                if (dom.backupTimer) clearTimeout(dom.backupTimer);
-                dom.backupTimer = setTimeout(
-                    this.contract.bind(this),
-                    2000
-                );
-            }
         }
+    };
+
+    p.contractAfterExpand = function(e) {
+        this.expand(e);
+        this._dContract();
     };
 
     p.contract = function() {
         var dom = this.svgDom;
+        var playground = Entry.playground;
 
-        if (!Entry.playground || Entry.playground.resizing) return;
+        if (!playground || playground.resizing) return;
 
         if (this._scroller)
             this._scroller.setOpacity(0);
 
         var widthBackup = dom.widthBackup;
-        if (widthBackup)
+        if (widthBackup) {
             $(dom).stop().animate({
                 width: widthBackup
             }, 200);
-
-        delete dom.backupTimer;
-        delete dom.widthBackup;
-        delete Entry.playground.focusBlockMenu;
+            delete dom.widthBackup;
+        }
     };
 
     p._getCategoryDomWidth = function() {

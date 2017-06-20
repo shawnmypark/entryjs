@@ -24514,6 +24514,7 @@ Entry.BlockMenu = function(c, b, e, d, f) {
   this._dAlign = this.align;
   this._setDynamic = Entry.Utils.debounce(this._setDynamic, 150);
   this._dSelectMenu = Entry.Utils.debounce(this.selectMenu, 0);
+  this._dContract = Entry.Utils.debounce(this.contract, 2000);
   this._align = b || "CENTER";
   this.setAlign(this._align);
   this._scroll = void 0 !== d ? d : !1;
@@ -24567,7 +24568,8 @@ Entry.BlockMenu = function(c, b, e, d, f) {
     b && this._generateCategoryView(b);
     this.blockMenuContainer = Entry.Dom("div", {"class":"blockMenuContainer", parent:c});
     b = this.svgDom = Entry.Dom($('<svg id="' + this._svgId + '" class="blockMenu" version="1.1" xmlns="http://www.w3.org/2000/svg"></svg>'), {parent:this.blockMenuContainer});
-    b.on("mouseenter touchstart", this.expand.bind(this));
+    b.on("mouseenter", this.expand.bind(this));
+    b.on("touchstart", this.contractAfterExpand.bind(this));
     b.mouseleave(this.contract.bind(this));
   };
   c.changeCode = function(b, c) {
@@ -25099,25 +25101,19 @@ Entry.BlockMenu = function(c, b, e, d, f) {
     }
   };
   c.expand = function(b) {
-    var c = this.svgDom;
+    b = this.svgDom;
+    var c = Entry.playground;
     this._scroller && this._scroller.setOpacity(1);
     var d = this.workspace.selectedBlockView;
-    if (!(!Entry.playground || Entry.playground.resizing || d && d.dragMode === Entry.DRAG_MODE_DRAG)) {
-      Entry.playground.focusBlockMenu = !0;
-      var f = this.svgGroup.getBBox(), d = this._getCategoryDomWidth(), f = f.width + f.x + d;
-      f > Entry.interfaceState.menuWidth && (c.widthBackup = Entry.interfaceState.menuWidth - d, $(c).stop().animate({width:f - d}, 200), b && "touchstart" === b.type && (c.backupTimer && clearTimeout(c.backupTimer), c.backupTimer = setTimeout(this.contract.bind(this), 2000)));
-    }
+    !c || c.resizing || d && d.dragMode === Entry.DRAG_MODE_DRAG || (d = this.svgGroup.getBBox(), c = this._getCategoryDomWidth(), d = d.width + d.x + c + 1, d > Entry.interfaceState.menuWidth && (b.widthBackup = Entry.interfaceState.menuWidth - c, $(b).stop().animate({width:d - c}, 200)));
+  };
+  c.contractAfterExpand = function(b) {
+    this.expand(b);
+    this._dContract();
   };
   c.contract = function() {
-    var b = this.svgDom;
-    if (Entry.playground && !Entry.playground.resizing) {
-      this._scroller && this._scroller.setOpacity(0);
-      var c = b.widthBackup;
-      c && $(b).stop().animate({width:c}, 200);
-      delete b.backupTimer;
-      delete b.widthBackup;
-      delete Entry.playground.focusBlockMenu;
-    }
+    var b = this.svgDom, c = Entry.playground;
+    c && !c.resizing && (this._scroller && this._scroller.setOpacity(0), c = b.widthBackup) && ($(b).stop().animate({width:c}, 200), delete b.widthBackup);
   };
   c._getCategoryDomWidth = function() {
     if (!this.hasCategory()) {
