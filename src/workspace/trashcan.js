@@ -6,6 +6,7 @@ Entry.FieldTrashcan = function(board) {
     if (board) this.setBoard(board);
 
     this.dragBlock = null;
+    this._dragBlockObserver = null;
     this.dragBlockObserver = null;
     this.isOver = false;
 
@@ -145,7 +146,7 @@ Entry.FieldTrashcan = function(board) {
     };
 
     p.setBoard = function(board) {
-        if (this.dragBlockObserver) this.dragBlockObserver.destroy();
+        if (this._dragBlockObserver) this._dragBlockObserver.destroy();
         this.board = board;
         if (!this.svgGroup) this._generateView();
 
@@ -155,7 +156,7 @@ Entry.FieldTrashcan = function(board) {
         if (firstChild) svg.insertBefore(this.svgGroup, firstChild);
         else svg.appendChild(this.svgGroup);
 
-        this.dragBlockObserver = board.observe(this, "updateDragBlock", ["dragBlock"]);
+        this._dragBlockObserver = board.observe(this, "updateDragBlock", ["dragBlock"]);
         this.svgGroup.attr({
             'filter': 'url(#entryTrashcanFilter_'+ board.suffix +')'
         });
@@ -168,10 +169,10 @@ Entry.FieldTrashcan = function(board) {
             delete this.posEvent;
         }
 
-        var observer = this.dragBlockObserver;
+        var observer = this._dragBlockObserver;
         if (observer) {
             observer.destroy();
-            this.dragBlockObserver = null;
+            this._dragBlockObserver = null;
         }
 
         $(this.svgGroup).remove();

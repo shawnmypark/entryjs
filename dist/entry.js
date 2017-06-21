@@ -13149,7 +13149,7 @@ p.resize = function() {
 };
 Entry.FieldTrashcan = function(c) {
   c && this.setBoard(c);
-  this.dragBlockObserver = this.dragBlock = null;
+  this.dragBlockObserver = this._dragBlockObserver = this.dragBlock = null;
   this.isOver = !1;
   Entry.windowResized && (this.posEvent = Entry.windowResized.attach(this, this.setPosition));
 };
@@ -13211,19 +13211,19 @@ Entry.FieldTrashcan = function(c) {
     }
   };
   c.setBoard = function(b) {
-    this.dragBlockObserver && this.dragBlockObserver.destroy();
+    this._dragBlockObserver && this._dragBlockObserver.destroy();
     this.board = b;
     this.svgGroup || this._generateView();
     var c = b.svg, d = c.firstChild;
     d ? c.insertBefore(this.svgGroup, d) : c.appendChild(this.svgGroup);
-    this.dragBlockObserver = b.observe(this, "updateDragBlock", ["dragBlock"]);
+    this._dragBlockObserver = b.observe(this, "updateDragBlock", ["dragBlock"]);
     this.svgGroup.attr({filter:"url(#entryTrashcanFilter_" + b.suffix + ")"});
     this.setPosition();
   };
   c.remove = function() {
     Entry.windowResized && this.posEvent && (Entry.windowResized.detach(this, this.posEvent), delete this.posEvent);
-    var b = this.dragBlockObserver;
-    b && (b.destroy(), this.dragBlockObserver = null);
+    var b = this._dragBlockObserver;
+    b && (b.destroy(), this._dragBlockObserver = null);
     $(this.svgGroup).remove();
   };
 })(Entry.FieldTrashcan.prototype);
