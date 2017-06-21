@@ -26317,25 +26317,25 @@ Entry.Scroller.RADIUS = 7;
       b.stopPropagation();
     });
     this._vertical && (this.vScrollbar = this.svgGroup.elem("rect", {width:2 * b, rx:b, ry:b}), this.vScrollbar.mousedown = function(b) {
-      function d(b) {
+      function e(b) {
         b.stopPropagation();
         b.preventDefault();
         b.originalEvent.touches && (b = b.originalEvent.touches[0]);
-        var d = c.dragInstance;
-        c.scroll(0, (b.pageY - d.offsetY) / c.vRatio);
-        d.set({offsetX:b.pageX, offsetY:b.pageY});
+        var e = c.dragInstance;
+        c.scroll(0, (b.pageY - e.offsetY) / c.vRatio);
+        e.set({offsetX:b.pageX, offsetY:b.pageY});
       }
-      function e(b) {
+      function d(b) {
         $(document).unbind(".scroll");
         delete c.dragInstance;
       }
       if (0 === b.button || b instanceof Touch) {
         Entry.documentMousedown && Entry.documentMousedown.notify(b);
         var h = $(document);
-        h.bind("mousemove.scroll", d);
-        h.bind("mouseup.scroll", e);
-        h.bind("touchmove.scroll", d);
-        h.bind("touchend.scroll", e);
+        h.bind("mousemove.scroll", e);
+        h.bind("mouseup.scroll", d);
+        h.bind("touchmove.scroll", e);
+        h.bind("touchend.scroll", d);
         c.dragInstance = new Entry.DragInstance({startX:b.pageX, startY:b.pageY, offsetX:b.pageX, offsetY:b.pageY});
       }
       b.stopPropagation();
@@ -27694,27 +27694,39 @@ Entry.Utils.inherit(Entry.Field, Entry.FieldDropdown);
     this._block.view.dAlignContent();
   };
   c.renderOptions = function() {
-    var b = this;
+    var b = this, c = null;
     this._attachDisposeEvent();
-    this.optionGroup = Entry.Dom("ul", {class:"entry-widget-dropdown", parent:$("body")});
-    this.optionGroup.bind("mousedown touchstart", function(b) {
+    var d = this.optionGroup = Entry.Dom("ul", {class:"entry-widget-dropdown", parent:$("body")});
+    d.bind("mousedown touchstart", function(b) {
       b.stopPropagation();
     });
-    for (var c = this._contents.options, d = 0, f = c.length; d < f; d++) {
-      var g = c[d], h = g[0] = this._convert(g[0], g[1]), g = g[1], k = Entry.Dom("li", {class:"rect", parent:this.optionGroup}), l = Entry.Dom("span", {class:"left", parent:k});
-      Entry.Dom("span", {class:"right", parent:k}).text(h);
-      this.getValue() == g && l.text("\u2713");
-      (function(c, d) {
-        c.bind("mousedown touchstart", function(b) {
+    for (var f = this._contents.options, g = 0, h = f.length; g < h; g++) {
+      var k = f[g], l = k[0] = this._convert(k[0], k[1]), k = k[1], m = Entry.Dom("li", {class:"rect", parent:d}), n = Entry.Dom("span", {class:"left", parent:m});
+      Entry.Dom("span", {class:"right", parent:m}).text(l);
+      this.getValue() == k && n.text("\u2713");
+      (function(d, e) {
+        d.bind("mousedown touchstart", function(b) {
+          if (!c && b.originalEvent && b.originalEvent.touches) {
+            var d = b.originalEvent.touches[0];
+            c || (c = d.pageY);
+          }
           b.stopPropagation();
         });
-        c.bind("mouseup touchend", function(c) {
+        d.bind("mouseup", function(c) {
           c.stopPropagation();
-          b.applyValue(d);
+          b.applyValue(e);
           b.destroyOption(void 0, !0);
           b._selectBlockView();
         });
-      })(k, g);
+        d.bind("touchend", function(d) {
+          d.stopPropagation();
+          var f, g = !1;
+          d.originalEvent && d.originalEvent.changedTouches && (f = d.originalEvent.changedTouches[0]);
+          c && f && (g = 5 < Math.sqrt(Math.pow(f.pageY - c, 2)));
+          c = null;
+          g || (b.applyValue(e), b.destroyOption(void 0, !0), b._selectBlockView());
+        });
+      })(m, k);
     }
     this._position();
     this.optionDomCreated();

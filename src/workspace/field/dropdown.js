@@ -135,17 +135,18 @@ Entry.Utils.inherit(Entry.Field, Entry.FieldDropdown);
 
     p.renderOptions = function() {
         var that = this;
+        var touchStartPos = null;
 
         var blockView = this._block.view;
 
         this._attachDisposeEvent();
 
-        this.optionGroup = Entry.Dom('ul', {
+        var optionGroup = this.optionGroup = Entry.Dom('ul', {
             class:'entry-widget-dropdown',
             parent: $('body')
         });
 
-        this.optionGroup.bind('mousedown touchstart', function(e) {
+        optionGroup.bind('mousedown touchstart', function(e) {
             e.stopPropagation();
         });
 
@@ -161,7 +162,7 @@ Entry.Utils.inherit(Entry.Field, Entry.FieldDropdown);
             var value = option[1];
             var element = Entry.Dom('li', {
                 class: 'rect',
-                parent: this.optionGroup
+                parent: optionGroup
             });
 
             var left = Entry.Dom('span', {
@@ -179,20 +180,48 @@ Entry.Utils.inherit(Entry.Field, Entry.FieldDropdown);
             (function(elem, value) {
                 //prevent propagation to document
                 elem.bind('mousedown touchstart', function(e) {
+                    if (!touchStartPos && e.originalEvent && e.originalEvent.touches) {
+                        var mouseEvent = e.originalEvent.touches[0];
+                        if (!touchStartPos)
+                            touchStartPos = mouseEvent.pageY;
+                    }
                     e.stopPropagation();
                 });
 
-                elem.bind('mouseup touchend', function(e){
+                elem.bind('mouseup', function(e){
                     e.stopPropagation();
-                    that.applyValue(value);
-                    that.destroyOption(undefined, true);
-                    that._selectBlockView();
+                    terminate(value);
+                });
+
+                elem.bind('touchend', function(e){
+                    e.stopPropagation();
+                    var mouseEvent;
+                    var isScrolled = false;
+
+                    if (e.originalEvent && e.originalEvent.changedTouches)
+                        mouseEvent = e.originalEvent.changedTouches[0];
+
+                    if (touchStartPos && mouseEvent) {
+                        var diff = Math.sqrt(
+                            Math.pow(mouseEvent.pageY - touchStartPos, 2)
+                        );
+                        isScrolled = diff > 5;
+                    }
+
+                    touchStartPos = null;
+                    !isScrolled && terminate(value);
                 });
             })(element, value);
         }
-        this._position();
 
+        this._position();
         this.optionDomCreated();
+
+        function terminate(value) {
+            that.applyValue(value);
+            that.destroyOption(undefined, true);
+            that._selectBlockView();
+        }
     };
 
     p._position = function() {
