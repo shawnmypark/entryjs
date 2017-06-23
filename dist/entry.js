@@ -13097,7 +13097,7 @@ Entry.FieldTrashcan = function(c) {
   c && this.setBoard(c);
   this.dragBlockObserver = this._dragBlockObserver = this.dragBlock = null;
   this.isOver = !1;
-  window.EntryMobile ? (this.padding = 110, this.scale = 1) : (this.padding = 80, this.scale = 0.7);
+  window.EntryMobile ? (this.padding = 80, this.scale = 0.7) : (this.padding = 110, this.scale = 1);
   Entry.windowResized && (this.posEvent = Entry.windowResized.attach(this, this.setPosition));
 };
 (function(c) {

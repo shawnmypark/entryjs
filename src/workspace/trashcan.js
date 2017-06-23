@@ -10,7 +10,7 @@ Entry.FieldTrashcan = function(board) {
     this.dragBlockObserver = null;
     this.isOver = false;
 
-    if(window.EntryMobile) {
+    if(!window.EntryMobile) {
         this.padding = 110;
         this.scale = 1;
     } else {
