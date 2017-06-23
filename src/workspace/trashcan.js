@@ -10,6 +10,14 @@ Entry.FieldTrashcan = function(board) {
     this.dragBlockObserver = null;
     this.isOver = false;
 
+    if(window.EntryMobile) {
+        this.padding = 110;
+        this.scale = 1;
+    } else {
+        this.padding = 80;
+        this.scale = 0.7;
+    }
+
     if (Entry.windowResized)
         this.posEvent = Entry.windowResized.attach(this, this.setPosition);
 };
@@ -98,18 +106,18 @@ Entry.FieldTrashcan = function(board) {
 
     p.align = function() {
         var position = this.getPosition();
-        var transform = "translate(" + position.x + "," + position.y + ")";
+        var transform = "translate(" + position.x + "," + position.y + ") scale("+ this.scale +")";
 
         this.svgGroup.attr({
-            transform: transform
+            transform: transform,
         });
     };
 
     p.setPosition = function() {
         if (!this.board) return;
         var svgDom = this.board.svgDom;
-        this._x = svgDom.width()-110;
-        this._y = svgDom.height()-110;
+        this._x = svgDom.width() - this.padding;
+        this._y = svgDom.height() - this.padding;
         this.align();
     };
 
