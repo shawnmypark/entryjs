@@ -18,6 +18,7 @@ import { TimeoutTimer } from '../utils/TimeoutTimer';
 import { ImageRect } from '../../maxrect-packer/geom/ImageRect';
 import { autoFit } from '../utils/AutoFit';
 import { EntryTextureOption } from './EntryTextureOption';
+import { ISceneTextures } from './ISceneTextures';
 
 declare let _:any;
 declare let Entry:any;
@@ -32,7 +33,7 @@ let TIMEOUT_INTERVAL = 250;
 let EMPTY_BASE_TEX:AtlasBaseTexture;
 
 
-export class SceneBins {
+export class SceneBins implements ISceneTextures {
 
     private static initEmptyTex(maxSize:number) {
         if (EMPTY_BASE_TEX) return;
