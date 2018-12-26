@@ -162,8 +162,7 @@ export class SceneBins implements ISceneTextures {
         base = new AtlasBaseTexture(this._viewer, OP.scaleMode);
         base.setCanvas(PIXIHelper.getOffScreenCanvas());
         base.imageType = "png";
-        const BASE_TEX_MAX_SIZE = this._option.atlasOption.atlasSize;
-        base.realWidth = base.realHeight = base.width = base.height = BASE_TEX_MAX_SIZE;
+        base.realWidth = base.realHeight = base.width = base.height = OP.atlasOption.atlasSize;
         base.mipmap = OP.mipmap;
         this._arrBaseTexture[index] = base;
         return base;
