@@ -23,48 +23,8 @@ declare let _:any;
 declare let Entry:any;
 
 
-/** BaseTextureOption **/
-let OP = {
-    scaleMode: PIXI.SCALE_MODES.LINEAR,
-    mipmap: false,
-    useOffscreenCanvas: false
-};
-
-
-
 let TIMEOUT_INTERVAL = 250;
 
-/** base texture max pixel size */
-const BASE_TEX_MAX_SIZE = computeMaxTextureSize(4096);
-
-/** 텍스쳐의 최대 사이즈. 이미지가 이 크기보다 크면 리사이즈 하여 사용함. */
-const TEX_MAX_SIZE = Math.min(BASE_TEX_MAX_SIZE, 2048);
-
-/**
- * 텍스쳐를 최대 몇으로 할지의 값을 Canvas.width , height 기준으로 몇배로 할 지에 대한 값.
- */
-const RATIO:number = 1;
-
-//todo 640, 320을 리터럴이 아닌 canvas ( w, h ) 로 변경 필요.
-const TEX_MAX_SIZE_RECT = new ImageRect(
-    0,0,
-    Math.min(Math.round(640 * RATIO), TEX_MAX_SIZE),
-    Math.min(Math.round(320 * RATIO), TEX_MAX_SIZE)
-);
-
-const EXTRUDE_SIZE = 2;
-function newPacker():MaxRectsPacker{
-    //https://www.npmjs.com/package/maxrects-packer
-    const PADDING = 6; //텍스쳐 사이의 간격.
-    const BORDER = 2; //베이스 텍스쳐 테두리 간격
-    const OPTION = {
-        smart: false,
-        pot: true,
-        square: false,
-
-    };
-    return new MaxRectsPacker(BASE_TEX_MAX_SIZE, BASE_TEX_MAX_SIZE, BORDER, PADDING, OPTION);
-}
 
 /**
  * packing 이 되기전에 texture 객체를 생성하기 위한 BaseTexture
@@ -91,7 +51,7 @@ export class SceneBins {
     private _packedRects:ImageRect[] = [];
     private _notPackedRects:ImageRect[] = [];
     private _arrBaseTexture:AtlasBaseTexture[] = [];
-    private _packer:MaxRectsPacker = newPacker();
+    private _packer:MaxRectsPacker;
     private _path_tex_map:PrimitiveMap<AtlasTexture> = new PrimitiveMap();
     private _activated:boolean;
     private _imageRemoved:boolean;
@@ -99,6 +59,7 @@ export class SceneBins {
 
     constructor(public sceneID:string, private _option:EntryTextureOption, private _loader:AtlasImageLoader, private _viewer:AtlasCanvasViewer) {
         SceneBins.initEmptyTex(_option.atlasOption.atlasSize);
+        this._packer = _option.atlasOption.newPacker();
     }
 
     addPicInfo(pic:IRawPicture):void {
@@ -175,12 +136,14 @@ export class SceneBins {
 
         this._invalidate();
 
+        const BASE_TEX_MAX_SIZE = this._option.atlasOption.atlasSize;
         _.each(this._packer.bins, (bin:MaxRectsBin, index:number)=>{
             var base:AtlasBaseTexture = this._arrBaseTexture[index];
             base.activate(BASE_TEX_MAX_SIZE);
             base.update();
         });
 
+        const EXTRUDE_SIZE = this._option.atlasOption.extrudeSize;
         this._path_tex_map.each((t:AtlasTexture, path:string)=>{
             var info = this._loader.getImageInfo(path);
             if(!info || !info.isReady ) {
@@ -194,9 +157,11 @@ export class SceneBins {
     private _getBaseTexture(index:number):AtlasBaseTexture {
         var base:AtlasBaseTexture = this._arrBaseTexture[index];
         if(base) return base;
+        const OP = this._option;
         base = new AtlasBaseTexture(this._viewer, OP.scaleMode);
-        base.setCanvas(PIXIHelper.getOffScreenCanvas(!OP.useOffscreenCanvas));
+        base.setCanvas(PIXIHelper.getOffScreenCanvas());
         base.imageType = "png";
+        const BASE_TEX_MAX_SIZE = this._option.atlasOption.atlasSize;
         base.realWidth = base.realHeight = base.width = base.height = BASE_TEX_MAX_SIZE;
         base.mipmap = OP.mipmap;
         this._arrBaseTexture[index] = base;
@@ -235,8 +200,10 @@ export class SceneBins {
         var base:AtlasBaseTexture = t.getBaseTexture();
 
         if(!base.activated) {
+            const BASE_TEX_MAX_SIZE = this._option.atlasOption.atlasSize;
             base.activate(BASE_TEX_MAX_SIZE);
         }
+        const EXTRUDE_SIZE = this._option.atlasOption.extrudeSize;
         t.drawImageAtBaseTexture(info, EXTRUDE_SIZE);
         if(forceUpdateBaseTexture) {
             base.update();
@@ -322,6 +289,7 @@ export class SceneBins {
 
     private _getNewImageRect(w:number, h:number):ImageRect {
         var r = new ImageRect(0,0, w, h);
+        const TEX_MAX_SIZE_RECT = this._option.atlasOption.texMaxRect;
         if(w > TEX_MAX_SIZE_RECT.width || h > TEX_MAX_SIZE_RECT.height ) {
             autoFit.fit(TEX_MAX_SIZE_RECT, r, autoFit.ScaleMode.INSIDE, autoFit.AlignMode.TL);
             r.width = Math.ceil(r.width);
@@ -333,12 +301,3 @@ export class SceneBins {
 }
 
 
-function computeMaxTextureSize(LIMIT:number):number {
-    var canvas:HTMLCanvasElement = PIXIHelper.getOffScreenCanvas(true);
-    var ctx:WebGLRenderingContext = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-    var size = ctx ? ctx.getParameter(ctx.MAX_TEXTURE_SIZE) : 2048;
-    size = Math.min(size, LIMIT);
-    console.log("Max texture size : " + size);
-    return size;
-
-}
