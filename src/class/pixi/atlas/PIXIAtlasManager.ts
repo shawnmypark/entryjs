@@ -7,17 +7,19 @@ import Texture = PIXI.Texture;
 import { PIXIDebugHelper } from '../helper/PIXIDebugHelper';
 import { PIXIAtlasHelper } from './PIXIAtlasHelper';
 import { EntryTextureOption } from './EntryTextureOption';
+import { ISceneTextures } from './ISceneTextures';
+import { SceneTextures } from './SceneTextures';
 
 declare let Entry:any;
 declare let _:any;
 
 
-type SceneBinsMap = {[key:string]: SceneBins};
+type SceneBinsMap = {[key:string]: ISceneTextures};
 
 class _PIXIAtlasManager {
 
     private _sceneID_sceneBin_map:SceneBinsMap = {};
-    private _activatedScene:SceneBins;
+    private _activatedScene:ISceneTextures;
 
     private _imageLoader:AtlasImageLoader;
 
@@ -54,22 +56,27 @@ class _PIXIAtlasManager {
     }
 
     getTextureWithModel(sceneID:string, pic:IRawPicture):Texture {
-        var bin:SceneBins = this._getSceneBin(sceneID);
+        var bin:ISceneTextures = this._getSceneBin(sceneID);
         bin.addPicInfo(pic);
         return bin.getTexture(PIXIAtlasHelper.getRawPath(pic));
     }
 
-    private _getSceneBin(sceneID:string, createIfNotExist:boolean = true):SceneBins {
-        var s:SceneBins = this._sceneID_sceneBin_map[sceneID];
+    private _getSceneBin(sceneID:string, createIfNotExist:boolean = true):ISceneTextures {
+        const USE_ATLAS:boolean = false;
+        var s:ISceneTextures = this._sceneID_sceneBin_map[sceneID];
         if(!s && createIfNotExist) {
-            s = new SceneBins(sceneID, this._option, this._imageLoader, this._viewer);
+            if(USE_ATLAS) {
+                s = new SceneBins(sceneID, this._option, this._imageLoader, this._viewer);
+            } else {
+                s = new SceneTextures(sceneID, this._option, this._imageLoader);
+            }
             this._sceneID_sceneBin_map[sceneID] = s;
         }
         return s;
     }
 
     removeScene(sceneID:string):void {
-        var s:SceneBins = this._getSceneBin(sceneID, false);
+        var s:ISceneTextures = this._getSceneBin(sceneID, false);
         if(!s) return;
         if(this._activatedScene == s ) {
             this._activatedScene = null;
@@ -88,7 +95,7 @@ class _PIXIAtlasManager {
     clearProject():void {
         console.log("clearProject");
         this._imageLoader.empty();
-        _.each(this._sceneID_sceneBin_map, (bin:SceneBins)=>{
+        _.each(this._sceneID_sceneBin_map, (bin:ISceneTextures)=>{
             bin.destroy();
         });
         this._sceneID_sceneBin_map = {};
