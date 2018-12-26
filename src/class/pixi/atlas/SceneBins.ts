@@ -68,12 +68,23 @@ function newPacker():MaxRectsPacker{
 /**
  * packing 이 되기전에 texture 객체를 생성하기 위한 BaseTexture
  */
-let EMPTY_BASE_TEX:AtlasBaseTexture = new AtlasBaseTexture();
-EMPTY_BASE_TEX.width = EMPTY_BASE_TEX.height = EMPTY_BASE_TEX.realHeight = EMPTY_BASE_TEX.realWidth = BASE_TEX_MAX_SIZE;
-EMPTY_BASE_TEX.dispose();
+let EMPTY_BASE_TEX:AtlasBaseTexture;
 
 
 export class SceneBins {
+
+    private static initEmptyTex(maxSize:number) {
+        if (EMPTY_BASE_TEX) return;
+        const TEX = EMPTY_BASE_TEX = new AtlasBaseTexture();
+        TEX.width = TEX.height = TEX.realHeight = TEX.realWidth = maxSize;
+
+        const tex:any = TEX;
+        const emptyEmit = function(){};
+        tex.destroy = emptyEmit;
+        tex.on = emptyEmit;
+        tex.once = emptyEmit;
+        tex.emit = emptyEmit;
+    }
 
     //private _pathSet:PrimitiveSet = new PrimitiveSet();//패킹 전/후 pathf르 모두 저장.
     private _packedRects:ImageRect[] = [];
@@ -86,7 +97,7 @@ export class SceneBins {
     private _timer:TimeoutTimer = new TimeoutTimer();
 
     constructor(public sceneID:string, private _loader:AtlasImageLoader, private _viewer:AtlasCanvasViewer) {
-
+        SceneBins.initEmptyTex(4096);
     }
 
     addPicInfo(pic:IRawPicture):void {
