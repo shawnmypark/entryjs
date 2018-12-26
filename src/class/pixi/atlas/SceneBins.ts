@@ -197,15 +197,13 @@ export class SceneBins implements ISceneTextures {
         if(t.isEmptyTexture) return;
 
         // console.log("put imgageData");
+        let atlasOption = this._option.atlasOption;
 
         let base:AtlasBaseTexture = t.getBaseTexture();
-
         if(!base.activated) {
-            const BASE_TEX_MAX_SIZE = this._option.atlasOption.atlasSize;
-            base.activate(BASE_TEX_MAX_SIZE);
+            base.activate(atlasOption.atlasSize);
         }
-        const EXTRUDE_SIZE = this._option.atlasOption.extrudeSize;
-        t.drawImageAtBaseTexture(info, EXTRUDE_SIZE);
+        t.drawImageAtBaseTexture(info, atlasOption.extrudeSize);
         if(forceUpdateBaseTexture) {
             base.update();
         }
