@@ -19,9 +19,9 @@ import { ImageRect } from '../../maxrect-packer/geom/ImageRect';
 import { autoFit } from '../utils/AutoFit';
 import { EntryTextureOption } from './EntryTextureOption';
 import { ISceneTextures } from './ISceneTextures';
+import { EntryInterface } from '../utils/EntryInterface';
 
 declare let _:any;
-declare let Entry:any;
 
 
 let TIMEOUT_INTERVAL = 250;
@@ -64,14 +64,14 @@ export class SceneBins implements ISceneTextures {
     }
 
     addPicInfo(pic:IRawPicture):void {
-        var path = PIXIAtlasHelper.getRawPath(pic);
+        let path = PIXIAtlasHelper.getRawPath(pic);
         if(this._path_tex_map.hasValue(path)) return;
 
-        var w = pic.dimension.width,
+        let w = pic.dimension.width,
             h = pic.dimension.height;
-        var rect:ImageRect = this._getNewImageRect(w, h );
+        let rect:ImageRect = this._getNewImageRect(w, h );
         this._loader.load(pic, rect);
-        var tex:AtlasTexture = this._newTexture(path, rect);
+        let tex:AtlasTexture = this._newTexture(path, rect);
         rect.data = { path: path, tex:tex };
         this._notPackedRects.push(rect);
 
@@ -92,7 +92,7 @@ export class SceneBins implements ISceneTextures {
     }
 
     private _newTexture(path:string, rect:ImageRect):AtlasTexture {
-        var tex = new AtlasTexture(EMPTY_BASE_TEX, rect);
+        let tex = new AtlasTexture(EMPTY_BASE_TEX, rect);
         this._path_tex_map.add(path, tex);
         return tex;
     }
@@ -101,16 +101,16 @@ export class SceneBins implements ISceneTextures {
     private _pack() {
         if(!this._notPackedRects.length) return;
 
-        var len = this._notPackedRects.length;
-        var time = new Date().getTime();
+        let len = this._notPackedRects.length;
+        let time = new Date().getTime();
         this._packer.addArray(this._notPackedRects);
-        var willUpdateBaseTextures:AtlasBaseTexture[] = [];
+        let willUpdateBaseTextures:AtlasBaseTexture[] = [];
 
         this._notPackedRects.forEach((r:ImageRect)=>{
-            var base:AtlasBaseTexture = this._getBaseTexture(r.binIndex);
+            let base:AtlasBaseTexture = this._getBaseTexture(r.binIndex);
             r.data.tex.updateBaseAndUVs(base);
 
-            var imgInfo = this._loader.getImageInfo(r.data.path);
+            let imgInfo = this._loader.getImageInfo(r.data.path);
             if(!imgInfo.isReady) return;
             
             this.putImage(imgInfo, false);
@@ -139,14 +139,14 @@ export class SceneBins implements ISceneTextures {
 
         const BASE_TEX_MAX_SIZE = this._option.atlasOption.atlasSize;
         _.each(this._packer.bins, (bin:MaxRectsBin, index:number)=>{
-            var base:AtlasBaseTexture = this._arrBaseTexture[index];
+            let base:AtlasBaseTexture = this._arrBaseTexture[index];
             base.activate(BASE_TEX_MAX_SIZE);
             base.update();
         });
 
         const EXTRUDE_SIZE = this._option.atlasOption.extrudeSize;
         this._path_tex_map.each((t:AtlasTexture, path:string)=>{
-            var info = this._loader.getImageInfo(path);
+            let info = this._loader.getImageInfo(path);
             if(!info || !info.isReady ) {
                 return;
             }
@@ -156,7 +156,7 @@ export class SceneBins implements ISceneTextures {
 
 
     private _getBaseTexture(index:number):AtlasBaseTexture {
-        var base:AtlasBaseTexture = this._arrBaseTexture[index];
+        let base:AtlasBaseTexture = this._arrBaseTexture[index];
         if(base) return base;
         const OP = this._option;
         base = new AtlasBaseTexture(this._viewer, OP.scaleMode);
@@ -191,14 +191,14 @@ export class SceneBins implements ISceneTextures {
      */
     putImage(info:AtlasImageLoadingInfo, forceUpdateBaseTexture:boolean = true) {
         if(!info) return;
-        var t:AtlasTexture = this.getTexture(info.path);
+        let t:AtlasTexture = this.getTexture(info.path);
 
         if(!t) return;//이 Scene에서 사용안함
         if(t.isEmptyTexture) return;
 
         // console.log("put imgageData");
 
-        var base:AtlasBaseTexture = t.getBaseTexture();
+        let base:AtlasBaseTexture = t.getBaseTexture();
 
         if(!base.activated) {
             const BASE_TEX_MAX_SIZE = this._option.atlasOption.atlasSize;
@@ -209,7 +209,7 @@ export class SceneBins implements ISceneTextures {
         if(forceUpdateBaseTexture) {
             base.update();
         }
-        Entry.requestUpdate = true;
+        EntryInterface.requestUpdate();
     }
 
 
@@ -224,7 +224,7 @@ export class SceneBins implements ISceneTextures {
         this._notPackedRects.length = 0;
         this._packedRects.length = 0;
 
-        var unusedPath:string[] = [];
+        let unusedPath:string[] = [];
 
         //사용안하는 path를 검색, 패킹을 다시 할 것이기 때문에 사용하는 텍스쳐의 rect 정보를 저장.
         this._path_tex_map.each((tex:AtlasTexture, path:string)=>{
@@ -250,8 +250,8 @@ export class SceneBins implements ISceneTextures {
 
 
     private _cleanCanvas() {
-        var LEN = this._arrBaseTexture.length;
-        for( var i = 0 ; i < LEN ; i++ ) {
+        let LEN = this._arrBaseTexture.length;
+        for( let i = 0 ; i < LEN ; i++ ) {
             this._arrBaseTexture[i].cleanCanvas();
         }
     }
@@ -262,8 +262,8 @@ export class SceneBins implements ISceneTextures {
 
 
     private _destroyBaseTextureAfter(startIndex:number) {
-        var LEN = this._arrBaseTexture.length;
-        for( var i = startIndex ; i < LEN ; i++ ) {
+        let LEN = this._arrBaseTexture.length;
+        for( let i = startIndex ; i < LEN ; i++ ) {
             this._arrBaseTexture[i].destroy();
         }
         this._arrBaseTexture.length = startIndex;
@@ -289,7 +289,7 @@ export class SceneBins implements ISceneTextures {
     }
 
     private _getNewImageRect(w:number, h:number):ImageRect {
-        var r = new ImageRect(0,0, w, h);
+        let r = new ImageRect(0,0, w, h);
         const TEX_MAX_SIZE_RECT = this._option.atlasOption.texMaxRect;
         if(w > TEX_MAX_SIZE_RECT.width || h > TEX_MAX_SIZE_RECT.height ) {
             autoFit.fit(TEX_MAX_SIZE_RECT, r, autoFit.ScaleMode.INSIDE, autoFit.AlignMode.TL);
