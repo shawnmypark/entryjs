@@ -6,6 +6,7 @@ import { IRawPicture } from './model/IRawPicture';
 import Texture = PIXI.Texture;
 import { PIXIDebugHelper } from '../helper/PIXIDebugHelper';
 import { PIXIAtlasHelper } from './PIXIAtlasHelper';
+import { EntryTextureOption } from './EntryTextureOption';
 
 declare let Entry:any;
 declare let _:any;
@@ -21,6 +22,7 @@ class _PIXIAtlasManager {
     private _imageLoader:AtlasImageLoader;
 
     private _viewer:AtlasCanvasViewer;
+    private _option:EntryTextureOption;
 
     /**
      * @private
@@ -30,6 +32,7 @@ class _PIXIAtlasManager {
         if(this._imageLoader) {
             throw new Error("do not call twice");
         }
+        this._option = new EntryTextureOption(640, 360);
         this._viewer = new AtlasCanvasViewer();
         this._imageLoader = new AtlasImageLoader(this._onImageLoaded.bind(this));
 
@@ -59,7 +62,8 @@ class _PIXIAtlasManager {
     private _getSceneBin(sceneID:string, createIfNotExist:boolean = true):SceneBins {
         var s:SceneBins = this._sceneID_sceneBin_map[sceneID];
         if(!s && createIfNotExist) {
-            s = this._sceneID_sceneBin_map[sceneID] = new SceneBins(sceneID, this._imageLoader, this._viewer);
+            s = new SceneBins(sceneID, this._option, this._imageLoader, this._viewer);
+            this._sceneID_sceneBin_map[sceneID] = s;
         }
         return s;
     }

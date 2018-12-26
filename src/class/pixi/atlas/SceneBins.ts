@@ -17,6 +17,7 @@ import { PIXIAtlasHelper } from './PIXIAtlasHelper';
 import { TimeoutTimer } from '../utils/TimeoutTimer';
 import { ImageRect } from '../../maxrect-packer/geom/ImageRect';
 import { autoFit } from '../utils/AutoFit';
+import { EntryTextureOption } from './EntryTextureOption';
 
 declare let _:any;
 declare let Entry:any;
@@ -96,8 +97,8 @@ export class SceneBins {
     private _imageRemoved:boolean;
     private _timer:TimeoutTimer = new TimeoutTimer();
 
-    constructor(public sceneID:string, private _loader:AtlasImageLoader, private _viewer:AtlasCanvasViewer) {
-        SceneBins.initEmptyTex(4096);
+    constructor(public sceneID:string, private _option:EntryTextureOption, private _loader:AtlasImageLoader, private _viewer:AtlasCanvasViewer) {
+        SceneBins.initEmptyTex(_option.atlasOption.atlasSize);
     }
 
     addPicInfo(pic:IRawPicture):void {
