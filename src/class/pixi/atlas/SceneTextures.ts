@@ -9,7 +9,6 @@ import { EntryBaseTexture } from './texture/EntryBaseTexture';
 import { EntryInterface } from '../utils/EntryInterface';
 import { IRawPicture } from './model/IRawPicture';
 import { PIXIAtlasHelper } from './PIXIAtlasHelper';
-import { autoFit } from '../utils/AutoFit';
 
 
 export class SceneTextures implements ISceneTextures {
@@ -29,6 +28,14 @@ export class SceneTextures implements ISceneTextures {
 
     activate():void {
         this._activated = true;
+        this._path_tex_map.each((tex:EntryTexture, path:string)=>{
+            let info = this._loader.getImageInfo(path);
+            if(!info || !info.isReady ) {
+                return;
+            }
+            this.putImage(info, false);
+        });
+
     }
 
     addPicInfo(pic:IRawPicture):void {
@@ -58,6 +65,9 @@ export class SceneTextures implements ISceneTextures {
 
     deactivate():void {
         this._activated = false;
+        this._path_tex_map.each((tex:EntryTexture, path:string)=>{
+            tex.getBaseTexture().dispose();
+        });
     }
 
 
