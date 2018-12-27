@@ -1,5 +1,8 @@
 import { IRawPicture } from './model/IRawPicture';
 import { PrimitiveSet } from './structure/PrimitiveSet';
+import { ImageRect } from '../../maxrect-packer/geom/ImageRect';
+import { autoFit } from '../utils/AutoFit';
+import Rectangle = PIXI.Rectangle;
 
 
 declare let Entry:any;
@@ -37,6 +40,21 @@ class _PIXIAtlasHelper {
             }
         }
         return pathSet;
+    }
+
+    getNewImageRect(pic:IRawPicture, texMaxRect:Rectangle):ImageRect {
+        let w = pic.dimension.width,
+            h = pic.dimension.height;
+        let r = new ImageRect(0,0, w, h);
+        if(w > texMaxRect.width || h > texMaxRect.height ) {
+            autoFit.fit(texMaxRect, r, autoFit.ScaleMode.INSIDE, autoFit.AlignMode.TL);
+            r.width = Math.ceil(r.width);
+            r.height = Math.ceil(r.height);
+            r.scaleFactor = w / r.width;
+            r.scaleFactorX = w / r.width;
+            r.scaleFactorY = h / r.height;
+        }
+        return r;
     }
 
 

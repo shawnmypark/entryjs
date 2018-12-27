@@ -6,19 +6,20 @@ import Rectangle = PIXI.Rectangle;
 import { AtlasBaseTexture } from './AtlasBaseTexture';
 import { ImageRect } from '../../../maxrect-packer/geom/ImageRect';
 import { AtlasImageLoadingInfo } from '../loader/AtlasImageLoadingInfo';
+import { EntryTextureBase } from './EntryTextureBase';
 
-export class AtlasTexture extends PIXI.Texture {
+export class AtlasTexture extends EntryTextureBase {
 
-    public imageRect:ImageRect;
+    /** binpacking의 rect 참조를 위한 변수. 다용 용도로 사용하지 말긔. */
+    public imageRectForPacking:ImageRect;
     private _isEmptyTexture:boolean;
-    public textureScaleFactor:number;
+    public textureScaleFactorX:number;
+    public textureScaleFactorY:number;
 
     constructor(baseTexture: AtlasBaseTexture, imageRect:ImageRect) {
-        var frame = new Rectangle(0, 0, imageRect.width, imageRect.height);
-        super(baseTexture, frame);
+        super(baseTexture, imageRect);
         this._isEmptyTexture = true;
-        this.imageRect = imageRect;
-        this.textureScaleFactor = imageRect.scaleFactor;
+        this.imageRectForPacking = imageRect;
     }
 
     get isEmptyTexture():boolean {
@@ -27,11 +28,6 @@ export class AtlasTexture extends PIXI.Texture {
 
     getBaseTexture():AtlasBaseTexture {
         return this.baseTexture as AtlasBaseTexture;
-    }
-
-    assignTextureScaleFactor(target:PIXI.RenderTexture) {
-        //textureScaleFactor 변수 네이밍을 여기저기서 쓰지 않으려고 메서드를 만듬.
-        (target as any).textureScaleFactor = this.textureScaleFactor;
     }
 
     /**
@@ -79,9 +75,9 @@ export class AtlasTexture extends PIXI.Texture {
     updateBaseAndUVs(base:AtlasBaseTexture):void {
         this._isEmptyTexture = false;
         this.baseTexture = base;
-        if(this.frame.x != this.imageRect.x || this.frame.y != this.imageRect.y) {
-            this.frame.x = this.imageRect.x;
-            this.frame.y = this.imageRect.y;
+        if(this.frame.x != this.imageRectForPacking.x || this.frame.y != this.imageRectForPacking.y) {
+            this.frame.x = this.imageRectForPacking.x;
+            this.frame.y = this.imageRectForPacking.y;
             this._updateUvs();
         }
     }

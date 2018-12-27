@@ -16,7 +16,6 @@ import { AtlasImageLoader } from './loader/AtlasImageLoader';
 import { PIXIAtlasHelper } from './PIXIAtlasHelper';
 import { TimeoutTimer } from '../utils/TimeoutTimer';
 import { ImageRect } from '../../maxrect-packer/geom/ImageRect';
-import { autoFit } from '../utils/AutoFit';
 import { EntryTextureOption } from './EntryTextureOption';
 import { ISceneTextures } from './ISceneTextures';
 import { EntryInterface } from '../utils/EntryInterface';
@@ -67,9 +66,7 @@ export class SceneBins implements ISceneTextures {
         let path = PIXIAtlasHelper.getRawPath(pic);
         if(this._path_tex_map.hasValue(path)) return;
 
-        let w = pic.dimension.width,
-            h = pic.dimension.height;
-        let rect:ImageRect = this._getNewImageRect(w, h );
+        let rect:ImageRect = PIXIAtlasHelper.getNewImageRect(pic, this._option.texMaxRect);
         this._loader.load(pic, rect);
         let tex:AtlasTexture = this._newTexture(path, rect);
         rect.data = { path: path, tex:tex };
@@ -226,7 +223,7 @@ export class SceneBins implements ISceneTextures {
         //사용안하는 path를 검색, 패킹을 다시 할 것이기 때문에 사용하는 텍스쳐의 rect 정보를 저장.
         this._path_tex_map.each((tex:AtlasTexture, path:string)=>{
             if( usedPathSet && usedPathSet.hasValue(path) ) {
-                this._notPackedRects.push(this._path_tex_map.getValue(path).imageRect);
+                this._notPackedRects.push(this._path_tex_map.getValue(path).imageRectForPacking);
             } else {
                 unusedPath.push(path);
             }
@@ -285,17 +282,7 @@ export class SceneBins implements ISceneTextures {
         this._notPackedRects = null;
     }
 
-    private _getNewImageRect(w:number, h:number):ImageRect {
-        let r = new ImageRect(0,0, w, h);
-        const TEX_MAX_SIZE_RECT = this._option.atlasOption.texMaxRect;
-        if(w > TEX_MAX_SIZE_RECT.width || h > TEX_MAX_SIZE_RECT.height ) {
-            autoFit.fit(TEX_MAX_SIZE_RECT, r, autoFit.ScaleMode.INSIDE, autoFit.AlignMode.TL);
-            r.width = Math.ceil(r.width);
-            r.height = Math.ceil(r.height);
-            r.scaleFactor = w / r.width;
-        }
-        return r;
-    }
+
 }
 
 

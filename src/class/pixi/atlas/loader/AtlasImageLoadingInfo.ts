@@ -146,8 +146,11 @@ export class AtlasImageLoadingInfo {
         this.srcWidth = sw;
         this.srcHeight = sh;
         var r = this._imgRect;
-        if(r.scaleFactor == 1 ) return;
-        console.log(`rezie (${sw},${sh})->(${r.width},${r.height}). factor:${r.scaleFactor}`);
+
+        if(r.scaleFactorX == 1 && r.scaleFactorY == 1) return;
+        var sfx = r.scaleFactorX.toFixed(3);
+        var sfy = r.scaleFactorY.toFixed(3);
+        console.log(`rezie (${sw},${sh})->(${r.width},${r.height}). factor:(${sfx},${sfy})`);
         var canvas = PIXIHelper.getOffScreenCanvas();
         this.srcWidth = canvas.width = r.width;
         this.srcHeight = canvas.height = r.height;

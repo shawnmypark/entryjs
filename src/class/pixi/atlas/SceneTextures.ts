@@ -35,9 +35,8 @@ export class SceneTextures implements ISceneTextures {
         let path = PIXIAtlasHelper.getRawPath(pic);
         let map = this._path_tex_map;
         if(map.hasValue(path)) return;
-        let w = pic.dimension.width,
-            h = pic.dimension.height;
-        let rect:ImageRect = this._getNewImageRect(w, h );
+
+        let rect:ImageRect = PIXIAtlasHelper.getNewImageRect(pic, this._option.texMaxRect);
         this._loader.load(pic, rect);
         let tex = this._newTexture(path, rect);
 
@@ -82,16 +81,5 @@ export class SceneTextures implements ISceneTextures {
 
     }
 
-    private _getNewImageRect(w:number, h:number):ImageRect {
-        let r = new ImageRect(0,0, w, h);
-        const TEX_MAX_SIZE_RECT = this._option.atlasOption.texMaxRect;
-        if(w > TEX_MAX_SIZE_RECT.width || h > TEX_MAX_SIZE_RECT.height ) {
-            autoFit.fit(TEX_MAX_SIZE_RECT, r, autoFit.ScaleMode.INSIDE, autoFit.AlignMode.TL);
-            r.width = Math.ceil(r.width);
-            r.height = Math.ceil(r.height);
-            r.scaleFactor = w / r.width;
-        }
-        return r;
-    }
 
 }

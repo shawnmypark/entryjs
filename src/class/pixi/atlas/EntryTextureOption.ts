@@ -3,8 +3,6 @@ import Rectangle = PIXI.Rectangle;
 import { MaxRectsPacker } from '../../maxrect-packer/maxrects_packer';
 
 interface ITexOption {
-    /** 텍스쳐 1개의 최대 크기. 이 크기보다 크면 리사이즈 함. */
-    texMaxRect:Rectangle;
 }
 
 interface IAtlasOption extends ITexOption {
@@ -26,14 +24,16 @@ export class EntryTextureOption {
     readonly mipmap:boolean = false;
     readonly atlasOption:IAtlasOption;
 
+    /** 텍스쳐 1개의 최대 크기. 이 크기보다 크면 리사이즈 함. */
+    readonly texMaxRect:Rectangle;
 
     constructor(stageWidth:number, stageHeight:number) {
 
         this.GPU_TEX_MAX_SIZE = this.computeMaxTextureSize(4096);
         this._texStageRatio = 1;
+        this.texMaxRect = this.getTexRect(stageWidth, stageHeight, this._texStageRatio, this.GPU_TEX_MAX_SIZE);
 
         this.atlasOption = {
-            texMaxRect: this.getTexRect(stageWidth, stageHeight, this._texStageRatio, this.GPU_TEX_MAX_SIZE),
             extrudeSize: 2,
             atlasSize: this.GPU_TEX_MAX_SIZE,
             newPacker: this.newPacker.bind(this)

@@ -62,7 +62,7 @@ class _PIXIAtlasManager {
     }
 
     private _getSceneBin(sceneID:string, createIfNotExist:boolean = true):ISceneTextures {
-        const USE_ATLAS:boolean = true;
+        const USE_ATLAS:boolean = false;
         var s:ISceneTextures = this._sceneID_sceneBin_map[sceneID];
         if(!s && createIfNotExist) {
             if(USE_ATLAS) {
