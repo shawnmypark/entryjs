@@ -6,7 +6,6 @@ import { AtlasImageLoader } from './loader/AtlasImageLoader';
 import { EntryTextureOption } from './EntryTextureOption';
 import { EntryTexture } from './texture/EntryTexture';
 import { EntryBaseTexture } from './texture/EntryBaseTexture';
-import { EntryInterface } from '../utils/EntryInterface';
 import { IRawPicture } from './model/IRawPicture';
 import { PIXIAtlasHelper } from './PIXIAtlasHelper';
 
@@ -83,7 +82,7 @@ export class SceneTextures implements ISceneTextures {
         }
         let baseTex = tex.getBaseTexture();
         baseTex.updateSource(info.source());
-        EntryInterface.requestUpdate();
+        Entry.requestUpdate = true;
     }
 
 

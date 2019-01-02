@@ -18,7 +18,6 @@ import { TimeoutTimer } from '../utils/TimeoutTimer';
 import { ImageRect } from '../../maxrect-packer/geom/ImageRect';
 import { EntryTextureOption } from './EntryTextureOption';
 import { ISceneTextures } from './ISceneTextures';
-import { EntryInterface } from '../utils/EntryInterface';
 
 declare let _:any;
 
@@ -203,7 +202,7 @@ export class SceneBins implements ISceneTextures {
         if(forceUpdateBaseTexture) {
             base.update();
         }
-        EntryInterface.requestUpdate();
+        Entry.requestUpdate = true;
     }
 
 

@@ -2,6 +2,7 @@ import { IRawPicture } from '../model/IRawPicture';
 import { PIXIAtlasHelper } from '../PIXIAtlasHelper';
 import { ImageRect } from '../../../maxrect-packer/geom/ImageRect';
 import PIXIHelper from '../../helper/PIXIHelper';
+import { clog } from '../../utils/logs';
 
 declare let Entry:any;
 declare let _:any;
@@ -150,7 +151,7 @@ export class AtlasImageLoadingInfo {
         if(r.scaleFactorX == 1 && r.scaleFactorY == 1) return;
         var sfx = r.scaleFactorX.toFixed(3);
         var sfy = r.scaleFactorY.toFixed(3);
-        console.log(`rezie (${sw},${sh})->(${r.width},${r.height}). factor:(${sfx},${sfy})`);
+        clog(`tex-rezie (${sw},${sh})->(${r.width},${r.height}). factor:(${sfx},${sfy})`);
         var canvas = PIXIHelper.getOffScreenCanvas();
         this.srcWidth = canvas.width = r.width;
         this.srcHeight = canvas.height = r.height;

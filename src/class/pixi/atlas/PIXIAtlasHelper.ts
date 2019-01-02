@@ -5,7 +5,6 @@ import { autoFit } from '../utils/AutoFit';
 import Rectangle = PIXI.Rectangle;
 
 
-declare let Entry:any;
 declare let _:any;
 
 class _PIXIAtlasHelper {
@@ -22,7 +21,6 @@ class _PIXIAtlasHelper {
      * @param sceneID
      */
     getScenePathSet(sceneID:string):PrimitiveSet {
-
         var arrObj:any[] = Entry.container.getAllObjects();
         var pathSet = new PrimitiveSet();
 

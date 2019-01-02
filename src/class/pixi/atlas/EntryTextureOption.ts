@@ -1,6 +1,7 @@
 import PIXIHelper from '../helper/PIXIHelper';
 import Rectangle = PIXI.Rectangle;
 import { MaxRectsPacker } from '../../maxrect-packer/maxrects_packer';
+import { clog } from '../utils/logs';
 
 interface ITexOption {
 }
@@ -14,6 +15,7 @@ interface IAtlasOption extends ITexOption {
 
 export class EntryTextureOption {
 
+    readonly USE_ATLAS:boolean = false;
 
     private readonly GPU_TEX_MAX_SIZE:number;
 
@@ -28,7 +30,7 @@ export class EntryTextureOption {
     readonly texMaxRect:Rectangle;
 
     constructor(stageWidth:number, stageHeight:number) {
-
+        clog("USE_ATLAS", this.USE_ATLAS);
         this.GPU_TEX_MAX_SIZE = this.computeMaxTextureSize(4096);
         this._texStageRatio = 1;
         this.texMaxRect = this.getTexRect(stageWidth, stageHeight, this._texStageRatio, this.GPU_TEX_MAX_SIZE);
@@ -68,7 +70,7 @@ export class EntryTextureOption {
         var ctx:WebGLRenderingContext = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
         var size = ctx ? ctx.getParameter(ctx.MAX_TEXTURE_SIZE) : 2048;
         size = Math.min(size, LIMIT);
-        console.log("Max texture size : " + size);
+        clog("Max texture size : " + size);
         return size;
     }
 }

@@ -9,8 +9,8 @@ import { PIXIAtlasHelper } from './PIXIAtlasHelper';
 import { EntryTextureOption } from './EntryTextureOption';
 import { ISceneTextures } from './ISceneTextures';
 import { SceneTextures } from './SceneTextures';
+import { clog } from '../utils/logs';
 
-declare let Entry:any;
 declare let _:any;
 
 
@@ -62,10 +62,9 @@ class _PIXIAtlasManager {
     }
 
     private _getSceneBin(sceneID:string, createIfNotExist:boolean = true):ISceneTextures {
-        const USE_ATLAS:boolean = false;
         var s:ISceneTextures = this._sceneID_sceneBin_map[sceneID];
         if(!s && createIfNotExist) {
-            if(USE_ATLAS) {
+            if(this._option.USE_ATLAS) {
                 s = new SceneBins(sceneID, this._option, this._imageLoader, this._viewer);
             } else {
                 s = new SceneTextures(sceneID, this._option, this._imageLoader);
@@ -87,13 +86,13 @@ class _PIXIAtlasManager {
 
 
     imageRemoved(reason:string):void {
-        console.log("AtlasManager::imageRemoved - "+reason);
+        clog("AtlasManager::imageRemoved - "+reason);
         this._activatedScene && this._activatedScene._internal_imageRemoved();
         this._imageLoader.requestSync();
     }
 
     clearProject():void {
-        console.log("clearProject");
+        clog("clearProject");
         this._imageLoader.empty();
         _.each(this._sceneID_sceneBin_map, (bin:ISceneTextures)=>{
             bin.destroy();
