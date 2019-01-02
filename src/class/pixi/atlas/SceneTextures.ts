@@ -18,7 +18,7 @@ export class SceneTextures implements ISceneTextures {
 
     private _path_tex_map:PrimitiveMap<EntryTexture> = new PrimitiveMap();
     private _activated:boolean;
-    private _gcTimer:TimeoutTimer = new TimeoutTimer()
+    private _gcTimer:TimeoutTimer = new TimeoutTimer();
 
 
     constructor(public sceneID:string, private _option:EntryTextureOption, private _loader:AtlasImageLoader) {
