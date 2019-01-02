@@ -82,6 +82,7 @@ class _PIXIAtlasManager {
         }
         s.destroy();
         delete this._sceneID_sceneBin_map[sceneID];
+        this.imageRemoved(`scend(${sceneID}) removed.`);
     }
 
 

@@ -8,6 +8,9 @@ import { EntryTexture } from './texture/EntryTexture';
 import { EntryBaseTexture } from './texture/EntryBaseTexture';
 import { IRawPicture } from './model/IRawPicture';
 import { PIXIAtlasHelper } from './PIXIAtlasHelper';
+import { clog } from '../utils/logs';
+import { PrimitiveSet } from './structure/PrimitiveSet';
+import { TimeoutTimer } from '../utils/TimeoutTimer';
 
 
 export class SceneTextures implements ISceneTextures {
@@ -15,6 +18,7 @@ export class SceneTextures implements ISceneTextures {
 
     private _path_tex_map:PrimitiveMap<EntryTexture> = new PrimitiveMap();
     private _activated:boolean;
+    private _gcTimer:TimeoutTimer = new TimeoutTimer()
 
 
     constructor(public sceneID:string, private _option:EntryTextureOption, private _loader:AtlasImageLoader) {
@@ -22,7 +26,22 @@ export class SceneTextures implements ISceneTextures {
     }
 
     _internal_imageRemoved():void {
+        if(this._gcTimer.isRunning) return;
+        this._gcTimer.timeout(500, ()=>{ this._gcTexture(); });
+    }
 
+    _gcTexture():void {
+        let usedPathSet:PrimitiveSet = PIXIAtlasHelper.getScenePathSet(this.sceneID);
+        let deleteCnt = 0;
+        this._path_tex_map.each((tex:EntryTexture, path:string)=>{
+            if(usedPathSet.hasValue(path)) return;
+            tex.destroy(true);
+            this._path_tex_map.remove(path);
+            deleteCnt++;
+        });
+        if(deleteCnt) {
+            clog(`[SceneTextures] ${deleteCnt} textures deleted`);
+        }
     }
 
     activate():void {
@@ -87,7 +106,15 @@ export class SceneTextures implements ISceneTextures {
 
 
     destroy():void {
+        clog("destroy",this.sceneID);
+        this._gcTimer.reset();
+        this._gcTimer = null;
 
+        this._path_tex_map.each((tex:EntryTexture, path:string)=>{
+            tex.destroy(true);
+        });
+        this._path_tex_map.destroy();
+        this._path_tex_map = null;
     }
 
 

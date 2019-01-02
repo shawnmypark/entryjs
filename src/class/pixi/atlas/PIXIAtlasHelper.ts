@@ -17,7 +17,7 @@ class _PIXIAtlasHelper {
     }
 
     /**
-     * EntryObject를 전부 조회하여 지정된 장명에서 사용하는 picture의 경로 set 객체를 리턴.
+     * EntryObject를 전부 조회하여 지정된 장면에서 사용하는 picture의 경로 set 객체를 리턴.
      * @param sceneID
      */
     getScenePathSet(sceneID:string):PrimitiveSet {
