@@ -9,8 +9,8 @@ node_js:
   - '8'
 env:
   global:
-    - GH_REF: github.com/entrylabs/entryjs.git
-    - GH_REPO: https://github.com/entrylabs/entryjs.git
+    - GH_REF: github.com/shawnmypark/entryjs.git
+    - GH_REPO: https://github.com/shawnmypark/entryjs.git
 cache:
   directories:
     - node_modules
