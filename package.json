@@ -12,7 +12,11 @@
         "type": "git",
         "url": "https://github.com/boolgom/entryjs.git"
     },
-    "keywords": ["entry", "entryjs", "javascript"],
+    "keywords": [
+        "entry",
+        "entryjs",
+        "javascript"
+    ],
     "bugs": {
         "url": "https://github.com/boolgom/entryjs/issues"
     },
@@ -50,6 +54,7 @@
         "@babel/preset-env": "7.0.0",
         "@babel/runtime": "^7.0.0",
         "@entrylabs/event": "latest",
+        "@types/node": "^11.9.5",
         "@types/pixi.js": "^4.8.6",
         "awesome-typescript-loader": "^5.2.1",
         "babel-eslint": "^8.2.2",
