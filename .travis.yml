@@ -30,6 +30,7 @@ jobs:
         - npm prune
         - npm install
       script:
+        - export NODE_OPTIONS=--max-old-space-size=4096
         - ./scripts/build.sh
         - ./scripts/deploy.sh
       notifications:
