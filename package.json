@@ -21,7 +21,7 @@
         "serve": "cross-env NODE_ENV=serve webpack-dev-server --open",
         "dev": "webpack -w",
         "test": "jest --colors",
-        "dist": "cross-env NODE_OPTIONS=--max-old-space-size=4096"
+        "dist": "cross-env NODE_OPTIONS=--max-old-space-size=4096 webpack"
     },
     "license": "MIT",
     "dependencies": {
